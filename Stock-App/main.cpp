@@ -6,10 +6,15 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
-#include <iostream>
+#include "RestCall.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main(void)
+{
+  RestCall::init();
+  
+  //while (1) {
+    RestCall::quotes();
+  //}
+  
+  return 0;
 }

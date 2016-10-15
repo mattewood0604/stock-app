@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90B181E1DB286C400080F59 /* RestCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C90B181C1DB286C400080F59 /* RestCall.cpp */; };
+		C90B18221DB2878700080F59 /* MemoryChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C90B18201DB2878700080F59 /* MemoryChunk.cpp */; };
 		C95B24031DB043D20004604E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C95B24021DB043D20004604E /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C90B181C1DB286C400080F59 /* RestCall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RestCall.cpp; sourceTree = "<group>"; };
+		C90B181D1DB286C400080F59 /* RestCall.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RestCall.hpp; sourceTree = "<group>"; };
+		C90B18201DB2878700080F59 /* MemoryChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryChunk.cpp; sourceTree = "<group>"; };
+		C90B18211DB2878700080F59 /* MemoryChunk.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryChunk.hpp; sourceTree = "<group>"; };
+		C90B18241DB287DA00080F59 /* constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = constants.hpp; sourceTree = "<group>"; };
 		C95B23FF1DB043D20004604E /* Stock-App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Stock-App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95B24021DB043D20004604E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +45,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90B181F1DB286CD00080F59 /* RestCall */ = {
+			isa = PBXGroup;
+			children = (
+				C90B181C1DB286C400080F59 /* RestCall.cpp */,
+				C90B181D1DB286C400080F59 /* RestCall.hpp */,
+			);
+			name = RestCall;
+			sourceTree = "<group>";
+		};
+		C90B18231DB2878C00080F59 /* MemoryChunk */ = {
+			isa = PBXGroup;
+			children = (
+				C90B18201DB2878700080F59 /* MemoryChunk.cpp */,
+				C90B18211DB2878700080F59 /* MemoryChunk.hpp */,
+			);
+			name = MemoryChunk;
+			sourceTree = "<group>";
+		};
 		C95B23F61DB043D20004604E = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +82,10 @@
 		C95B24011DB043D20004604E /* Stock-App */ = {
 			isa = PBXGroup;
 			children = (
+				C90B18231DB2878C00080F59 /* MemoryChunk */,
+				C90B181F1DB286CD00080F59 /* RestCall */,
 				C95B24021DB043D20004604E /* main.cpp */,
+				C90B18241DB287DA00080F59 /* constants.hpp */,
 			);
 			path = "Stock-App";
 			sourceTree = "<group>";
@@ -121,6 +149,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C95B24031DB043D20004604E /* main.cpp in Sources */,
+				C90B181E1DB286C400080F59 /* RestCall.cpp in Sources */,
+				C90B18221DB2878700080F59 /* MemoryChunk.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +200,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lcurl";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -210,6 +241,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-lcurl";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -249,6 +281,7 @@
 				C95B24081DB043D20004604E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
