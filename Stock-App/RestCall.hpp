@@ -11,11 +11,11 @@
 
 #include <curl/curl.h>
 
-#include "MemoryChunk.hpp"
+#include "Response.hpp"
 
 class RestCall {
   public:
-    static MemoryChunk memoryChunk;
+    static Response response;
     static CURL* curlHandle;
   
     static void init();

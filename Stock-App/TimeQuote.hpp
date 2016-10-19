@@ -1,0 +1,53 @@
+//
+//  TimeQuote.hpp
+//  Stock-App
+//
+//  Created by Matt Wood on 10/15/16.
+//  Copyright © 2016 MattWood. All rights reserved.
+//
+
+#ifndef TimeQuote_hpp
+#define TimeQuote_hpp
+
+#include <string>
+
+class TimeQuote {
+  public:
+    TimeQuote(const std::string& _json);
+    
+    void log() const;
+    std::string toCSV() const;
+  
+    const std::string& getSymbol() const;
+  
+  private:
+    static std::string bidKey;
+    static std::string bidQtyKey;
+    static std::string offerKey;
+    static std::string offerQtyKey;
+    static std::string timeKey;
+    static std::string percentKey;
+    static std::string changeKey;
+    static std::string priceKey;
+    static std::string symbolKey;
+    
+    std::string json;
+    
+    std::string symbol;
+    uint64_t time;
+    uint16_t bidQty;
+    float bid;
+    uint16_t offerQty;
+    float offer;
+    float price;
+    float percent;
+    float change;
+    
+    int parseInt(const std::string& _key) const;
+    float parseFloat(const std::string& _key) const;
+    std::string parseString(const std::string& _key) const;
+    uint64_t parseTime() const;
+};
+
+
+#endif /* TimeQuote_hpp */
