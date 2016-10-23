@@ -41,8 +41,18 @@ void Response::parseQuotes(const std::string& _json) const {
   static std::string quotes = "\"quotes\":[";
   
   int quotesIndex = (int)_json.find(quotes);
+  if (quotesIndex < 0) {
+    return;
+  }
+  
   int closingBracketIndex = (int)_json.find("]", quotesIndex);
+  if (closingBracketIndex < 0) {
+    return;
+  }
   std::string quotesString = _json.substr(quotesIndex + quotes.size(), closingBracketIndex - quotesIndex - quotes.size());
+  if (quotesString.size() <= 0) {
+    return;
+  }
   
   int openCurlyIndex = (int)quotesString.find("{");
   int closeCurlyIndex = (int)quotesString.find("}");
@@ -62,10 +72,6 @@ void Response::marketStatus() const {
 }
 
 void Response::parseQuotes() const {
-  //if (!Model::isMarketOpen()) {
-  //  return;
-  //}
-  
   std::string jsonString = std::string(this->memory);
   parseQuotes(jsonString);
 }

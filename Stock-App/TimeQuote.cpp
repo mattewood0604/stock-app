@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "Model.hpp"
+#include "TestModel.hpp"
 #include "TimeQuote.hpp"
 
 std::string TimeQuote::bidKey = "\"bid\":";
@@ -22,7 +23,12 @@ std::string TimeQuote::changeKey = "\"change\":";
 std::string TimeQuote::priceKey = "\"price\":";
 std::string TimeQuote::symbolKey = "\"symbol\":";
 
-TimeQuote::TimeQuote(const std::string& _json) {
+TimeQuote::TimeQuote(const std::string& _json, bool isCSV) {
+  if (isCSV) {
+    this->fromCSV(_json);
+    return;
+  }
+  
   this->json = _json;
   
   this->time = parseTime();
@@ -34,6 +40,55 @@ TimeQuote::TimeQuote(const std::string& _json) {
   this->bidQty = parseInt(bidQtyKey);
   this->offer = parseFloat(offerKey);
   this->offerQty = parseInt(offerQtyKey);
+}
+
+void TimeQuote::fromCSV(const std::string& _quote) {
+  if (_quote[0] == 't') {
+    return;
+  }
+  
+  this->symbol = TestModel::stockSymbol;
+  
+  int lastCommaIndex = -1;
+  int commaIndex = (int)_quote.find(',');
+  
+  std::string value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex - 1);
+  this->time = stoll(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->price = stof(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->bid = stof(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->bidQty = stoi(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->offer = stof(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->offerQty = stoi(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->percent = stof(value);
+  lastCommaIndex = commaIndex;
+  
+  commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
+  value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
+  this->change = stof(value);
 }
 
 void TimeQuote::log() const {

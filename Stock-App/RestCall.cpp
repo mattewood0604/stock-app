@@ -8,9 +8,11 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 
 #include "Response.hpp"
 #include "RestCall.hpp"
+#include "TestModel.hpp"
 
 Response RestCall::response;
 CURL* RestCall::curlHandle = NULL;
@@ -61,4 +63,15 @@ void RestCall::quotes() {
   
   response.marketStatus();
   response.parseQuotes();
+}
+
+void RestCall::mockCall() {
+  for (unsigned int i = 0; i < TestModel::totalTimeQuotes(); i++) {
+    const TimeQuote& quote = TestModel::getTestQuote(i);
+    Stock& stock = TestModel::stockForSymbol(quote.getSymbol());
+    stock.addTimeToCandles(quote);
+    stock.buyOrSell();
+  }
+  
+  TestModel::logMoneyMade();
 }

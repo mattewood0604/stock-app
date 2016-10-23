@@ -13,23 +13,12 @@
 
 class TimeQuote {
   public:
-    TimeQuote(const std::string& _json);
+    TimeQuote(const std::string& _json, bool isCSV = false);
     
     void log() const;
     std::string toCSV() const;
   
     const std::string& getSymbol() const;
-  
-  private:
-    static std::string bidKey;
-    static std::string bidQtyKey;
-    static std::string offerKey;
-    static std::string offerQtyKey;
-    static std::string timeKey;
-    static std::string percentKey;
-    static std::string changeKey;
-    static std::string priceKey;
-    static std::string symbolKey;
     
     std::string json;
     
@@ -42,7 +31,20 @@ class TimeQuote {
     float price;
     float percent;
     float change;
-    
+  
+  private:
+    static std::string bidKey;
+    static std::string bidQtyKey;
+    static std::string offerKey;
+    static std::string offerQtyKey;
+    static std::string timeKey;
+    static std::string percentKey;
+    static std::string changeKey;
+    static std::string priceKey;
+    static std::string symbolKey;
+  
+    void fromCSV(const std::string& _quote);
+  
     int parseInt(const std::string& _key) const;
     float parseFloat(const std::string& _key) const;
     std::string parseString(const std::string& _key) const;

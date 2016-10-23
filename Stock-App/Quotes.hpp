@@ -15,11 +15,19 @@
 
 class Quotes {
   public:
-    static void addTimeQuote(const std::string& _quote);
-    static void log();
+    Quotes();
+  
+    void addTimeQuote(const std::string& _quote);
+    void addTimeQuoteFromCSV(const std::string& _quote);
+    void resetTimeQuotes();
+  
+    unsigned int totalTimeQuotes();
+    const TimeQuote& getTimeQuote(const unsigned int& _index);
+  
+    void log();
   
   private:
-    static std::vector<TimeQuote> timeQuotes;
+    std::vector<TimeQuote> timeQuotes;
 };
 
 #endif /* Quotes_hpp */

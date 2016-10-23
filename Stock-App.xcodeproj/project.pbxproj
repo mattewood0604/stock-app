@@ -14,6 +14,10 @@
 		C9E8B6971DB40A87003B769A /* Quotes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6951DB40A87003B769A /* Quotes.cpp */; };
 		C9E8B69A1DB5A230003B769A /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6981DB5A230003B769A /* Model.cpp */; };
 		C9E8B69F1DB83648003B769A /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B69D1DB83648003B769A /* FileManager.cpp */; };
+		C9E8B6A31DB97D3A003B769A /* TestModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6A11DB97D3A003B769A /* TestModel.cpp */; };
+		C9E8B6A71DBAC477003B769A /* Stock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6A51DBAC477003B769A /* Stock.cpp */; };
+		C9E8B6AB1DBAC8CB003B769A /* StockModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6A91DBAC8CB003B769A /* StockModel.cpp */; };
+		C9E8B6AF1DBACCA7003B769A /* Candle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6AD1DBACCA7003B769A /* Candle.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +47,14 @@
 		C9E8B6991DB5A230003B769A /* Model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		C9E8B69D1DB83648003B769A /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		C9E8B69E1DB83648003B769A /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
+		C9E8B6A11DB97D3A003B769A /* TestModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestModel.cpp; sourceTree = "<group>"; };
+		C9E8B6A21DB97D3A003B769A /* TestModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestModel.hpp; sourceTree = "<group>"; };
+		C9E8B6A51DBAC477003B769A /* Stock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stock.cpp; sourceTree = "<group>"; };
+		C9E8B6A61DBAC477003B769A /* Stock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stock.hpp; sourceTree = "<group>"; };
+		C9E8B6A91DBAC8CB003B769A /* StockModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StockModel.cpp; sourceTree = "<group>"; };
+		C9E8B6AA1DBAC8CB003B769A /* StockModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StockModel.hpp; sourceTree = "<group>"; };
+		C9E8B6AD1DBACCA7003B769A /* Candle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Candle.cpp; sourceTree = "<group>"; };
+		C9E8B6AE1DBACCA7003B769A /* Candle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Candle.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +105,10 @@
 		C95B24011DB043D20004604E /* Stock-App */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8B6AC1DBACC9B003B769A /* Candle */,
+				C9E8B6A81DBAC8B5003B769A /* StockModel */,
+				C9E8B6A41DBAC46A003B769A /* Stock */,
+				C9E8B6A01DB97D23003B769A /* TestModel */,
 				C9E8B69C1DB8363C003B769A /* FileManager */,
 				C9E8B69B1DB5A234003B769A /* Model */,
 				C9E8B6941DB40A60003B769A /* Quotes */,
@@ -138,6 +154,42 @@
 				C9E8B69E1DB83648003B769A /* FileManager.hpp */,
 			);
 			name = FileManager;
+			sourceTree = "<group>";
+		};
+		C9E8B6A01DB97D23003B769A /* TestModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8B6A11DB97D3A003B769A /* TestModel.cpp */,
+				C9E8B6A21DB97D3A003B769A /* TestModel.hpp */,
+			);
+			name = TestModel;
+			sourceTree = "<group>";
+		};
+		C9E8B6A41DBAC46A003B769A /* Stock */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8B6A51DBAC477003B769A /* Stock.cpp */,
+				C9E8B6A61DBAC477003B769A /* Stock.hpp */,
+			);
+			name = Stock;
+			sourceTree = "<group>";
+		};
+		C9E8B6A81DBAC8B5003B769A /* StockModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8B6A91DBAC8CB003B769A /* StockModel.cpp */,
+				C9E8B6AA1DBAC8CB003B769A /* StockModel.hpp */,
+			);
+			name = StockModel;
+			sourceTree = "<group>";
+		};
+		C9E8B6AC1DBACC9B003B769A /* Candle */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8B6AD1DBACCA7003B769A /* Candle.cpp */,
+				C9E8B6AE1DBACCA7003B769A /* Candle.hpp */,
+			);
+			name = Candle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,11 +252,15 @@
 			files = (
 				C95B24031DB043D20004604E /* main.cpp in Sources */,
 				C9E8B6971DB40A87003B769A /* Quotes.cpp in Sources */,
+				C9E8B6AB1DBAC8CB003B769A /* StockModel.cpp in Sources */,
 				C90B181E1DB286C400080F59 /* RestCall.cpp in Sources */,
 				C9E8B69A1DB5A230003B769A /* Model.cpp in Sources */,
 				C9E8B69F1DB83648003B769A /* FileManager.cpp in Sources */,
 				C90B18221DB2878700080F59 /* Response.cpp in Sources */,
 				C9E8B6931DB2DCA0003B769A /* TimeQuote.cpp in Sources */,
+				C9E8B6AF1DBACCA7003B769A /* Candle.cpp in Sources */,
+				C9E8B6A31DB97D3A003B769A /* TestModel.cpp in Sources */,
+				C9E8B6A71DBAC477003B769A /* Stock.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

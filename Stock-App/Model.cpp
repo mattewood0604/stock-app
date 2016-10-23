@@ -9,12 +9,15 @@
 #include "Model.hpp"
 #include "Quotes.hpp"
 
+Quotes Model::timeQuotes;
+
+const bool Model::loggingEnabled = true;
+
+const std::string Model::quotesDirectory = "/Users/Matt/Desktop/10_20_2016/";
+
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";
 
-std::vector<TimeQuote> Model::timeQuotes = std::vector<TimeQuote>();
-
-const bool Model::loggingEnabled = true;
 std::string Model::marketStatus = Model::open;
 
 bool Model::isMarketOpen(void) {
@@ -26,9 +29,21 @@ void Model::setMarketStatus(const std::string& _status) {
 }
 
 void Model::addTimeQuote(const std::string& _timeQuote) {
-  Quotes::addTimeQuote(_timeQuote);
+  timeQuotes.addTimeQuote(_timeQuote);
+}
+
+void Model::resetTimeQuotes() {
+  timeQuotes.resetTimeQuotes();
+}
+
+unsigned int Model::totalTimeQuotes() {
+  return timeQuotes.totalTimeQuotes();
+}
+
+const TimeQuote& Model::getTimeQuote(const unsigned int& _index) {
+  return timeQuotes.getTimeQuote(_index);
 }
 
 void Model::logQuotes() {
-  Quotes::log();
+  timeQuotes.log();
 }

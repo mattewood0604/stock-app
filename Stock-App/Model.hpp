@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "Quotes.hpp"
 #include "TimeQuote.hpp"
 
 class Model {
@@ -20,9 +21,17 @@ class Model {
     static void setMarketStatus(const std::string& _status);
   
     static void addTimeQuote(const std::string& _timeQuote);
+    static void resetTimeQuotes();
+  
+    static unsigned int totalTimeQuotes();
+    static const TimeQuote& getTimeQuote(const unsigned int& _index);
     static void logQuotes();
   
+    static void addTestQuote();
+  
     static const bool loggingEnabled;
+  
+    static const std::string quotesDirectory;
   
   private:
     static const std::string open;
@@ -30,7 +39,7 @@ class Model {
   
     static std::string marketStatus;
   
-    static std::vector<TimeQuote> timeQuotes;
+    static Quotes timeQuotes;
 };
 
 #endif /* Model_hpp */

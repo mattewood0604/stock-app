@@ -8,7 +8,11 @@
 
 #include "Quotes.hpp"
 
-std::vector<TimeQuote> Quotes::timeQuotes = std::vector<TimeQuote>();
+#include <iostream>
+
+Quotes::Quotes() {
+  this->timeQuotes = std::vector<TimeQuote>();
+}
 
 void Quotes::addTimeQuote(const std::string &_quote) {
   TimeQuote quote = TimeQuote(_quote);
@@ -22,6 +26,23 @@ void Quotes::addTimeQuote(const std::string &_quote) {
   }
   
   timeQuotes.push_back(quote);
+}
+
+void Quotes::addTimeQuoteFromCSV(const std::string& _quote) {
+  TimeQuote quote = TimeQuote(_quote, true);
+  timeQuotes.push_back(quote);
+}
+
+void Quotes::resetTimeQuotes() {
+  timeQuotes.clear();
+}
+
+unsigned int Quotes::totalTimeQuotes() {
+  return (unsigned int)timeQuotes.size();
+}
+
+const TimeQuote& Quotes::getTimeQuote(const unsigned int& _index) {
+  return timeQuotes[_index];
 }
 
 void Quotes::log() {
