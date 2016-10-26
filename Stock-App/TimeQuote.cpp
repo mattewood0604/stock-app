@@ -23,8 +23,8 @@ std::string TimeQuote::changeKey = "\"change\":";
 std::string TimeQuote::priceKey = "\"price\":";
 std::string TimeQuote::symbolKey = "\"symbol\":";
 
-TimeQuote::TimeQuote(const std::string& _json, bool isCSV) {
-  if (isCSV) {
+TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
+  if (_from == CSV) {
     this->fromCSV(_json);
     return;
   }
@@ -92,10 +92,6 @@ void TimeQuote::fromCSV(const std::string& _quote) {
 }
 
 void TimeQuote::log() const {
-  if (!Model::loggingEnabled) {
-    return;
-  }
-  
   std::cout << this->symbol << " = {" << std::endl;
   std::cout << "\t" << timeKey << " " << this->time << std::endl;
   std::cout << "\t" << priceKey << " " << this->price << std::endl;

@@ -37,19 +37,21 @@ std::string Response::parseMarketStatus(const std::string& _json) const {
   return marketStatus;
 }
 
-void Response::parseQuotes(const std::string& _json) const {
+void Response::parseQuotes(const char* _json) const {
   static std::string quotes = "\"quotes\":[";
   
-  int quotesIndex = (int)_json.find(quotes);
+  std::string jsonString = std::string(this->memory);
+  
+  int quotesIndex = (int)jsonString.find(quotes);
   if (quotesIndex < 0) {
     return;
   }
   
-  int closingBracketIndex = (int)_json.find("]", quotesIndex);
+  int closingBracketIndex = (int)jsonString.find("]", quotesIndex);
   if (closingBracketIndex < 0) {
     return;
   }
-  std::string quotesString = _json.substr(quotesIndex + quotes.size(), closingBracketIndex - quotesIndex - quotes.size());
+  std::string quotesString = jsonString.substr(quotesIndex + quotes.size(), closingBracketIndex - quotesIndex - quotes.size());
   if (quotesString.size() <= 0) {
     return;
   }
@@ -73,5 +75,6 @@ void Response::marketStatus() const {
 
 void Response::parseQuotes() const {
   std::string jsonString = std::string(this->memory);
-  parseQuotes(jsonString);
+  std::cout << jsonString << std::endl;
+  parseQuotes(this->memory);
 }

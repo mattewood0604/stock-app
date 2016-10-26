@@ -13,7 +13,9 @@
 
 class TimeQuote {
   public:
-    TimeQuote(const std::string& _json, bool isCSV = false);
+    enum FROM { JSON, CSV };
+  
+    TimeQuote(const std::string& _json, FROM _from = JSON);
     
     void log() const;
     std::string toCSV() const;

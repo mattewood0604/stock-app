@@ -15,7 +15,7 @@
 
 class Candle {
   public:
-    Candle();
+    Candle(const unsigned int& _maxTime);
   
     void setLastTime(const uint64_t& _lastTime);
     void addTimeQuote(const TimeQuote& _timeQuote);
@@ -33,6 +33,8 @@ class Candle {
     float low;
     float close;
     float open;
+  
+    unsigned int maxTime;
 };
 
 #endif /* Candle_hpp */

@@ -23,7 +23,7 @@ class Response {
   
   private:
     std::string parseMarketStatus(const std::string& _json) const;
-    void parseQuotes(const std::string& _json) const;
+    void parseQuotes(const char* _json) const;
 };
 
 #endif /* Response_hpp */

@@ -15,7 +15,8 @@ Quotes::Quotes() {
 }
 
 void Quotes::addTimeQuote(const std::string &_quote) {
-  TimeQuote quote = TimeQuote(_quote);
+  TimeQuote quote = TimeQuote(_quote, TimeQuote::FROM::JSON);
+  quote.log();
   
   for (unsigned int i = 0; i < timeQuotes.size(); i++) {
     TimeQuote& stockQuote = timeQuotes[i];
@@ -29,7 +30,7 @@ void Quotes::addTimeQuote(const std::string &_quote) {
 }
 
 void Quotes::addTimeQuoteFromCSV(const std::string& _quote) {
-  TimeQuote quote = TimeQuote(_quote, true);
+  TimeQuote quote = TimeQuote(_quote, TimeQuote::FROM::CSV);
   timeQuotes.push_back(quote);
 }
 

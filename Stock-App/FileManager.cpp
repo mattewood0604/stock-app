@@ -26,20 +26,20 @@ void FileManager::readQuotes() {
   }
   
   symbolFile->seekg(0, symbolFile->end);
-  unsigned int length = (unsigned int)symbolFile->tellg();
+  unsigned int fileLength = (unsigned int)symbolFile->tellg();
   symbolFile->seekg(0, symbolFile->beg);
   
-  char* symbolFileData = new char[length];
-  symbolFile->read(symbolFileData, length);
+  char* symbolFileData = new char[fileLength];
+  symbolFile->read(symbolFileData, fileLength);
   
-  Stock& stock = TestModel::stockForSymbol(TestModel::stockSymbol);
   std::string quotes = std::string(symbolFileData);
+  Stock& stock = TestModel::getTestingStock(); //TestModel::stockForSymbol(TestModel::stockSymbol);
   int lastNewlineIndex = -1;
-  for (unsigned int i = 0; i < length; i++)
+  for (unsigned int i = 0; i < fileLength; i++)
   {
     if (quotes[i] == '\n') {
     		std::string quote = quotes.substr(lastNewlineIndex + 1, i - lastNewlineIndex - 1);
-        TimeQuote timeQuote = TimeQuote(quote, true);
+        TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV);
         stock.addQuoteToTestData(timeQuote);
     		lastNewlineIndex = i;
     }
@@ -64,7 +64,7 @@ void FileManager::writeDataForSymbol(const std::string& _symbol, const std::stri
   }
   else {
     std::string fileName = _symbol + ".csv";
-    symbolFile = new std::ofstream(Model::quotesDirectory + fileName);
+    symbolFile = new std::ofstream(Model::quotesDirectory + fileName, std::ofstream::out | std::ofstream::app);
     if (symbolFile->is_open()) {
       writeDataToFile(_data, *symbolFile);
       symbolFiles[_symbol] = symbolFile;

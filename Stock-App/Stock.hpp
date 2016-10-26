@@ -14,6 +14,7 @@
 
 #include "Candle.hpp"
 #include "Quotes.hpp"
+#include "StockModel.hpp"
 
 class Stock {
   public:
@@ -23,9 +24,12 @@ class Stock {
     void addTimeToCandles(const TimeQuote& _timeQuote);
     void addQuoteToTestData(const TimeQuote& _timeQuote);
   
-    void calculateWaveTrend();
+    StockModel& getStockModel();
   
+    void calculateWaveTrend();
     void buyOrSell();
+  
+    void reset();
   
     void logMoneyMade() const;
   
@@ -57,6 +61,8 @@ class Stock {
     float buyPrice;
     float shortMultiplier;
     float longMultiplier;
+  
+    StockModel stockModel;
   
     std::vector<Candle> candles;
 };

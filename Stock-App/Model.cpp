@@ -11,9 +11,9 @@
 
 Quotes Model::timeQuotes;
 
-const bool Model::loggingEnabled = true;
+const bool Model::loggingEnabled = false;
 
-const std::string Model::quotesDirectory = "/Users/Matt/Desktop/10_20_2016/";
+const std::string Model::quotesDirectory = "/Users/mwood212/Desktop/10_25_2016/";
 
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";

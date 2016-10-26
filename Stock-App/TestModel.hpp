@@ -17,7 +17,10 @@
 
 class TestModel {
   public:
-    static Stock& stockForSymbol(const std::string& _symbol);
+    static void initialize();
+
+    static Stock& getTestingStock();
+    //static Stock& stockForSymbol(const std::string& _symbol);
   
     static unsigned int totalTimeQuotes();
     static const TimeQuote& getTestQuote(unsigned int _index);
@@ -26,6 +29,7 @@ class TestModel {
     static void setDate(const std::string& _date);
   
     static void resetTestData();
+    static void resetStockData();
   
     static void logMoneyMade();
   
@@ -35,7 +39,8 @@ class TestModel {
     static std::vector<std::string> dates;
   
   private:
-    static std::map<std::string, Stock> stocks;
+    static Stock testingStock;
+    //static std::map<std::string, Stock> stocks;
   
     static std::string runDate;
 };

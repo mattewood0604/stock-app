@@ -38,19 +38,43 @@ void Stock::init() {
   this->moneyMade = 0;
   this->buyPrice = 0;
   
-  this->shortMultiplier = 2.0f / (StockModel::shortTimePeriods + 1);
-  this->longMultiplier = 2.0f / (StockModel::longTimePeriods + 1);
+  this->shortMultiplier = 2.0f / (this->stockModel.getShortTimePeriods() + 1);
+  this->longMultiplier = 2.0f / (this->stockModel.getLongTimePeriods() + 1);
   
   this->candles = std::vector<Candle>();
-  this->candles.push_back(Candle());
+  this->candles.push_back(Candle(this->stockModel.getMaxCandleTime()));
   this->testQuotes = std::vector<TimeQuote>();
+}
+
+void Stock::reset() {
+  this->waveTrendComplete = false;
+  
+  this->averagePriceEMA = -1;
+  this->apESA = 0;
+  this->apESACalculated = 0;
+  this->ci = 0;
+  this->ciCalculated = 0;
+  this->previousW1 = std::vector<float>();
+  
+  this->isBought = false;
+  this->isBuy = false;
+  this->isSell = false;
+  
+  this->moneyMade = 0;
+  this->buyPrice = 0;
+  
+  this->shortMultiplier = 2.0f / (this->stockModel.getShortTimePeriods() + 1);
+  this->longMultiplier = 2.0f / (this->stockModel.getLongTimePeriods() + 1);
+  
+  this->candles = std::vector<Candle>();
+  this->candles.push_back(Candle(this->stockModel.getMaxCandleTime()));
 }
 
 void Stock::addTimeToCandles(const TimeQuote& _timeQuote) {
   Candle& candle = this->candles[this->candles.size() - 1];
-  if (candle.getTotalTime() > StockModel::maxCandleTime) {
+  if (candle.getTotalTime() >= this->stockModel.getMaxCandleTime()) {
     this->calculateWaveTrend();
-    Candle nextCandle = Candle();
+    Candle nextCandle = Candle(this->stockModel.getMaxCandleTime());
     nextCandle.addTimeQuote(_timeQuote);
     this->candles.push_back(nextCandle);
   }
@@ -65,7 +89,7 @@ void Stock::addQuoteToTestData(const TimeQuote& _timeQuote) {
 
 void Stock::calculateWaveTrend() {
   const Candle& currentCandle = this->candles[this->candles.size() - 1];
-  if (this->candles.size() < StockModel::shortTimePeriods) {
+  if (this->candles.size() < this->stockModel.getShortTimePeriods()) {
     return;
   }
   
@@ -76,19 +100,19 @@ void Stock::calculateWaveTrend() {
       float averagePrice = candle.getAveragePrice();
       this->averagePriceEMA += averagePrice;
     }
-    this->averagePriceEMA /= StockModel::shortTimePeriods;
+    this->averagePriceEMA /= this->stockModel.getShortTimePeriods();
   }
   
   float averagePrice = currentCandle.getAveragePrice();
   float esa = this->ema(averagePrice, this->averagePriceEMA, this->shortMultiplier);
   this->averagePriceEMA = esa;
-  if (this->apESACalculated < StockModel::shortTimePeriods) {
+  if (this->apESACalculated < this->stockModel.getShortTimePeriods()) {
     this->apESA += fabs(averagePrice - esa);
     this->apESACalculated++;
     return;
   }
-  else if (this->apESACalculated == StockModel::shortTimePeriods) {
-    this->apESA /= StockModel::shortTimePeriods;
+  else if (this->apESACalculated == this->stockModel.getShortTimePeriods()) {
+    this->apESA /= this->stockModel.getShortTimePeriods();
     this->apESACalculated++;
   }
   
@@ -97,13 +121,13 @@ void Stock::calculateWaveTrend() {
   this->apESA = d;
   float c = (averagePrice - esa) / (0.015 * d);
   
-  if (this->ciCalculated < StockModel::longTimePeriods) {
+  if (this->ciCalculated < this->stockModel.getLongTimePeriods()) {
     this->ci += c;
     this->ciCalculated++;
     return;
   }
-  else if (this->ciCalculated == StockModel::longTimePeriods) {
-    this->ci /= StockModel::longTimePeriods;
+  else if (this->ciCalculated == this->stockModel.getLongTimePeriods()) {
+    this->ci /= this->stockModel.getLongTimePeriods();
     this->ciCalculated++;
   }
   
@@ -111,17 +135,17 @@ void Stock::calculateWaveTrend() {
   this->ci = tci;
   
   this->w1 = tci;
-  if (this->previousW1.size() < StockModel::wTimePeriods) {
+  if (this->previousW1.size() < this->stockModel.getWTimePeriods()) {
     this->previousW1.push_back(this->w1);
     return;
   }
   
   this->w2 = 0;
-  for (unsigned int i = 0; i < StockModel::wTimePeriods; i++) {
+  for (unsigned int i = 0; i < this->stockModel.getWTimePeriods(); i++) {
     float previousW1 = this->previousW1[i];
     this->w2 += previousW1;
   }
-  this->w2 /= StockModel::wTimePeriods;
+  this->w2 /= this->stockModel.getWTimePeriods();
   
   this->previousW1.erase(previousW1.begin());
   this->previousW1.push_back(this->w1);
@@ -144,15 +168,15 @@ void Stock::buyOrSell() {
   }
   
   if (this->isBuy) {
-    std::cout << "BUY \t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
+    //std::cout << "BUY \t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
     this->isBought = true;
     this->isBuy = false;
     this->buyPrice = currentCandle.getOpen();
     return;
   }
   else if (this->isSell) {
-    std::cout << "SELL\t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
-    std::cout << "------------------------" << std::endl;
+    //std::cout << "SELL\t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
+    //std::cout << "------------------------" << std::endl;
     this->moneyMade += currentCandle.getOpen() - this->buyPrice;
     this->isSell = false;
     this->isBought = false;
@@ -160,7 +184,7 @@ void Stock::buyOrSell() {
   }
   
   float averagePrice = currentCandle.getAveragePrice();
-  if ((averagePrice >= this->buyPrice + StockModel::maxGain || averagePrice <= this->buyPrice - StockModel::maxLoss) && this->isBought) {
+  if ((averagePrice >= this->buyPrice + this->stockModel.getMaxGain() || averagePrice <= this->buyPrice - this->stockModel.getMaxLoss()) && this->isBought) {
     this->isBuy = false;
     this->isSell = true;
     return;
@@ -180,4 +204,8 @@ void Stock::logMoneyMade() const {
             << this->moneyMade << "\t"
             << this->moneyMade / this->buyPrice << "\t"
             << holding << std::endl << std::endl;
+}
+
+StockModel& Stock::getStockModel() {
+  return this->stockModel;
 }

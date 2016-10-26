@@ -9,13 +9,15 @@
 #include "Candle.hpp"
 #include "StockModel.hpp"
 
-Candle::Candle() {
+Candle::Candle(const unsigned int& _maxTime) {
   this->lastTime = 0;
   this->totalTime = 0;
   this->high = 0;
   this->low = INT64_MAX;
   this->close = 0;
   this->open = 0;
+  
+  this->maxTime = _maxTime;
 }
 
 void Candle::setLastTime(const uint64_t& _lastTime) {
@@ -38,7 +40,7 @@ void Candle::addTimeQuote(const TimeQuote& _timeQuote) {
     this->low = _timeQuote.price;
   }
   
-  if (this->totalTime > StockModel::maxCandleTime) {
+  if (this->totalTime > this->maxTime) {
     this->close = _timeQuote.price;
   }
   

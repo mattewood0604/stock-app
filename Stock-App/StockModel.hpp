@@ -13,15 +13,34 @@
 
 class StockModel {
   public:
-    static unsigned int shortTimePeriods;
-    static unsigned int longTimePeriods;
+    StockModel();
   
-    static unsigned int wTimePeriods;
+    void reset();
   
-    static unsigned int maxCandleTime;
+    const unsigned int& getShortTimePeriods() const;
+    const unsigned int& getLongTimePeriods() const;
+    const unsigned int& getMaxCandleTime() const;
+    const unsigned int& getWTimePeriods() const;
+    const float& getMaxGain() const;
+    const float& getMaxLoss() const;
   
-    static float maxGain;
-    static float maxLoss;
+    void incrementShortTimePeriods();
+    void incrementLongTimePeriods();
+    void incrementMaxCandleTime();
+  
+    void resetMaxCandleTime();
+    void resetShortTimePeriods();
+  
+  private:
+    unsigned int shortTimePeriods;
+    unsigned int longTimePeriods;
+  
+    unsigned int wTimePeriods;
+  
+    unsigned int maxCandleTime;
+  
+    float maxGain;
+    float maxLoss;
 };
 
 #endif /* StockModel_hpp */

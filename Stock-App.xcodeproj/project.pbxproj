@@ -18,6 +18,7 @@
 		C9E8B6A71DBAC477003B769A /* Stock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6A51DBAC477003B769A /* Stock.cpp */; };
 		C9E8B6AB1DBAC8CB003B769A /* StockModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6A91DBAC8CB003B769A /* StockModel.cpp */; };
 		C9E8B6AF1DBACCA7003B769A /* Candle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6AD1DBACCA7003B769A /* Candle.cpp */; };
+		C9E8B6B41DC00B3F003B769A /* MemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6B21DC00B3F003B769A /* MemoryManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,8 @@
 		C9E8B6AA1DBAC8CB003B769A /* StockModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StockModel.hpp; sourceTree = "<group>"; };
 		C9E8B6AD1DBACCA7003B769A /* Candle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Candle.cpp; sourceTree = "<group>"; };
 		C9E8B6AE1DBACCA7003B769A /* Candle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Candle.hpp; sourceTree = "<group>"; };
+		C9E8B6B21DC00B3F003B769A /* MemoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryManager.cpp; sourceTree = "<group>"; };
+		C9E8B6B31DC00B3F003B769A /* MemoryManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 		C95B24011DB043D20004604E /* Stock-App */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8B6B11DC00B2B003B769A /* MemoryManager */,
 				C9E8B6AC1DBACC9B003B769A /* Candle */,
 				C9E8B6A81DBAC8B5003B769A /* StockModel */,
 				C9E8B6A41DBAC46A003B769A /* Stock */,
@@ -192,6 +196,15 @@
 			name = Candle;
 			sourceTree = "<group>";
 		};
+		C9E8B6B11DC00B2B003B769A /* MemoryManager */ = {
+			isa = PBXGroup;
+			children = (
+				C9E8B6B21DC00B3F003B769A /* MemoryManager.cpp */,
+				C9E8B6B31DC00B3F003B769A /* MemoryManager.hpp */,
+			);
+			name = MemoryManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +269,7 @@
 				C90B181E1DB286C400080F59 /* RestCall.cpp in Sources */,
 				C9E8B69A1DB5A230003B769A /* Model.cpp in Sources */,
 				C9E8B69F1DB83648003B769A /* FileManager.cpp in Sources */,
+				C9E8B6B41DC00B3F003B769A /* MemoryManager.cpp in Sources */,
 				C90B18221DB2878700080F59 /* Response.cpp in Sources */,
 				C9E8B6931DB2DCA0003B769A /* TimeQuote.cpp in Sources */,
 				C9E8B6AF1DBACCA7003B769A /* Candle.cpp in Sources */,
