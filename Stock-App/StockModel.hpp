@@ -27,9 +27,12 @@ class StockModel {
     void incrementShortTimePeriods();
     void incrementLongTimePeriods();
     void incrementMaxCandleTime();
+    void incrementWTimePeriods();
   
     void resetMaxCandleTime();
     void resetShortTimePeriods();
+    void resetLongTimePeriods();
+    void resetWTimePeriods();
   
   private:
     unsigned int shortTimePeriods;

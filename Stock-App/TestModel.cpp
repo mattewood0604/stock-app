@@ -8,19 +8,35 @@
 
 #include "TestModel.hpp"
 
-//std::map<std::string, Stock> TestModel::stocks;
+const unsigned int TestModel::maximumLongTimePeriods = 100;
+const unsigned int TestModel::maximumShortTimePeriods = 50;
+const unsigned int TestModel::maximumCandleTime = 60000;
+const unsigned int TestModel::maximumWTimePeriods = 7;
 
 const bool TestModel::loggingEnabled = true;
 
 std::string TestModel::runDate = "";
-const std::string TestModel::stockSymbol = "JNUG";
+const std::string TestModel::stockSymbol = "ADMP";
 std::vector<std::string> TestModel::dates;
 
 Stock TestModel::testingStock = Stock(stockSymbol);
 
 void TestModel::initialize() {
+  //dates.push_back("10_4_2016");
+  dates.push_back("10_5_2016");
+  dates.push_back("10_6_2016");
+  dates.push_back("10_7_2016");
+  dates.push_back("10_10_2016");
+  dates.push_back("10_11_2016");
   dates.push_back("10_12_2016");
   dates.push_back("10_13_2016");
+  dates.push_back("10_20_2016");
+  dates.push_back("10_21_2016");
+  dates.push_back("10_25_2016");
+  dates.push_back("10_26_2016");
+  //dates.push_back("10_27_2016");
+  //dates.push_back("10_28_2016");
+  //dates.push_back("10_31_2016");
 }
 
 Stock& TestModel::getTestingStock() {
@@ -65,6 +81,10 @@ void TestModel::resetStockData() {
   //Stock& stock = stocks[stockSymbol];
   //stock.reset();
   testingStock.reset();
+}
+
+void TestModel::hardResetStock() {
+  testingStock = Stock(stockSymbol);
 }
 
 void TestModel::logMoneyMade() {

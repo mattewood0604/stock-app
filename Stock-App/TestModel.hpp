@@ -30,6 +30,7 @@ class TestModel {
   
     static void resetTestData();
     static void resetStockData();
+    static void hardResetStock();
   
     static void logMoneyMade();
   
@@ -37,6 +38,11 @@ class TestModel {
   
     static const std::string stockSymbol;
     static std::vector<std::string> dates;
+  
+    static const unsigned int maximumLongTimePeriods;
+    static const unsigned int maximumShortTimePeriods;
+    static const unsigned int maximumCandleTime;
+    static const unsigned int maximumWTimePeriods;
   
   private:
     static Stock testingStock;

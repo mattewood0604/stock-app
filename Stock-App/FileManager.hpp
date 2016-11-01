@@ -18,6 +18,8 @@ class FileManager {
     static void readQuotes();
     static void writeQuotes();
   
+  static void writeProfitsForSymbol(const std::string& _symbol, const std::string& _data);
+  
   private:
     static std::map<std::string, std::ofstream*> symbolFiles;
   

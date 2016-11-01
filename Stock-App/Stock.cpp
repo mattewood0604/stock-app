@@ -44,6 +44,8 @@ void Stock::init() {
   this->candles = std::vector<Candle>();
   this->candles.push_back(Candle(this->stockModel.getMaxCandleTime()));
   this->testQuotes = std::vector<TimeQuote>();
+  
+  this->maxLossTaken = false;
 }
 
 void Stock::reset() {
@@ -68,6 +70,8 @@ void Stock::reset() {
   
   this->candles = std::vector<Candle>();
   this->candles.push_back(Candle(this->stockModel.getMaxCandleTime()));
+  
+  this->maxLossTaken = false;
 }
 
 void Stock::addTimeToCandles(const TimeQuote& _timeQuote) {
@@ -167,6 +171,10 @@ void Stock::buyOrSell() {
     return;
   }
   
+  if (this->maxLossTaken) {
+    return;
+  }
+  
   if (this->isBuy) {
     //std::cout << "BUY \t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
     this->isBought = true;
@@ -180,6 +188,9 @@ void Stock::buyOrSell() {
     this->moneyMade += currentCandle.getOpen() - this->buyPrice;
     this->isSell = false;
     this->isBought = false;
+    if (this->moneyMade / this->buyPrice < -0.02) {
+      this->maxLossTaken = true;
+    }
     return;
   }
   
@@ -208,4 +219,8 @@ void Stock::logMoneyMade() const {
 
 StockModel& Stock::getStockModel() {
   return this->stockModel;
+}
+
+float Stock::getPercentageMade() const {
+  return this->moneyMade / this->buyPrice;
 }

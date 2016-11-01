@@ -32,6 +32,7 @@ class Stock {
     void reset();
   
     void logMoneyMade() const;
+    float getPercentageMade() const;
   
     std::string symbol;
   
@@ -61,6 +62,8 @@ class Stock {
     float buyPrice;
     float shortMultiplier;
     float longMultiplier;
+  
+    bool maxLossTaken;
   
     StockModel stockModel;
   

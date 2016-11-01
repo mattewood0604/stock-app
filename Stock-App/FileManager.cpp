@@ -75,6 +75,12 @@ void FileManager::writeDataForSymbol(const std::string& _symbol, const std::stri
   }
 }
 
+void FileManager::writeProfitsForSymbol(const std::string& _symbol, const std::string& _data) {
+  std::string fileName = "/Users/Matt/Desktop/symbol_profits/" + _symbol + "-profits.txt";
+  std::ofstream symbolFile = std::ofstream(fileName);
+  writeDataToFile(_data, symbolFile);
+}
+
 void FileManager::writeDataToFile(const std::string& _data, std::ofstream& _file) {
   uint64_t pos = _file.tellp();
   _file.seekp(pos);

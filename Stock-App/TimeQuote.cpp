@@ -43,6 +43,10 @@ TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
 }
 
 void TimeQuote::fromCSV(const std::string& _quote) {
+  if (_quote.length() == 0) {
+    return;
+  }
+  
   if (_quote[0] == 't') {
     return;
   }
