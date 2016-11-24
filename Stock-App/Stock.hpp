@@ -65,6 +65,8 @@ class Stock {
   
     bool maxLossTaken;
   
+    unsigned int numberOfTrades;
+  
     StockModel stockModel;
   
     std::vector<Candle> candles;

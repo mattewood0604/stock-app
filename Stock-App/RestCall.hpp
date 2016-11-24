@@ -20,6 +20,9 @@ class RestCall {
   
     static void init();
     static void quotes();
+    static void buy();
+    static void sell();
+  
     static void mockRestCall(const unsigned int _marketTime);
   
     static size_t WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp);

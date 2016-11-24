@@ -11,8 +11,10 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Quotes.hpp"
+#include "Stock.hpp"
 #include "TimeQuote.hpp"
 
 class Model {
@@ -20,7 +22,7 @@ class Model {
     static bool isMarketOpen(void);
     static void setMarketStatus(const std::string& _status);
   
-    static void addTimeQuote(const std::string& _timeQuote);
+    static void addTimeQuote(const TimeQuote _timeQuote);
     static void resetTimeQuotes();
   
     static unsigned int totalTimeQuotes();
@@ -38,6 +40,8 @@ class Model {
     static const std::string closed;
   
     static std::string marketStatus;
+  
+    static std::map<std::string, Stock> stocks;
   
     static Quotes timeQuotes;
 };

@@ -9,17 +9,17 @@
 #include "StockModel.hpp"
 
 StockModel::StockModel() {
-  this->shortTimePeriods = 14;
-  this->longTimePeriods = 37;
+  this->shortTimePeriods = 42;
+  this->longTimePeriods = 68;
   this->wTimePeriods = 4;
-  this->maxCandleTime = 14000;
+  this->maxCandleTime = 50000;
   this->maxGain = 0.10f;
   this->maxLoss = 0.10f;
 }
 
 // JNUG
-// Long: 42 Short: 68 Time: 50000
-// Long: 24 Short: 20 Time: 12000
+// Long: 68 Short: 42 Time: 50000 44% (Start) 11/21 52%
+// Long: 80 Short: 27 Time: 12000 51% (Found: 11_4_2016) 11/21 36%
 
 void StockModel::reset() {
   this->maxCandleTime = 0;

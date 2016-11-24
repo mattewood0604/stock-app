@@ -46,6 +46,8 @@ void Stock::init() {
   this->testQuotes = std::vector<TimeQuote>();
   
   this->maxLossTaken = false;
+  
+  this->numberOfTrades = 0;
 }
 
 void Stock::reset() {
@@ -180,6 +182,7 @@ void Stock::buyOrSell() {
     this->isBought = true;
     this->isBuy = false;
     this->buyPrice = currentCandle.getOpen();
+    this->numberOfTrades++;
     return;
   }
   else if (this->isSell) {
@@ -191,11 +194,12 @@ void Stock::buyOrSell() {
     if (this->moneyMade / this->buyPrice < -0.02) {
       this->maxLossTaken = true;
     }
+    this->numberOfTrades++;
     return;
   }
   
   float averagePrice = currentCandle.getAveragePrice();
-  if ((averagePrice >= this->buyPrice + this->stockModel.getMaxGain() || averagePrice <= this->buyPrice - this->stockModel.getMaxLoss()) && this->isBought) {
+  if ((averagePrice >= this->buyPrice + .1 || averagePrice <= this->buyPrice - .1) && this->isBought) {
     this->isBuy = false;
     this->isSell = true;
     return;
@@ -214,7 +218,8 @@ void Stock::logMoneyMade() const {
   std::cout << this->symbol << "\t"
             << this->moneyMade << "\t"
             << this->moneyMade / this->buyPrice << "\t"
-            << holding << std::endl << std::endl;
+            << holding << "\t"
+            << this->numberOfTrades << std::endl << std::endl;
 }
 
 StockModel& Stock::getStockModel() {
@@ -222,5 +227,5 @@ StockModel& Stock::getStockModel() {
 }
 
 float Stock::getPercentageMade() const {
-  return this->moneyMade / this->buyPrice;
+  return (this->moneyMade) / this->buyPrice;
 }

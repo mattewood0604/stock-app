@@ -16,7 +16,7 @@ const unsigned int TestModel::maximumWTimePeriods = 7;
 const bool TestModel::loggingEnabled = true;
 
 std::string TestModel::runDate = "";
-const std::string TestModel::stockSymbol = "ADMP";
+const std::string TestModel::stockSymbol = "JNUG";
 std::vector<std::string> TestModel::dates;
 
 Stock TestModel::testingStock = Stock(stockSymbol);
@@ -34,9 +34,18 @@ void TestModel::initialize() {
   dates.push_back("10_21_2016");
   dates.push_back("10_25_2016");
   dates.push_back("10_26_2016");
-  //dates.push_back("10_27_2016");
-  //dates.push_back("10_28_2016");
-  //dates.push_back("10_31_2016");
+  dates.push_back("10_27_2016");
+  dates.push_back("10_28_2016");
+  dates.push_back("10_31_2016");
+  dates.push_back("11_01_2016");
+  dates.push_back("11_02_2016");
+  dates.push_back("11_03_2016");
+  dates.push_back("11_04_2016");
+  dates.push_back("11_07_2016");
+  dates.push_back("11_09_2016");
+  dates.push_back("11_10_2016");
+  dates.push_back("11_11_2016");
+  dates.push_back("11_21_2016");
 }
 
 Stock& TestModel::getTestingStock() {

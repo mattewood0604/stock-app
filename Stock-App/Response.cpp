@@ -61,7 +61,9 @@ void Response::parseQuotes(const char* _json) const {
   while (openCurlyIndex >= 0 && closeCurlyIndex >= 0) {
     std::string quote = quotesString.substr(openCurlyIndex, closeCurlyIndex - openCurlyIndex + 1);
     
-    Model::addTimeQuote(quote);
+    //Model::addTimeQuote(quote);
+    TimeQuote timeQuote = TimeQuote(quote);
+    Model::addTimeQuote(timeQuote);
     
     openCurlyIndex = (int)quotesString.find("{", closeCurlyIndex);
     closeCurlyIndex = (int)quotesString.find("}", openCurlyIndex);

@@ -74,15 +74,15 @@ void runProfitTests() {
       //std::cout << "--------------------" << std::endl;
       
       while (stockModel.getLongTimePeriods() <= TestModel::maximumLongTimePeriods) {
-        std::cout << "LTP: " << stockModel.getLongTimePeriods() << std::endl;
-        std::cout << "--------------------" << std::endl;
+        //std::cout << "LTP: " << stockModel.getLongTimePeriods() << std::endl;
+        //std::cout << "--------------------" << std::endl;
         
         while (stockModel.getShortTimePeriods() <= TestModel::maximumShortTimePeriods) {
-          std::cout << "STP: " << stockModel.getShortTimePeriods() << std::endl;
-          std::cout << "--------------------" << std::endl;
+          //std::cout << "STP: " << stockModel.getShortTimePeriods() << std::endl;
+          //std::cout << "--------------------" << std::endl;
           
           while (stockModel.getMaxCandleTime() <= TestModel::maximumCandleTime) {
-            std::cout << "MCT: " << stockModel.getMaxCandleTime() << std::endl;
+            //std::cout << "MCT: " << stockModel.getMaxCandleTime() << std::endl;
             //std::cout << "--------------------" << std::endl;
             
             if (stockModel.getShortTimePeriods() < stockModel.getLongTimePeriods()) {
@@ -91,10 +91,9 @@ void runProfitTests() {
               }
             }
             
-            TestModel::logMoneyMade();
+            //TestModel::logMoneyMade();
             if (!isnan(stock.getPercentageMade())) {
               //profits[stockModel.getWTimePeriods() - 2][stockModel.getLongTimePeriods()][stockModel.getShortTimePeriods()][stockModel.getMaxCandleTime() / 1000] += stock.getPercentageMade() * 100;
-              std::cout << stockModel.getShortTimePeriods() << " " << stockModel.getMaxCandleTime() / 1000 << std::endl;
               profits[0][stockModel.getLongTimePeriods()][stockModel.getShortTimePeriods()][stockModel.getMaxCandleTime() / 1000] += stock.getPercentageMade() * 1000000;
             }
             
@@ -115,14 +114,13 @@ void runProfitTests() {
     //}
   }
   
+  //std::cout << "\n\n\n\n\n\n\n\n\n\n";
+  //std::cout << "WTIME\tLONG\tSHORT\tCANDLE\tPROFIT" << std::endl;
+  //std::cout << "---------------------------" << std::endl;
+  
   std::string profitData;
-  
-  std::cout << "\n\n\n\n\n\n\n\n\n\n";
-  std::cout << "WTIME\tLONG\tSHORT\tCANDLE\tPROFIT" << std::endl;
-  std::cout << "---------------------------" << std::endl;
-  
-  profitData.append("LONG\tSHORT\tCANDLE\tPROFIT");
-  profitData.append("---------------------------");
+  profitData.append("LONG\tSHORT\tCANDLE\tPROFIT\n");
+  profitData.append("---------------------------\n");
   
   //for (unsigned int wTime = 0; wTime < TestModel::maximumWTimePeriods - 2; wTime++) {
   for (unsigned int longTime = 0; longTime < TestModel::maximumLongTimePeriods; longTime++) {
