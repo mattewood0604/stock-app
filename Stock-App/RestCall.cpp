@@ -10,16 +10,25 @@
 #include <string.h>
 #include <iostream>
 
+#include "Model.hpp"
 #include "Response.hpp"
 #include "RestCall.hpp"
 #include "TestModel.hpp"
 
 Response RestCall::response;
 CURL* RestCall::curlHandle = NULL;
+CURL* RestCall::quotesHandle = NULL;
 
 void RestCall::init() {
   response.init();
   
+  initializeQuotesHandle();
+  
+  // Create a handle for each type of rest call
+  // Quotes
+  // Buy/Sell
+  
+  /*
   curlHandle = curl_easy_init();
   
   curl_easy_setopt(curlHandle, CURLOPT_CUSTOMREQUEST, "POST");
@@ -33,6 +42,20 @@ void RestCall::init() {
   curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
   curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, (void*)&response);
   curl_easy_setopt(curlHandle, CURLOPT_ACCEPT_ENCODING, "gzip");
+   */
+}
+
+void RestCall::initializeQuotesHandle() {
+  quotesHandle = curl_easy_init();
+  
+  std::string quotesURL = "https://api.robinhood.com/quotes/?symbols=";
+  std::string quotesSymbols = Model::symbolsForQuotesAsCSV();
+  quotesURL.append(quotesSymbols);
+  
+  curl_easy_setopt(quotesHandle, CURLOPT_URL, quotesURL.c_str());
+  
+  curl_easy_setopt(quotesHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+  curl_easy_setopt(quotesHandle, CURLOPT_WRITEDATA, (void*)&response);
 }
 
 void RestCall::buy() {
@@ -81,7 +104,7 @@ size_t RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmem
 }
 
 void RestCall::quotes() {
-  CURLcode ret = curl_easy_perform(curlHandle);
+  CURLcode ret = curl_easy_perform(quotesHandle);
   if(ret != CURLE_OK) {
     fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(ret));
   }
@@ -89,7 +112,6 @@ void RestCall::quotes() {
     response.log();
   }
   
-  response.marketStatus();
   response.parseQuotes();
   response.size = 0;
 }

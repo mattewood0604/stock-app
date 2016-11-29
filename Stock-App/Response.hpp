@@ -18,12 +18,7 @@ class Response {
   
     void init();
     void log() const;
-    void marketStatus() const;
     void parseQuotes() const;
-  
-  private:
-    std::string parseMarketStatus(const std::string& _json) const;
-    void parseQuotes(const char* _json) const;
 };
 
 #endif /* Response_hpp */

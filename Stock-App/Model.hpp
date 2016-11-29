@@ -20,7 +20,6 @@
 class Model {
   public:
     static bool isMarketOpen(void);
-    static void setMarketStatus(const std::string& _status);
   
     static void addTimeQuote(const TimeQuote _timeQuote);
     static void resetTimeQuotes();
@@ -31,15 +30,16 @@ class Model {
   
     static void addTestQuote();
   
+    static std::string symbolsForQuotesAsCSV();
+  
     static const bool loggingEnabled;
   
     static const std::string quotesDirectory;
+    static const std::string stockSymbolsForQuotesDirectory;
   
   private:
     static const std::string open;
     static const std::string closed;
-  
-    static std::string marketStatus;
   
     static std::map<std::string, Stock> stocks;
   

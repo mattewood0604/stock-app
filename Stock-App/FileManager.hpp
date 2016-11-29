@@ -13,12 +13,17 @@
 #include <map>
 #include <string>
 
+#include "TimeQuote.hpp"
+
 class FileManager {
   public:
     static void readQuotes();
     static void writeQuotes();
+    static void writeQuoteToFile(const TimeQuote& _timeQuote);
   
-  static void writeProfitsForSymbol(const std::string& _symbol, const std::string& _data);
+    static std::string readStockSymbolsForQuotes();
+  
+    static void writeProfitsForSymbol(const std::string& _symbol, const std::string& _data);
   
   private:
     static std::map<std::string, std::ofstream*> symbolFiles;

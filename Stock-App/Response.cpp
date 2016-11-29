@@ -13,7 +13,7 @@
 #include "Response.hpp"
 
 void Response::init() {
-  this->memory = (char*)malloc(1);
+  this->memory = NULL;
   this->size = 0;
 }
 
@@ -29,16 +29,8 @@ void Response::log() const {
   std::cout << std::endl;
 }
 
-std::string Response::parseMarketStatus(const std::string& _json) const {
-  static std::string status = "\"status\":";
-  int statusIndex = (int)_json.find(status);
-  int tooltipIndex = (int)_json.find(",", statusIndex);
-  std::string marketStatus = _json.substr(statusIndex + status.size() + 1, tooltipIndex - statusIndex - status.size() - 2); // +1 and -2 for removing quotes
-  return marketStatus;
-}
-
-void Response::parseQuotes(const char* _json) const {
-  static std::string quotes = "\"quotes\":[";
+void Response::parseQuotes() const {
+  static std::string quotes = "\"results\":[";
   
   std::string jsonString = std::string(this->memory);
   
@@ -61,22 +53,11 @@ void Response::parseQuotes(const char* _json) const {
   while (openCurlyIndex >= 0 && closeCurlyIndex >= 0) {
     std::string quote = quotesString.substr(openCurlyIndex, closeCurlyIndex - openCurlyIndex + 1);
     
-    //Model::addTimeQuote(quote);
     TimeQuote timeQuote = TimeQuote(quote);
+    timeQuote.writeToFile();
     Model::addTimeQuote(timeQuote);
     
     openCurlyIndex = (int)quotesString.find("{", closeCurlyIndex);
     closeCurlyIndex = (int)quotesString.find("}", openCurlyIndex);
   }
-}
-
-void Response::marketStatus() const {
-  std::string jsonString = std::string(this->memory);
-  Model::setMarketStatus(parseMarketStatus(jsonString));
-}
-
-void Response::parseQuotes() const {
-  std::string jsonString = std::string(this->memory);
-  std::cout << jsonString << std::endl;
-  parseQuotes(this->memory);
 }

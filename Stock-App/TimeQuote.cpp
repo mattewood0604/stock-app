@@ -6,21 +6,23 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
+#include <ctime>
 #include <sstream>
 #include <iostream>
 
+#include "FileManager.hpp"
 #include "Model.hpp"
 #include "TestModel.hpp"
 #include "TimeQuote.hpp"
 
-std::string TimeQuote::bidKey = "\"bid\":";
-std::string TimeQuote::bidQtyKey = "\"bidQty\":";
-std::string TimeQuote::offerKey = "\"offer\":";
-std::string TimeQuote::offerQtyKey = "\"offerQty\":";
+std::string TimeQuote::bidKey = "\"bid_price\":";
+std::string TimeQuote::bidQtyKey = "\"bid_size\":";
+std::string TimeQuote::offerKey = "\"ask_price\":";
+std::string TimeQuote::offerQtyKey = "\"ask_size\":";
 std::string TimeQuote::timeKey = "\"time\":";
 std::string TimeQuote::percentKey = "\"percent\":";
 std::string TimeQuote::changeKey = "\"change\":";
-std::string TimeQuote::priceKey = "\"price\":";
+std::string TimeQuote::priceKey = "\"last_trade_price\":";
 std::string TimeQuote::symbolKey = "\"symbol\":";
 
 TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
@@ -31,11 +33,11 @@ TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
   
   this->json = _json;
   
-  this->time = parseTime();
+  this->dayTime = (uint64_t)time(0) * 1000;//parseTime();
   this->symbol = parseString(symbolKey);
   this->price = parseFloat(priceKey);
-  this->percent = parseFloat(percentKey);
-  this->change = parseFloat(changeKey);
+  this->percent = 0;//parseFloat(percentKey);
+  this->change = 0;//parseFloat(changeKey);
   this->bid = parseFloat(bidKey);
   this->bidQty = parseInt(bidQtyKey);
   this->offer = parseFloat(offerKey);
@@ -57,7 +59,7 @@ void TimeQuote::fromCSV(const std::string& _quote) {
   int commaIndex = (int)_quote.find(',');
   
   std::string value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex - 1);
-  this->time = stoll(value);
+  this->dayTime = stoll(value);
   lastCommaIndex = commaIndex;
   
   commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
@@ -95,12 +97,16 @@ void TimeQuote::fromCSV(const std::string& _quote) {
   this->change = stof(value);
 }
 
+void TimeQuote::writeToFile() const {
+  FileManager::writeQuoteToFile(*this);
+}
+
 void TimeQuote::log() const {
   std::cout << this->symbol << " = {" << std::endl;
-  std::cout << "\t" << timeKey << " " << this->time << std::endl;
+  std::cout << "\t" << timeKey << " " << this->dayTime << std::endl;
   std::cout << "\t" << priceKey << " " << this->price << std::endl;
-  std::cout << "\t" << percentKey << " " << this->percent << std::endl;
-  std::cout << "\t" << changeKey << " " << this->change << std::endl;
+  //std::cout << "\t" << percentKey << " " << this->percent << std::endl;
+  //std::cout << "\t" << changeKey << " " << this->change << std::endl;
   std::cout << "\t" << bidKey << " " << this->bid << std::endl;
   std::cout << "\t" << bidQtyKey << " " << this->bidQty << std::endl;
   std::cout << "\t" << offerKey << " " << this->offer << std::endl;
@@ -111,7 +117,7 @@ void TimeQuote::log() const {
 std::string TimeQuote::toCSV() const {
   std::string csv;
   
-  csv.append(std::to_string(time));
+  csv.append(std::to_string(dayTime));
   csv.append(",");
   csv.append(std::to_string(price));
   csv.append(",");
@@ -145,9 +151,10 @@ int TimeQuote::parseInt(const std::string& _key) const {
 float TimeQuote::parseFloat(const std::string& _key) const {
   int keyIndex = (int)this->json.find(_key);
   int commaIndex = (int)this->json.find(",", keyIndex);
-  std::string bidString = this->json.substr(keyIndex + _key.size(), commaIndex - keyIndex - _key.size());
-  float bidNumber = atof(bidString.c_str());
-  return bidNumber;
+  std::string floatString = this->json.substr(keyIndex + _key.size(), commaIndex - keyIndex - _key.size());
+  floatString.erase(floatString.begin());
+  floatString.pop_back();
+  return atof(floatString.c_str());
 }
 
 std::string TimeQuote::parseString(const std::string& _key) const {

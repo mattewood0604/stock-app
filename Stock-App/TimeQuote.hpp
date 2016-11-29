@@ -16,7 +16,9 @@ class TimeQuote {
     enum FROM { JSON, CSV };
   
     TimeQuote(const std::string& _json, FROM _from = JSON);
-    
+  
+    void writeToFile() const;
+  
     void log() const;
     std::string toCSV() const;
   
@@ -25,7 +27,7 @@ class TimeQuote {
     std::string json;
     
     std::string symbol;
-    uint64_t time;
+    uint64_t dayTime;
     uint16_t bidQty;
     float bid;
     uint16_t offerQty;

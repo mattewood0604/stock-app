@@ -22,7 +22,6 @@ std::vector<std::string> TestModel::dates;
 Stock TestModel::testingStock = Stock(stockSymbol);
 
 void TestModel::initialize() {
-  //dates.push_back("10_4_2016");
   dates.push_back("10_5_2016");
   dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
@@ -46,6 +45,7 @@ void TestModel::initialize() {
   dates.push_back("11_10_2016");
   dates.push_back("11_11_2016");
   dates.push_back("11_21_2016");
+  dates.push_back("11_28_2016");
 }
 
 Stock& TestModel::getTestingStock() {

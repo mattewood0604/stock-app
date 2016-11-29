@@ -15,32 +15,8 @@
 #include "Model.hpp"
 #include "RestCall.hpp"
 #include "StockModel.hpp"
+#include "StockRunner.hpp"
 #include "TestModel.hpp"
-
-void runTests() {
-  float percentageMade = 0.0f;
-  
-  TestModel::initialize();
-
-  for (unsigned int i = 0; i < TestModel::dates.size(); i++) {
-    std::cout << "DATE: " << TestModel::dates[i] << std::endl;
-    std::cout << "--------------------" << std::endl;
-    TestModel::setDate(TestModel::dates[i]);
-    FileManager::readQuotes();
-    
-    for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
-      RestCall::mockRestCall(marketTime);
-    }
-    
-    TestModel::logMoneyMade();
-    
-    percentageMade += (!isnan(TestModel::getTestingStock().getPercentageMade())) ? TestModel::getTestingStock().getPercentageMade() : 0.0f;
-    
-    TestModel::hardResetStock();
-  }
-  
-  std::cout << "TOTAL PERCENTAGE: " << percentageMade << std::endl;
-}
 
 void runProfitTests() {
   const unsigned int wTimePeriods = TestModel::maximumWTimePeriods + 1 - 2;
@@ -160,8 +136,8 @@ void runStocks() {
 
 int main(void)
 {
-  //runStocks();
-  //runTests();
-  runProfitTests();
+  //StockRunner::runStocks();
+  StockRunner::runDailyProfits();
+  
   return 0;
 }

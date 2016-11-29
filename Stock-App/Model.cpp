@@ -6,6 +6,9 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
+#include <iostream>
+
+#include "FileManager.hpp"
 #include "Model.hpp"
 #include "Quotes.hpp"
 
@@ -15,23 +18,27 @@ Quotes Model::timeQuotes;
 
 const bool Model::loggingEnabled = false;
 
-const std::string Model::quotesDirectory = "/Users/mwood212/Desktop/10_25_2016/";
+const std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
+
+const std::string Model::stockSymbolsForQuotesDirectory = "/Users/mwood212/Desktop/Stock-App/StocksForQuotes.txt";
 
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";
 
-std::string Model::marketStatus = Model::open;
-
 bool Model::isMarketOpen(void) {
-  return marketStatus == open;
-}
-
-void Model::setMarketStatus(const std::string& _status) {
-  marketStatus = _status;
+  time_t currentTime = time(0);
+  struct tm* now = localtime(&currentTime);
+  
+  float timeAsFloat = now->tm_hour + (now->tm_min / 60.0f);
+  if (timeAsFloat > 9.5f && timeAsFloat < 16.0f) {
+    return true;
+  }
+  
+  return false;
 }
 
 void Model::addTimeQuote(const TimeQuote _timeQuote) {
-  Stock& stock = stocks[_timeQuote.getSymbol()]; //TestModel::stockForSymbol(quote.getSymbol());
+  Stock& stock = stocks[_timeQuote.getSymbol()];
   if (stock.symbol.empty()) {
     stocks[_timeQuote.getSymbol()] = Stock(_timeQuote.getSymbol());
   }
@@ -52,4 +59,8 @@ const TimeQuote& Model::getTimeQuote(const unsigned int& _index) {
 
 void Model::logQuotes() {
   timeQuotes.log();
+}
+
+std::string Model::symbolsForQuotesAsCSV() {
+  return FileManager::readStockSymbolsForQuotes();
 }

@@ -26,7 +26,7 @@ void Candle::setLastTime(const uint64_t& _lastTime) {
 
 void Candle::addTimeQuote(const TimeQuote& _timeQuote) {
   if (this->lastTime != 0) {
-    this->totalTime += _timeQuote.time - this->lastTime;
+    this->totalTime += _timeQuote.dayTime - this->lastTime;
   }
   else {
     this->open = _timeQuote.price;
@@ -44,7 +44,7 @@ void Candle::addTimeQuote(const TimeQuote& _timeQuote) {
     this->close = _timeQuote.price;
   }
   
-  this->lastTime = _timeQuote.time;
+  this->lastTime = _timeQuote.dayTime;
 }
 
 float Candle::getAveragePrice() const {

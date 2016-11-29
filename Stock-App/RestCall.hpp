@@ -25,9 +25,12 @@ class RestCall {
   
     static void mockRestCall(const unsigned int _marketTime);
   
-    static size_t WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp);
-  
   private:
+    static CURL* quotesHandle;
+  
+    static void initializeQuotesHandle();
+  
+    static size_t WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp);
 };
 
 #endif /* RestCall_hpp */
