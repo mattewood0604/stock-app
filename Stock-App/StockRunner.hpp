@@ -15,6 +15,9 @@ class StockRunner {
     static void runDailyProfits();
     static void runProfitMaximizer();
   
+  private:
+    static void logDateForIndex(const unsigned int& _index);
+    static float runDailyStocksForSetDate();
 };
 
 #endif /* StockRunner_hpp */

@@ -34,15 +34,15 @@ void runProfitTests() {
   
   TestModel::initialize();
 
-  for (unsigned int i = 0; i < TestModel::dates.size(); i++) {
+  for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
     TestModel::hardResetStock();
     Stock& stock = TestModel::getTestingStock(); //TestModel::stockForSymbol(TestModel::stockSymbol);
     StockModel& stockModel = stock.getStockModel();
     stockModel.reset();
     
-    std::cout << "DATE: " << TestModel::dates[i] << std::endl;
+    std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
     std::cout << "--------------------" << std::endl;
-    TestModel::setDate(TestModel::dates[i]);
+    TestModel::setDate(TestModel::getDateAtIndex(i));
     FileManager::readQuotes();
     
     //while (stockModel.getWTimePeriods() <= TestModel::maximumWTimePeriods) {
@@ -120,18 +120,6 @@ void runProfitTests() {
   
   FileManager::writeProfitsForSymbol(TestModel::stockSymbol, profitData);
   
-}
-
-void runStocks() {
-  RestCall::init();
-  
-  while (1) {
-    RestCall::quotes();
-    FileManager::writeQuotes();
-    Model::logQuotes();
-    Model::resetTimeQuotes();
-    sleep(2);
-  }
 }
 
 int main(void)

@@ -52,25 +52,15 @@ Stock& TestModel::getTestingStock() {
   return testingStock;
 }
 
-/*
-Stock& TestModel::stockForSymbol(const std::string& _symbol) {
-  Stock stock = stocks[_symbol];
-  if (stock.symbol.empty()) {
-    stocks[_symbol] = Stock(_symbol);
-  }
-  return stocks[_symbol];
+std::string TestModel::quotesDirectory() {
+  return "/Users/Matt/Desktop/symbol_data/" + runDate + "/" + stockSymbol + ".csv";
 }
- */
 
 unsigned int TestModel::totalTimeQuotes() {
-  //const Stock& stock = stocks[stockSymbol];
-  //return (unsigned int)stock.testQuotes.size();
   return (unsigned int)testingStock.testQuotes.size();
 }
 
 const TimeQuote& TestModel::getTestQuote(unsigned int _index) {
-  //Stock stock = stocks[stockSymbol];
-  //return stock.testQuotes[_index];
   return testingStock.testQuotes[_index];
 }
 
@@ -78,17 +68,11 @@ void TestModel::setDate(const std::string& _date) {
   runDate = _date;
 }
 
-std::string TestModel::quotesDirectory() {
-  return "/Users/Matt/Desktop/symbol_data/" + runDate + "/" + stockSymbol + ".csv";
-}
-
 void TestModel::resetTestData() {
   //stocks.clear();
 }
 
 void TestModel::resetStockData() {
-  //Stock& stock = stocks[stockSymbol];
-  //stock.reset();
   testingStock.reset();
 }
 
@@ -97,7 +81,13 @@ void TestModel::hardResetStock() {
 }
 
 void TestModel::logMoneyMade() {
-  //const Stock& stock = stocks[stockSymbol];
-  //stock.logMoneyMade();
   testingStock.logMoneyMade();
+}
+
+unsigned int TestModel::getNumberOfDates() {
+  return (unsigned int)dates.size();
+}
+
+const std::string& TestModel::getDateAtIndex(const unsigned int& _index) {
+  return dates[_index];
 }

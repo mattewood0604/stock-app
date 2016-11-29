@@ -34,10 +34,12 @@ class TestModel {
   
     static void logMoneyMade();
   
+    static unsigned int getNumberOfDates();
+    static const std::string& getDateAtIndex(const unsigned int& _index);
+  
     static const bool loggingEnabled;
   
     static const std::string stockSymbol;
-    static std::vector<std::string> dates;
   
     static const unsigned int maximumLongTimePeriods;
     static const unsigned int maximumShortTimePeriods;
@@ -48,6 +50,7 @@ class TestModel {
     static Stock testingStock;
     //static std::map<std::string, Stock> stocks;
   
+    static std::vector<std::string> dates;
     static std::string runDate;
 };
 

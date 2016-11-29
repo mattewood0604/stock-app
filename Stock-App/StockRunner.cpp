@@ -22,8 +22,7 @@ void StockRunner::runStocks() {
   RestCall::init();
   
   while(1) {
-  	if (Model::isMarketOpen())
-  	{
+  	if (Model::isMarketOpen()) {
     	RestCall::quotes();
     	sleep(2);
   	}
@@ -35,22 +34,31 @@ void StockRunner::runDailyProfits() {
   
   TestModel::initialize();
   
-  for (unsigned int i = 0; i < TestModel::dates.size(); i++) {
-    std::cout << "DATE: " << TestModel::dates[i] << std::endl;
-    std::cout << "--------------------" << std::endl;
-    TestModel::setDate(TestModel::dates[i]);
-    FileManager::readQuotes();
+  for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
+    TestModel::setDate(TestModel::getDateAtIndex(i));
+    logDateForIndex(i);
     
-    for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
-      RestCall::mockRestCall(marketTime);
-    }
-    
-    TestModel::logMoneyMade();
-    
-    percentageMade += (!isnan(TestModel::getTestingStock().getPercentageMade())) ? TestModel::getTestingStock().getPercentageMade() : 0.0f;
+    percentageMade += runDailyStocksForSetDate();
     
     TestModel::hardResetStock();
   }
   
-  std::cout << "TOTAL PERCENTAGE: " << percentageMade << std::endl;
+  std::cout << "TOTAL PERCENTAGE: " << percentageMade * 100 << std::endl;
+}
+
+void StockRunner::logDateForIndex(const unsigned int& _index) {
+  std::cout << "DATE: " << TestModel::getDateAtIndex(_index) << std::endl;
+  std::cout << "--------------------" << std::endl;
+}
+
+float StockRunner::runDailyStocksForSetDate() {
+  FileManager::readQuotes();
+  
+  for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
+    RestCall::mockRestCall(marketTime);
+  }
+  
+  TestModel::logMoneyMade();
+  
+  return !isnan(TestModel::getTestingStock().getPercentageMade()) ? TestModel::getTestingStock().getPercentageMade() : 0.0f;
 }

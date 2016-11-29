@@ -53,7 +53,7 @@ void FileManager::readQuotes() {
   
   if (!symbolFile->is_open())
   {
-    std::cout << "ERROR" << std::endl;
+    std::cout << "ERROR OPENING SYMBOL FILE FOR READING QUOTES" << std::endl;
   }
   
   symbolFile->seekg(0, symbolFile->end);
@@ -64,10 +64,9 @@ void FileManager::readQuotes() {
   symbolFile->read(symbolFileData, fileLength);
   
   std::string quotes = std::string(symbolFileData);
-  Stock& stock = TestModel::getTestingStock(); //TestModel::stockForSymbol(TestModel::stockSymbol);
+  Stock& stock = TestModel::getTestingStock();
   int lastNewlineIndex = -1;
-  for (unsigned int i = 0; i < fileLength; i++)
-  {
+  for (unsigned int i = 0; i < fileLength; i++) {
     if (quotes[i] == '\n') {
     		std::string quote = quotes.substr(lastNewlineIndex + 1, i - lastNewlineIndex - 1);
         TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV);

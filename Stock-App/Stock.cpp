@@ -77,10 +77,13 @@ void Stock::reset() {
 }
 
 void Stock::addTimeToCandles(const TimeQuote& _timeQuote) {
+  const unsigned int& maxCandleTime = this->stockModel.getMaxCandleTime();
+  
   Candle& candle = this->candles[this->candles.size() - 1];
-  if (candle.getTotalTime() >= this->stockModel.getMaxCandleTime()) {
+  if (candle.getTotalTime() >= maxCandleTime) {
     this->calculateWaveTrend();
-    Candle nextCandle = Candle(this->stockModel.getMaxCandleTime());
+    
+    Candle nextCandle = Candle(maxCandleTime);
     nextCandle.addTimeQuote(_timeQuote);
     this->candles.push_back(nextCandle);
   }
