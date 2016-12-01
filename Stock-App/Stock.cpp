@@ -156,8 +156,10 @@ void Stock::calculateWaveTrend() {
   }
   this->w2 /= this->stockModel.getWTimePeriods();
   
-  this->previousW1.erase(previousW1.begin());
-  this->previousW1.push_back(this->w1);
+  if (previousW1.size() > 0) {
+    this->previousW1.erase(previousW1.begin());
+    this->previousW1.push_back(this->w1);
+  }
   
   this->waveTrendComplete = true;
 }

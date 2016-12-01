@@ -25,7 +25,7 @@ void StockModel::reset() {
   this->maxCandleTime = 0;
   this->shortTimePeriods = 0;
   this->longTimePeriods = 0;
-  this->wTimePeriods = 4;
+  this->wTimePeriods = 0;
 }
 
 const unsigned int& StockModel::getShortTimePeriods() const {
