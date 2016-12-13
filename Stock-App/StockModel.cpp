@@ -15,17 +15,29 @@ StockModel::StockModel() {
   this->maxCandleTime = 50000;
   this->maxGain = 0.10f;
   this->maxLoss = 0.10f;
+  
+  this->factor = 3;
+  this->pd = 7;
 }
 
 // JNUG
-// Long: 68 Short: 42 Time: 50000 44% (Start) 11/21 52%
-// Long: 80 Short: 27 Time: 12000 51% (Found: 11_4_2016) 11/21 36%
+// Long: 68 Short: 42 Time: 50000 44% (Start) 11/21 52% 12_05_2016 60.86%
+// 70	41	50 12_07_2016 54%
+// 74	39	50 12_07_2016 54%
+// 76	38	50 12_07_2016 53%
+// 67	43	50 52%
+// 69	42	50 52%
+// 78	37	50 52%
+//
+
+// CLF
+// Long: 53	Short: 28	Time: 22000 16% (Found: 12_02_2016)
 
 void StockModel::reset() {
-  this->maxCandleTime = 0;
-  this->shortTimePeriods = 0;
-  this->longTimePeriods = 0;
-  this->wTimePeriods = 0;
+  this->maxCandleTime = 15000;
+  this->shortTimePeriods = 20;
+  this->longTimePeriods = 20;
+  this->wTimePeriods = 4;
 }
 
 const unsigned int& StockModel::getShortTimePeriods() const {
@@ -52,6 +64,14 @@ const float& StockModel::getMaxLoss() const {
   return this->maxLoss;
 }
 
+const unsigned int& StockModel::getFactor() const {
+  return this->factor;
+}
+
+const unsigned int& StockModel::getPd() const {
+  return this->pd;
+}
+
 void StockModel::incrementShortTimePeriods() {
   this->shortTimePeriods++;
 }
@@ -69,17 +89,17 @@ void StockModel::incrementWTimePeriods() {
 }
 
 void StockModel::resetMaxCandleTime() {
-  this->maxCandleTime = 0;
+  this->maxCandleTime = 15000;
 }
 
 void StockModel::resetShortTimePeriods() {
-  this->shortTimePeriods = 10;
+  this->shortTimePeriods = 20;
 }
 
 void StockModel::resetLongTimePeriods() {
-  this->longTimePeriods = 10;
+  this->longTimePeriods = 20;
 }
 
 void StockModel::resetWTimePeriods() {
-  this->wTimePeriods = 2;
+  this->wTimePeriods = 4;
 }

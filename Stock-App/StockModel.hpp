@@ -24,6 +24,9 @@ class StockModel {
     const float& getMaxGain() const;
     const float& getMaxLoss() const;
   
+    const unsigned int& getFactor() const;
+    const unsigned int& getPd() const;
+  
     void incrementShortTimePeriods();
     void incrementLongTimePeriods();
     void incrementMaxCandleTime();
@@ -44,6 +47,9 @@ class StockModel {
   
     float maxGain;
     float maxLoss;
+  
+    unsigned int factor;
+    unsigned int pd;
 };
 
 #endif /* StockModel_hpp */

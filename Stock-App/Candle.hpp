@@ -25,6 +25,8 @@ class Candle {
   
     float getOpen() const;
     float getClose() const;
+    float getHigh() const;
+    float getLow() const;
   
   private:
     uint64_t lastTime;

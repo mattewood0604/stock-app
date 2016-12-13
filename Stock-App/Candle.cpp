@@ -62,3 +62,12 @@ float Candle::getOpen() const {
 float Candle::getClose() const {
   return this->close;
 }
+
+float Candle::getHigh() const {
+  return this->high;
+}
+
+float Candle::getLow() const {
+  return this->low;
+}
+

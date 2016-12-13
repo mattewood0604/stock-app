@@ -8,7 +8,7 @@
 
 #include "TestModel.hpp"
 
-const unsigned int TestModel::maximumLongTimePeriods = 100;
+const unsigned int TestModel::maximumLongTimePeriods = 80;
 const unsigned int TestModel::maximumShortTimePeriods = 50;
 const unsigned int TestModel::maximumCandleTime = 60000;
 const unsigned int TestModel::maximumWTimePeriods = 7;
@@ -16,14 +16,14 @@ const unsigned int TestModel::maximumWTimePeriods = 7;
 const bool TestModel::loggingEnabled = true;
 
 std::string TestModel::runDate = "";
-const std::string TestModel::stockSymbol = "JNUG";
+std::string TestModel::stockSymbol = "JNUG";
 std::vector<std::string> TestModel::dates;
 
 Stock TestModel::testingStock = Stock(stockSymbol);
 
 void TestModel::initialize() {
-  dates.push_back("10_5_2016");
-  dates.push_back("10_6_2016");
+  //dates.push_back("10_5_2016");
+  /*dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -44,12 +44,26 @@ void TestModel::initialize() {
   dates.push_back("11_09_2016");
   dates.push_back("11_10_2016");
   dates.push_back("11_11_2016");
-  dates.push_back("11_21_2016");
+  dates.push_back("11_21_2016");*/
   dates.push_back("11_28_2016");
+  dates.push_back("11_29_2016");
+  dates.push_back("11_30_2016");
+  dates.push_back("12_01_2016");
+  dates.push_back("12_02_2016");
+  dates.push_back("12_05_2016");
+  dates.push_back("12_06_2016");
+  dates.push_back("12_07_2016");
+  dates.push_back("12_08_2016");
+  dates.push_back("12_09_2016");
 }
 
 Stock& TestModel::getTestingStock() {
   return testingStock;
+}
+
+void TestModel::setTestingStock(const std::string& _stock) {
+  stockSymbol = _stock;
+  testingStock = Stock(_stock);
 }
 
 std::string TestModel::quotesDirectory() {

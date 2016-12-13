@@ -20,6 +20,7 @@ class TestModel {
     static void initialize();
 
     static Stock& getTestingStock();
+    static void setTestingStock(const std::string& _stock);
     //static Stock& stockForSymbol(const std::string& _symbol);
   
     static unsigned int totalTimeQuotes();
@@ -39,7 +40,7 @@ class TestModel {
   
     static const bool loggingEnabled;
   
-    static const std::string stockSymbol;
+    static std::string stockSymbol;
   
     static const unsigned int maximumLongTimePeriods;
     static const unsigned int maximumShortTimePeriods;

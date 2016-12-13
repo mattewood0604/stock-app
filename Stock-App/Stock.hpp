@@ -41,6 +41,9 @@ class Stock {
   private:
     void init();
   
+    void supertrendAlgorithm();
+    float averageTrueRange() const;
+  
     float ema(const float& _price, const float& _previousEMA, const float& _multiplier) const;
   
     float averagePriceEMA;
@@ -63,6 +66,8 @@ class Stock {
     float shortMultiplier;
     float longMultiplier;
   
+    float maxMade;
+    float percentageMade;
     bool maxLossTaken;
   
     unsigned int numberOfTrades;
