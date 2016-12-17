@@ -12,6 +12,8 @@
 #include "Model.hpp"
 #include "Quotes.hpp"
 
+bool Model::stopBuying = false;
+
 std::map<std::string, Stock> Model::stocks = std::map<std::string, Stock>();
 
 Quotes Model::timeQuotes;
@@ -24,6 +26,8 @@ const std::string Model::stockSymbolsForQuotesDirectory = "/Users/mwood212/Deskt
 
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";
+
+std::string Model::purchasedStockSymbol = "";
 
 bool Model::isMarketOpen(void) {
   time_t currentTime = time(0);
@@ -63,4 +67,20 @@ void Model::logQuotes() {
 
 std::string Model::symbolsForQuotesAsCSV() {
   return FileManager::readStockSymbolsForQuotes();
+}
+
+void Model::setPurchasedStockSymbol(const std::string& _symbol) {
+  purchasedStockSymbol = _symbol;
+}
+
+const std::string& Model::getPurchasedStockSymbol() {
+  return purchasedStockSymbol;
+}
+
+void Model::setStopBuying(bool _stopBuying) {
+  stopBuying = _stopBuying;
+}
+
+bool Model::isStopBuying() {
+  return stopBuying;
 }

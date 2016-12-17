@@ -117,8 +117,10 @@ void RestCall::quotes() {
 }
 
 void RestCall::mockRestCall(const unsigned int _marketTime) {
-  const TimeQuote& quote = TestModel::getTestQuote(_marketTime);
-  Stock& stock = TestModel::getTestingStock();
-  stock.addTimeToCandles(quote);
-  stock.buyOrSell();
+  for (unsigned int i = 0; i < TestModel::getTestStockCount(); i++) {
+    const TimeQuote& quote = TestModel::getTestQuote(i, _marketTime);
+    Stock& stock = TestModel::getTestStock(i);
+    stock.addTimeToCandles(quote);
+    stock.buyOrSell();
+  }
 }

@@ -10,10 +10,11 @@
 #define StockModel_hpp
 
 #include <stdio.h>
+#include <string>
 
 class StockModel {
   public:
-    StockModel();
+    StockModel(const std::string& _symbol);
   
     void reset();
   

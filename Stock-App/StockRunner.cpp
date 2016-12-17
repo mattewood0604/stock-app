@@ -39,7 +39,9 @@ void StockRunner::runDailyProfits() {
     logDateForIndex(i);
     
     percentageMade += runDailyStocksForSetDate();
+    Model::setStopBuying(false);
     
+    Model::setPurchasedStockSymbol("");
     TestModel::hardResetStock();
   }
   
@@ -60,5 +62,11 @@ float StockRunner::runDailyStocksForSetDate() {
   
   TestModel::logMoneyMade();
   
-  return !isnan(TestModel::getTestingStock().getPercentageMade()) ? TestModel::getTestingStock().getPercentageMade() : 0.0f;
+  float percentageMade = 0;
+  for (unsigned int i = 0; i < TestModel::getTestStockCount(); i++) {
+    const Stock& stock = TestModel::getTestStock(i);
+    percentageMade += !isnan(stock.getPercentageMade()) ? stock.getPercentageMade() : 0.0f;
+  }
+  
+  return percentageMade;
 }

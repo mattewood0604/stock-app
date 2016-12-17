@@ -32,6 +32,12 @@ class Model {
   
     static std::string symbolsForQuotesAsCSV();
   
+    static void setPurchasedStockSymbol(const std::string& _symbol);
+    static const std::string& getPurchasedStockSymbol();
+  
+    static void setStopBuying(bool _stopBuying);
+    static bool isStopBuying();
+  
     static const bool loggingEnabled;
   
     static const std::string quotesDirectory;
@@ -40,6 +46,10 @@ class Model {
   private:
     static const std::string open;
     static const std::string closed;
+  
+    static std::string purchasedStockSymbol;
+  
+    static bool stopBuying;
   
     static std::map<std::string, Stock> stocks;
   

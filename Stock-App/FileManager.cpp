@@ -48,12 +48,27 @@ std::string FileManager::readStockSymbolsForQuotes() {
   return symbolsForQuotesAsCSV;
 }
 
-void FileManager::readQuotes() {
-  std::ifstream* symbolFile = new std::ifstream(TestModel::quotesDirectory());
+bool FileManager::readQuoteAtStockIndex(const unsigned int& _index) {
+  return readQuotes(_index);
+}
+
+bool FileManager::readQuotes() {
+  for (unsigned int i = 0; i < TestModel::getTestStockSymbolCount(); i++) {
+    readQuotes(i);
+  }
   
+  return true;
+}
+
+bool FileManager::readQuotes(const unsigned int& _index) {
+  std::string testStockSymbol = TestModel::getTestStockSymbol(_index);
+  
+  std::string name = TestModel::createQuotesDirectory(testStockSymbol);
+  std::ifstream* symbolFile = new std::ifstream(name);
   if (!symbolFile->is_open())
   {
     std::cout << "ERROR OPENING SYMBOL FILE FOR READING QUOTES" << std::endl;
+    return false;
   }
   
   symbolFile->seekg(0, symbolFile->end);
@@ -64,18 +79,19 @@ void FileManager::readQuotes() {
   symbolFile->read(symbolFileData, fileLength);
   
   std::string quotes = std::string(symbolFileData);
-  Stock& stock = TestModel::getTestingStock();
+  Stock& stock = TestModel::getTestStock(_index);
   int lastNewlineIndex = -1;
   for (unsigned int i = 0; i < fileLength; i++) {
     if (quotes[i] == '\n') {
-    		std::string quote = quotes.substr(lastNewlineIndex + 1, i - lastNewlineIndex - 1);
-        TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV);
-        stock.addQuoteToTestData(timeQuote);
-    		lastNewlineIndex = i;
+      std::string quote = quotes.substr(lastNewlineIndex + 1, i - lastNewlineIndex - 1);
+      TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV);
+      stock.addQuoteToTestData(timeQuote);
+      lastNewlineIndex = i;
     }
   }
   
   delete [] symbolFileData;
+  return true;
 }
 
 void FileManager::writeQuoteToFile(const TimeQuote& _timeQuote) {

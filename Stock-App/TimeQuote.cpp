@@ -25,9 +25,9 @@ std::string TimeQuote::changeKey = "\"change\":";
 std::string TimeQuote::priceKey = "\"last_trade_price\":";
 std::string TimeQuote::symbolKey = "\"symbol\":";
 
-TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
+TimeQuote::TimeQuote(const std::string& _json, FROM _from, const std::string& _symbol) {
   if (_from == CSV) {
-    this->fromCSV(_json);
+    this->fromCSV(_symbol, _json);
     return;
   }
   
@@ -44,7 +44,7 @@ TimeQuote::TimeQuote(const std::string& _json, FROM _from) {
   this->offerQty = parseInt(offerQtyKey);
 }
 
-void TimeQuote::fromCSV(const std::string& _quote) {
+void TimeQuote::fromCSV(const std::string& _symbol, const std::string& _quote) {
   if (_quote.length() == 0) {
     return;
   }
@@ -53,7 +53,7 @@ void TimeQuote::fromCSV(const std::string& _quote) {
     return;
   }
   
-  this->symbol = TestModel::stockSymbol;
+  this->symbol = _symbol;
   
   int lastCommaIndex = -1;
   int commaIndex = (int)_quote.find(',');

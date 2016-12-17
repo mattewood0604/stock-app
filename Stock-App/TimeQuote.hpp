@@ -15,7 +15,7 @@ class TimeQuote {
   public:
     enum FROM { JSON, CSV };
   
-    TimeQuote(const std::string& _json, FROM _from = JSON);
+    TimeQuote(const std::string& _json, FROM _from = JSON, const std::string& _symbol = "");
   
     void writeToFile() const;
   
@@ -47,7 +47,7 @@ class TimeQuote {
     static std::string priceKey;
     static std::string symbolKey;
   
-    void fromCSV(const std::string& _quote);
+    void fromCSV(const std::string& _symbol, const std::string& _quote);
   
     int parseInt(const std::string& _key) const;
     float parseFloat(const std::string& _key) const;

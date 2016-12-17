@@ -71,14 +71,14 @@ StockModel& resetAllModelsForStock(Stock& _stock) {
   return stockModel;
 }
 
-void calculateAndWriteProfits(float**** _profits) {
+void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
   std::string profitData;
   profitData.append("WTIME\tLONG\tSHORT\tCANDLE\tPROFIT\n");
   profitData.append("---------------------------\n");
   
   unsigned int totalForTheDay = 0;
   unsigned int totalPositive = 0;
-  Stock& stock = TestModel::getTestingStock();
+  Stock& stock = TestModel::getTestStock(_index);
   StockModel& stockModel = stock.getStockModel();
   //for (unsigned int wTime = 2; wTime < wTimePeriods; wTime++) {
   for (unsigned int longTime = 20; longTime < TestModel::maximumLongTimePeriods; longTime++) {
@@ -114,135 +114,30 @@ void calculateAndWriteProfits(float**** _profits) {
   profitData.append("--------------------");
   profitData.append("\n");
   
-  FileManager::writeProfitsForSymbol(TestModel::stockSymbol, profitData);
+  FileManager::writeProfitsForSymbol(TestModel::getTestStockSymbol(0), profitData);
 }
 
 void runProfitTests() {
-  std::vector<std::string> stocks = {
-    /*"AGIO",
-    "ALGN",
-    "ALKS",
-    "AMBA",
-    "AMCX",
-    "AMSG",
-    "AMWD",
-    "ANIP",
-    "ASTE",*/
-    "AVXS",
-    /*"BCPC",
-    "BLKB",*/
-    "BLUE",
-    /*"BMRN",
-    "BOKF",
-    "CAVM",
-    "CCMP",
-    "CGNX",*/
-    "CLF",
-    /*"CMPR",
-    "CPLA",
-    "CRUS",
-    "CVGW",
-    "CYBR",
-    "DECK",*/
-    "DUST",
-    /*"DXCM",
-    "EBIX",
-    "EGBN",
-    "EGRX",
-    "FANG",
-    "FPRX",
-    "FTRPR",*/
-    "GOLD",
-    "HSKA",
-    /*"HURN",
-    "IART",
-    "IBKC",
-    "IBTX",
-    "IDCC",
-    "INCY",
-    "INGN",
-    "IOSP",
-    "IRBT",
-    "JBSS",
-    "JNUG",
-    "KALU",
-    "LBRDK",
-    "LOGM",
-    "LOPE",
-    "LPNT",
-    "LULU",
-    "MATW",
-    "MDSO",
-    "MGEE",
-    "MGLN",
-    "MNRO",
-    "NEOG",*/
-    "NUGT",
-    /*"NUVA",
-    "NVDA",
-    "NXST",
-    "OLED",
-    "ONCE",
-    "OSIS",*/
-    "PATK",
-    "PDCE",
-    /*"PFPT",
-    "PLCE",
-    "PNFP",
-    "PRAH",
-    "PRGO",*/
-    "PRTA",
-    /*"PRXL",
-    "PSMT",
-    "QRVO",*/
-    "RARE",
-    "RGLD",
-    /*"ROLL",
-    "RRGB",
-    "SAFM",
-    "SAVE",
-    "SFBS",
-    "SFNC",
-    "SGEN",
-    "SINA",
-    "SPLK",
-    "STRA",
-    "SWKS",
-    "SYNA",
-    "TCBI",
-    "TECD",
-    "TREE",
-    "TRIP",
-    "UEIC",*/
-    "USCR"//,
-    /*"VRTX",
-    "VSAT",
-    "WOOF",
-    "WRLD",
-    "WYNN",
-    "XRAY",
-    "ZBRA"*/
-  };
-  
-  
   float**** newProfits = createProfitStorage();
   
   TestModel::initialize();
   
-  for (unsigned int i = 0; i < stocks.size(); i++) {
-    TestModel::setTestingStock(stocks[i]);
-    
-    Stock& stock = TestModel::getTestingStock();
+  for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
+    Stock& stock = TestModel::getTestStock(j);
+    std::cout << "STOCK: " << stock.symbol << std::endl;
     StockModel& stockModel = resetAllModelsForStock(stock);
     unsigned int totalTime = 0;
     for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
-      stock = TestModel::getTestingStock();
       stockModel = resetAllModelsForStock(stock);
       
       std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
       std::cout << "--------------------" << std::endl;
       TestModel::setDate(TestModel::getDateAtIndex(i));
-      FileManager::readQuotes();
+      if(!FileManager::readQuotes()) {
+        // Read quotes should not loop through all of the symbols
+        // It should be readAllQuotes and readQuotes(_index)
+        continue;
+      }
       
       uint64_t startTime = (uint64_t)time(0);
       
@@ -278,11 +173,9 @@ void runProfitTests() {
     
     std::cout << "TOTAL TIME: " << totalTime << "\n\n" << std::endl;
     
-    calculateAndWriteProfits(newProfits);
+    calculateAndWriteProfits(newProfits, j);
     
     resetProfitStorage(newProfits, stockModel.getWTimePeriods(), TestModel::maximumLongTimePeriods, TestModel::maximumShortTimePeriods, TestModel::maximumCandleTime / 1000);
-    
-    
   }
   
   
@@ -308,7 +201,7 @@ int main(void)
 {
   //StockRunner::runStocks();
   StockRunner::runDailyProfits();
-  //runProfitTests();
+  //runProfitTests(); // THIS IS NOT GOING TO WORK IN ITS CURRENT STATE
   
   return 0;
 }

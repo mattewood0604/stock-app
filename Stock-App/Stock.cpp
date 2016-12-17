@@ -9,14 +9,15 @@
 #include <iostream>
 #include <math.h>
 
+#include "Model.hpp"
 #include "Stock.hpp"
 #include "StockModel.hpp"
 
-Stock::Stock() {
+Stock::Stock() : stockModel("") {
   this->init();
 }
 
-Stock::Stock(const std::string& _symbol) {
+Stock::Stock(const std::string& _symbol) : stockModel(_symbol) {
   this->init();
   this->symbol = _symbol;
 }
@@ -184,12 +185,13 @@ void Stock::buyOrSell() {
     return;
   }
   
-  if (this->isBuy) {
+  if (this->isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && !Model::isStopBuying()) {
     //std::cout << "BUY \t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
     this->isBought = true;
     this->isBuy = false;
     this->buyPrice = currentCandle.getOpen();
     this->numberOfTrades++;
+    Model::setPurchasedStockSymbol(this->symbol);
     return;
   }
   else if (this->isSell) {
@@ -206,13 +208,12 @@ void Stock::buyOrSell() {
     this->isBought = false;
     
     if (this->moneyMade / this->buyPrice < -0.02) {
+      Model::setStopBuying(true);
       this->maxLossTaken = true;
     }
     
-    //if (this->maxMade > this->percentageMade + .01f) {
-    //  this->maxLossTaken = true;
-    //}
-    
+    Model::setPurchasedStockSymbol("");
+
     this->numberOfTrades++;
     return;
   }

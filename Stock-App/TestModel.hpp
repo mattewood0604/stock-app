@@ -19,12 +19,20 @@ class TestModel {
   public:
     static void initialize();
 
-    static Stock& getTestingStock();
-    static void setTestingStock(const std::string& _stock);
+    //static Stock& getTestingStock();
+    //static void setTestingStock(const std::string& _stock);
     //static Stock& stockForSymbol(const std::string& _symbol);
   
+    static unsigned int getTestStockSymbolCount();
+    static const std::string& getTestStockSymbol(const unsigned int& _index);
+  
+    static unsigned int getTestStockCount();
+    static Stock& getTestStock(const unsigned int& _index);
+  
+    static std::string createQuotesDirectory(const std::string& _symbol);
+  
     static unsigned int totalTimeQuotes();
-    static const TimeQuote& getTestQuote(unsigned int _index);
+    static const TimeQuote& getTestQuote(const unsigned int& _index, const unsigned int& _marketTime);
   
     static std::string quotesDirectory();
     static void setDate(const std::string& _date);
@@ -40,7 +48,7 @@ class TestModel {
   
     static const bool loggingEnabled;
   
-    static std::string stockSymbol;
+    //static std::string stockSymbol;
   
     static const unsigned int maximumLongTimePeriods;
     static const unsigned int maximumShortTimePeriods;
@@ -48,8 +56,10 @@ class TestModel {
     static const unsigned int maximumWTimePeriods;
   
   private:
-    static Stock testingStock;
+    //static Stock testingStock;
     //static std::map<std::string, Stock> stocks;
+    static std::vector<std::string> testStockSymbols;
+    static std::vector<Stock> testStocks;
   
     static std::vector<std::string> dates;
     static std::string runDate;

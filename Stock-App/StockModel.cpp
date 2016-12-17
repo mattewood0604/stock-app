@@ -8,16 +8,41 @@
 
 #include "StockModel.hpp"
 
-StockModel::StockModel() {
-  this->shortTimePeriods = 42;
-  this->longTimePeriods = 68;
-  this->wTimePeriods = 4;
-  this->maxCandleTime = 50000;
-  this->maxGain = 0.10f;
-  this->maxLoss = 0.10f;
+StockModel::StockModel(const std::string& _symbol) {
+  if (_symbol.compare("JNUG") == 0) {
+    this->shortTimePeriods = 42;
+    this->longTimePeriods = 68;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 50000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
+  else if (_symbol.compare("DUST") == 0) {
+    this->shortTimePeriods = 23;
+    this->longTimePeriods = 42;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 53000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
+  else {
+    this->shortTimePeriods = 20;
+    this->longTimePeriods = 20;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 15000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
   
-  this->factor = 3;
-  this->pd = 7;
 }
 
 // JNUG

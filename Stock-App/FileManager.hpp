@@ -17,7 +17,9 @@
 
 class FileManager {
   public:
-    static void readQuotes();
+    static bool readQuotes();
+    static bool readQuoteAtStockIndex(const unsigned int& _index);
+  
     static void writeQuotes();
     static void writeQuoteToFile(const TimeQuote& _timeQuote);
   
@@ -27,6 +29,8 @@ class FileManager {
   
   private:
     static std::map<std::string, std::ofstream*> symbolFiles;
+  
+    static bool readQuotes(const unsigned int& _index);
   
     static void writeDataForSymbol(const std::string& _symbol, const std::string& _data);
     static void writeDataToFile(const std::string& _data, std::ofstream& _file);
