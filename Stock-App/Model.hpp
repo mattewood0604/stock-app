@@ -19,6 +19,8 @@
 
 class Model {
   public:
+    static void init();
+  
     static bool isMarketOpen(void);
   
     static void addTimeQuote(const TimeQuote _timeQuote);
@@ -40,7 +42,7 @@ class Model {
   
     static const bool loggingEnabled;
   
-    static const std::string quotesDirectory;
+    static std::string quotesDirectory;
     static const std::string stockSymbolsForQuotesDirectory;
   
   private:

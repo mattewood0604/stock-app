@@ -20,7 +20,7 @@ Quotes Model::timeQuotes;
 
 const bool Model::loggingEnabled = false;
 
-const std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
+std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
 
 const std::string Model::stockSymbolsForQuotesDirectory = "/Users/mwood212/Desktop/Stock-App/StocksForQuotes.txt";
 
@@ -29,7 +29,20 @@ const std::string Model::closed = "CLOSED";
 
 std::string Model::purchasedStockSymbol = "";
 
-bool Model::isMarketOpen(void) {
+void Model::init() {
+  quotesDirectory = "/Users/mwood212/Desktop/Stock-App/";
+  
+  time_t currentTime = time(0);
+  struct tm* now = localtime(&currentTime);
+  
+  quotesDirectory.append(std::to_string(now->tm_mon + 1));
+  quotesDirectory.append("_");
+  quotesDirectory.append(std::to_string(now->tm_mday));
+  quotesDirectory.append("_");
+  quotesDirectory.append(std::to_string(now->tm_year + 1900));
+}
+
+bool Model::isMarketOpen() {
   time_t currentTime = time(0);
   struct tm* now = localtime(&currentTime);
   

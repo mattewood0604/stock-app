@@ -17,6 +17,8 @@
 #include "TestModel.hpp"
 
 void StockRunner::runStocks() {
+  bool marketBecameOpen = false;
+  
   FileManager::readStockSymbolsForQuotes();
   
   RestCall::init();
@@ -25,7 +27,11 @@ void StockRunner::runStocks() {
   	if (Model::isMarketOpen()) {
     	RestCall::quotes();
     	sleep(2);
+      marketBecameOpen = true;
   	}
+    else if (marketBecameOpen) {
+      break;
+    }
   }
 }
 
