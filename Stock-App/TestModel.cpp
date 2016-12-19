@@ -27,7 +27,7 @@ std::vector<std::string> TestModel::dates;
 
 void TestModel::initialize() {
   //dates.push_back("10_5_2016");
-  /*dates.push_back("10_6_2016");
+  dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -48,7 +48,7 @@ void TestModel::initialize() {
   dates.push_back("11_09_2016");
   dates.push_back("11_10_2016");
   dates.push_back("11_11_2016");
-  dates.push_back("11_21_2016");*/
+  dates.push_back("11_21_2016");
   dates.push_back("11_28_2016");
   dates.push_back("11_29_2016");
   dates.push_back("11_30_2016");
@@ -62,6 +62,8 @@ void TestModel::initialize() {
   dates.push_back("12_12_2016");
   dates.push_back("12_13_2016");
   dates.push_back("12_14_2016");
+  dates.push_back("12_15_2016");
+  dates.push_back("12_16_2016");
   
   testStockSymbols.push_back("JNUG");
   testStockSymbols.push_back("DUST");

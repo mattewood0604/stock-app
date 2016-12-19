@@ -51,7 +51,9 @@ void StockRunner::runDailyProfits() {
     TestModel::hardResetStock();
   }
   
-  std::cout << "TOTAL PERCENTAGE: " << percentageMade * 100 << std::endl;
+  std::cout << "TOTAL DAYS:\t\t\t" << TestModel::getNumberOfDates() << std::endl;
+  std::cout << "TOTAL PERCENTAGE:\t" << percentageMade * 100 << std::endl;
+  std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / TestModel::getNumberOfDates() << std::endl;
 }
 
 void StockRunner::logDateForIndex(const unsigned int& _index) {
