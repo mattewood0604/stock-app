@@ -199,9 +199,9 @@ void runProfitTests() {
 
 int main(void)
 {
-  //Model::init();
-  //StockRunner::runStocks();
-  StockRunner::runDailyProfits();
+  Model::init();
+  StockRunner::runStocks();
+  //StockRunner::runDailyProfits();
   //runProfitTests(); // THIS IS NOT GOING TO WORK IN ITS CURRENT STATE
   
   return 0;
