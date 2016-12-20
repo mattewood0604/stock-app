@@ -63,6 +63,8 @@ class TestModel {
   
     static std::vector<std::string> dates;
     static std::string runDate;
+  
+    static void createListOfDates();
 };
 
 #endif /* TestModel_hpp */

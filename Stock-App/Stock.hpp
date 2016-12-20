@@ -21,30 +21,32 @@ class Stock {
     Stock();
     Stock(const std::string& _symbol);
   
+    void reset();
+  
     void addTimeToCandles(const TimeQuote& _timeQuote);
     void addQuoteToTestData(const TimeQuote& _timeQuote);
   
-    StockModel& getStockModel();
+    Candle& getLastCandle();
+    unsigned int getNumberOfCandles() const;
+    const Candle& getCandleAtIndex(const unsigned int& _index) const;
   
-    void calculateWaveTrend();
+    StockModel& getStockModel();
+
     void buyOrSell();
   
-    void reset();
+    float ema(const float& _price, const float& _previousEMA, const float& _multiplier) const;
+  
+    void setWaveTrendComplete(const bool& _complete);
   
     void logMoneyMade() const;
     float getPercentageMade() const;
   
+    const float& getShortMultiplier() const;
+    const float& getLongMultiplier() const;
+  
     std::string symbol;
   
     std::vector<TimeQuote> testQuotes;
-  
-  private:
-    void init();
-  
-    void supertrendAlgorithm();
-    float averageTrueRange() const;
-  
-    float ema(const float& _price, const float& _previousEMA, const float& _multiplier) const;
   
     float averagePriceEMA;
     float apESA;
@@ -52,9 +54,13 @@ class Stock {
     float ci;
     int ciCalculated;
     std::vector<float> previousW1;
-  
+    
     float w1;
     float w2;
+  
+  private:
+    void supertrendAlgorithm();
+    float averageTrueRange() const;
   
     bool waveTrendComplete;
     bool isBought;
