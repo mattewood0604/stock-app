@@ -10,6 +10,7 @@
 #include <string.h>
 #include <iostream>
 
+#include "FileManager.hpp"
 #include "Model.hpp"
 #include "Response.hpp"
 #include "RestCall.hpp"
@@ -49,7 +50,7 @@ void RestCall::initializeQuotesHandle() {
   quotesHandle = curl_easy_init();
   
   std::string quotesURL = "https://api.robinhood.com/quotes/?symbols=";
-  std::string quotesSymbols = Model::symbolsForQuotesAsCSV();
+  std::string quotesSymbols = FileManager::readStockSymbolsForQuotes();
   quotesURL.append(quotesSymbols);
   
   curl_easy_setopt(quotesHandle, CURLOPT_URL, quotesURL.c_str());

@@ -79,10 +79,6 @@ void Model::logQuotes() {
   timeQuotes.log();
 }
 
-std::string Model::symbolsForQuotesAsCSV() {
-  return FileManager::readStockSymbolsForQuotes();
-}
-
 void Model::setPurchasedStockSymbol(const std::string& _symbol) {
   purchasedStockSymbol = _symbol;
 }

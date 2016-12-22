@@ -32,8 +32,6 @@ class Model {
   
     static void addTestQuote();
   
-    static std::string symbolsForQuotesAsCSV();
-  
     static void setPurchasedStockSymbol(const std::string& _symbol);
     static const std::string& getPurchasedStockSymbol();
   

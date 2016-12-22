@@ -20,7 +20,6 @@ class FileManager {
     static bool readQuotes();
     static bool readQuoteAtStockIndex(const unsigned int& _index);
   
-    static void writeQuotes();
     static void writeQuoteToFile(const TimeQuote& _timeQuote);
   
     static std::string readStockSymbolsForQuotes();

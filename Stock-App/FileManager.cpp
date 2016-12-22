@@ -100,15 +100,6 @@ void FileManager::writeQuoteToFile(const TimeQuote& _timeQuote) {
   writeDataForSymbol(symbol, csv);
 }
 
-void FileManager::writeQuotes() {
-  /*for (unsigned int i = 0; i < Model::totalTimeQuotes(); i++) {
-    const TimeQuote& timeQuote = Model::getTimeQuote(i);
-    std::string symbol = timeQuote.getSymbol();
-    std::string csv = timeQuote.toCSV();
-    writeDataForSymbol(symbol, csv);
-  }*/
-}
-
 void FileManager::writeDataForSymbol(const std::string& _symbol, const std::string& _data) {
   std::ofstream* symbolFile = symbolFiles[_symbol];
   if (symbolFile != NULL) {

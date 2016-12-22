@@ -19,10 +19,6 @@ class TestModel {
   public:
     static void initialize();
 
-    //static Stock& getTestingStock();
-    //static void setTestingStock(const std::string& _stock);
-    //static Stock& stockForSymbol(const std::string& _symbol);
-  
     static unsigned int getTestStockSymbolCount();
     static const std::string& getTestStockSymbol(const unsigned int& _index);
   

@@ -15,10 +15,13 @@ class IndicatorAlgorithms {
   public:
     static void calculateWaveTrend(Stock& _stock);
   
+    static void supertrendAlgorithm(Stock& _stock);
+  
   private:
     static void calculateAveragePriceEMA(Stock& _stock);
     static void calculateWs(Stock& _stock);
   
+    static float averageTrueRange(Stock& _stock);
 };
 
 #endif /* IndicatorAlgorithms_hpp */

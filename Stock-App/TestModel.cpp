@@ -187,6 +187,9 @@ void TestModel::createListOfDates() {
   dates.push_back("12_14_2016");
   dates.push_back("12_15_2016");
   dates.push_back("12_16_2016");
+  //dates.push_back("12_19_2016");
+  dates.push_back("12_20_2016");
+  dates.push_back("12_21_2016");
 }
 
 unsigned int TestModel::getTestStockSymbolCount() {
@@ -209,17 +212,6 @@ std::string TestModel::createQuotesDirectory(const std::string& _symbol) {
   return "/Users/Matt/Desktop/symbol_data/" + runDate + "/" + _symbol + ".csv";
 }
 
-/*
-Stock& TestModel::getTestingStock() {
-  return testingStock;
-}
-
-void TestModel::setTestingStock(const std::string& _stock) {
-  stockSymbol = _stock;
-  testingStock = Stock(_stock);
-}
-*/
-
 unsigned int TestModel::totalTimeQuotes() {
   return (unsigned int)testStocks[0].testQuotes.size();
 }
@@ -230,10 +222,6 @@ const TimeQuote& TestModel::getTestQuote(const unsigned int& _index, const unsig
 
 void TestModel::setDate(const std::string& _date) {
   runDate = _date;
-}
-
-void TestModel::resetTestData() {
-  //stocks.clear();
 }
 
 void TestModel::resetStockData() {

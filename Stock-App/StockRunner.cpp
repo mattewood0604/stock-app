@@ -26,6 +26,7 @@ void StockRunner::runStocks() {
   while(1) {
   	if (Model::isMarketOpen()) {
     	RestCall::quotes();
+      // buyOrSell
     	sleep(2);
       marketBecameOpen = true;
   	}
