@@ -19,18 +19,24 @@
 void StockRunner::runStocks() {
   bool marketBecameOpen = false;
   
-  FileManager::readStockSymbolsForQuotes();
+  //FileManager::readStockSymbolsForQuotes();
   
   RestCall::init();
   
+  std::cout << "Begin Querying For Data..." << std::endl;
   while(1) {
   	if (Model::isMarketOpen()) {
+      if (!marketBecameOpen) {
+        std::cout << "Market Opened" << std::endl;
+      }
+
     	RestCall::quotes();
       // buyOrSell
     	sleep(2);
       marketBecameOpen = true;
   	}
     else if (marketBecameOpen) {
+      std::cout << "Market Closed" << std::endl;
       break;
     }
   }

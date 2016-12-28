@@ -17,6 +17,7 @@
 std::map<std::string, std::ofstream*> FileManager::symbolFiles;
 
 std::string FileManager::readStockSymbolsForQuotes() {
+  std::cout << "DIRECTORY: " << Model::stockSymbolsForQuotesDirectory << std::endl;
   std::ifstream symbolFile(Model::stockSymbolsForQuotesDirectory);
   
   if (!symbolFile.is_open())

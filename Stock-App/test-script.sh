@@ -1,16 +1,10 @@
 #!/bin/bash
 
-clear
-
 DATE=`date +%m_%d_%Y`
-mkdir "/Users/$USER/Desktop/$DATE"
-
-clear
+mkdir "$DATE"
 
 echo 'g++ *.cpp -lcurl -o ./stocks'
-g++ *.cpp -lcurl -o ./stocks
-
-clear
+g++ -std=c++11 -Wall -Wextra *.cpp -lcurl -o ./stocks
 
 echo './stocks'
 ./stocks
