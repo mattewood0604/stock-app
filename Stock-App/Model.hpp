@@ -13,7 +13,6 @@
 #include <vector>
 #include <map>
 
-#include "Quotes.hpp"
 #include "Stock.hpp"
 #include "TimeQuote.hpp"
 
@@ -24,12 +23,6 @@ class Model {
     static bool isMarketOpen(void);
   
     static void addTimeQuote(const TimeQuote _timeQuote);
-    static void resetTimeQuotes();
-  
-    static unsigned int totalTimeQuotes();
-    static const TimeQuote& getTimeQuote(const unsigned int& _index);
-    static void logQuotes();
-  
     static void addTestQuote();
   
     static void setPurchasedStockSymbol(const std::string& _symbol);
@@ -52,8 +45,6 @@ class Model {
     static bool stopBuying;
   
     static std::map<std::string, Stock> stocks;
-  
-    static Quotes timeQuotes;
 };
 
 #endif /* Model_hpp */

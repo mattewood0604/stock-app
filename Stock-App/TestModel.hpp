@@ -11,7 +11,6 @@
 
 #include <map>
 
-#include "Quotes.hpp"
 #include "Stock.hpp"
 #include "TimeQuote.hpp"
 
@@ -27,8 +26,7 @@ class TestModel {
   
     static std::string createQuotesDirectory(const std::string& _symbol);
   
-    static unsigned int totalTimeQuotes();
-    static const TimeQuote& getTestQuote(const unsigned int& _index, const unsigned int& _marketTime);
+    static unsigned int totalTimeQuotes(const unsigned int& _index = 0);
   
     static std::string quotesDirectory();
     static void setDate(const std::string& _date);

@@ -9,7 +9,6 @@
 #include <iostream>
 
 #include "Model.hpp"
-#include "Quotes.hpp"
 #include "Response.hpp"
 
 void Response::init() {

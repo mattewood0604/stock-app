@@ -33,7 +33,7 @@ TimeQuote::TimeQuote(const std::string& _json, FROM _from, const std::string& _s
   
   this->json = _json;
   
-  this->dayTime = (uint64_t)time(0) * 1000;//parseTime();
+  this->dayTime = (uint64_t)time(0) * 1000;
   this->symbol = parseString(symbolKey);
   this->price = parseFloat(priceKey);
   this->percent = 0;//parseFloat(percentKey);

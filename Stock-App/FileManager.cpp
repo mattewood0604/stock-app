@@ -84,7 +84,7 @@ bool FileManager::readQuotes(const unsigned int& _index) {
   for (unsigned int i = 0; i < fileLength; i++) {
     if (quotes[i] == '\n') {
       std::string quote = quotes.substr(lastNewlineIndex + 1, i - lastNewlineIndex - 1);
-      TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV);
+      TimeQuote timeQuote = TimeQuote(quote, TimeQuote::FROM::CSV, testStockSymbol);
       stock.addQuoteToTestData(timeQuote);
       lastNewlineIndex = i;
     }

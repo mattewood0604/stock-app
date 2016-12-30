@@ -66,7 +66,14 @@ float StockRunner::runDailyStocksForSetDate() {
   FileManager::readQuotes();
   
   for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
-    RestCall::mockRestCall(marketTime);
+    for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
+      RestCall::mockRestCall(TestModel::getTestStock(stockIndex), marketTime);
+    }
+    
+    for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
+      Stock& stock = TestModel::getTestStock(stockIndex);
+      stock.buyOrSell();
+    }
   }
   
   TestModel::logMoneyMade();

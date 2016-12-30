@@ -10,19 +10,16 @@
 
 #include "FileManager.hpp"
 #include "Model.hpp"
-#include "Quotes.hpp"
 
 bool Model::stopBuying = false;
 
 std::map<std::string, Stock> Model::stocks = std::map<std::string, Stock>();
 
-Quotes Model::timeQuotes;
-
 const bool Model::loggingEnabled = false;
 
 std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
 
-const std::string Model::stockSymbolsForQuotesDirectory = "/Users/mwood212/Desktop/stock-app/Stock-App/StocksForQuotes.txt";
+const std::string Model::stockSymbolsForQuotesDirectory = "/Users/Matt/Desktop/stock-app/Stock-App/StocksForQuotes.txt";
 
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";
@@ -30,7 +27,7 @@ const std::string Model::closed = "CLOSED";
 std::string Model::purchasedStockSymbol = "";
 
 void Model::init() {
-  quotesDirectory = "/Users/mwood212/Desktop/";
+  quotesDirectory = "/Users/Matt/Desktop/";
   
   time_t currentTime = time(0);
   struct tm* now = localtime(&currentTime);
@@ -61,22 +58,6 @@ void Model::addTimeQuote(const TimeQuote _timeQuote) {
     stocks[_timeQuote.getSymbol()] = Stock(_timeQuote.getSymbol());
   }
   stock.addTimeToCandles(_timeQuote);
-}
-
-void Model::resetTimeQuotes() {
-  timeQuotes.resetTimeQuotes();
-}
-
-unsigned int Model::totalTimeQuotes() {
-  return timeQuotes.totalTimeQuotes();
-}
-
-const TimeQuote& Model::getTimeQuote(const unsigned int& _index) {
-  return timeQuotes.getTimeQuote(_index);
-}
-
-void Model::logQuotes() {
-  timeQuotes.log();
 }
 
 void Model::setPurchasedStockSymbol(const std::string& _symbol) {

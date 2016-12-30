@@ -13,7 +13,6 @@
 #include <vector>
 
 #include "Candle.hpp"
-#include "Quotes.hpp"
 #include "StockModel.hpp"
 
 class Stock {
@@ -25,6 +24,7 @@ class Stock {
   
     void addTimeToCandles(const TimeQuote& _timeQuote);
     void addQuoteToTestData(const TimeQuote& _timeQuote);
+    const TimeQuote& getTestQuote(const unsigned int& _marketTime) const;
   
     Candle& getLastCandle();
     unsigned int getNumberOfCandles() const;

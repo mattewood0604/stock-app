@@ -182,3 +182,7 @@ const float& Stock::getShortMultiplier() const {
 const float& Stock::getLongMultiplier() const {
   return this->longMultiplier;
 }
+
+const TimeQuote& Stock::getTestQuote(const unsigned int& _marketTime) const {
+  return this->testQuotes[_marketTime];
+}

@@ -23,7 +23,7 @@ class RestCall {
     static void buy();
     static void sell();
   
-    static void mockRestCall(const unsigned int _marketTime);
+    static void mockRestCall(Stock& _stock, const unsigned int& marketTime);
   
   private:
     static CURL* quotesHandle;

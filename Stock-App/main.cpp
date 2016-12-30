@@ -52,21 +52,23 @@ void resetProfitStorage(float**** _profitStorage, unsigned int _w, unsigned int 
   //}
 }
 
-void calculateProfits(const Stock& _stock, const StockModel& _stockModel, float**** _profits) {
-  if (_stockModel.getShortTimePeriods() < _stockModel.getLongTimePeriods()) {
-    for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
-      RestCall::mockRestCall(marketTime);
+void calculateProfits(Stock& _stock, const StockModel& _stockModel, float**** _profits, unsigned int _index) {
+  //if (_stockModel.getShortTimePeriods() <= _stockModel.getLongTimePeriods()) {
+    for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(_index); marketTime++) {
+      RestCall::mockRestCall(_stock, marketTime);
+      _stock.buyOrSell();
     }
-  }
+  //}
   
   if (!isnan(_stock.getPercentageMade())) {
     _profits[_stockModel.getWTimePeriods()][_stockModel.getLongTimePeriods()][_stockModel.getShortTimePeriods()][_stockModel.getMaxCandleTime() / 1000] += (_stock.getPercentageMade() * 10000);
   }
 }
 
-StockModel& resetAllModelsForStock(Stock& _stock) {
+StockModel& resetAllModelsForStock(const unsigned int& _stockIndex) {
   TestModel::hardResetStock();
-  StockModel& stockModel = _stock.getStockModel();
+  Stock& stock = TestModel::getTestStock(_stockIndex);
+  StockModel& stockModel = stock.getStockModel();
   stockModel.reset();
   return stockModel;
 }
@@ -88,7 +90,7 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
         totalForTheDay++;
         if (profit > TestModel::getNumberOfDates() && profit < 1000) {
           totalPositive++;
-          //std::cout << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
+          std::cout << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
           //std::cout << wTime << "\t" << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
           profitData.append(std::to_string(longTime));
           profitData.append("\t");
@@ -104,6 +106,8 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
   }
   //}
   
+  // 7.5 & 3.5
+  
   profitData.append("--------------------");
   profitData.append("POSITIVE: ");
   profitData.append(std::to_string(totalPositive));
@@ -114,10 +118,10 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
   profitData.append("--------------------");
   profitData.append("\n");
   
-  FileManager::writeProfitsForSymbol(TestModel::getTestStockSymbol(0), profitData);
+  FileManager::writeProfitsForSymbol(TestModel::getTestStockSymbol(_index), profitData);
 }
 
-void runProfitTests() {
+void runProfitMaximizationForIndividualStocks() {
   float**** newProfits = createProfitStorage();
   
   TestModel::initialize();
@@ -125,32 +129,31 @@ void runProfitTests() {
   for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
     Stock& stock = TestModel::getTestStock(j);
     std::cout << "STOCK: " << stock.symbol << std::endl;
-    StockModel& stockModel = resetAllModelsForStock(stock);
+    
     unsigned int totalTime = 0;
     for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
-      stockModel = resetAllModelsForStock(stock);
+      StockModel& stockModel = resetAllModelsForStock(j);
       
       std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
       std::cout << "--------------------" << std::endl;
+      
       TestModel::setDate(TestModel::getDateAtIndex(i));
-      if(!FileManager::readQuotes()) {
-        // Read quotes should not loop through all of the symbols
-        // It should be readAllQuotes and readQuotes(_index)
+      if(!FileManager::readQuoteAtStockIndex(j)) {
         continue;
       }
       
       uint64_t startTime = (uint64_t)time(0);
-      
-      //while (stockModel.getWTimePeriods() <= TestModel::maximumWTimePeriods) {
       
       while (stockModel.getLongTimePeriods() <= TestModel::maximumLongTimePeriods) {
         
         while (stockModel.getShortTimePeriods() <= TestModel::maximumShortTimePeriods) {
           
           while (stockModel.getMaxCandleTime() <= TestModel::maximumCandleTime) {
-            calculateProfits(stock, stockModel, newProfits);
+            calculateProfits(stock, stockModel, newProfits, j);
             
             TestModel::resetStockData();
+            Model::setStopBuying(false);
+            Model::setPurchasedStockSymbol("");
             stockModel.incrementMaxCandleTime();
           }
           
@@ -167,17 +170,14 @@ void runProfitTests() {
       uint64_t endTime = (uint64_t)time(0);
       totalTime += (endTime - startTime);
       std::cout << "TIME TAKEN: " << endTime - startTime << std::endl;
-      //stockModel.incrementWTimePeriods();
-      //}
     }
     
     std::cout << "TOTAL TIME: " << totalTime << "\n\n" << std::endl;
     
     calculateAndWriteProfits(newProfits, j);
     
-    resetProfitStorage(newProfits, stockModel.getWTimePeriods(), TestModel::maximumLongTimePeriods, TestModel::maximumShortTimePeriods, TestModel::maximumCandleTime / 1000);
+    resetProfitStorage(newProfits, 4, TestModel::maximumLongTimePeriods, TestModel::maximumShortTimePeriods, TestModel::maximumCandleTime / 1000);
   }
-  
   
   /*
   for (unsigned int w = 0; w < wTimePeriods; w++) {
@@ -191,18 +191,14 @@ void runProfitTests() {
   }
   delete[] newProfits;
    */
-  
 }
-
-// 9:06 PM
-
 
 int main(void)
 {
   Model::init();
-  //StockRunner::runStocks();
-  StockRunner::runDailyProfits();
-  //runProfitTests(); // THIS IS NOT GOING TO WORK IN ITS CURRENT STATE
+  StockRunner::runStocks();
+  //StockRunner::runDailyProfits();
+  //runProfitMaximizationForIndividualStocks(); // THIS IS NOT GOING TO WORK IN ITS CURRENT STATE
   
   return 0;
 }

@@ -140,7 +140,7 @@
 				C9E8B6A01DB97D23003B769A /* TestModel */,
 				C9E8B69C1DB8363C003B769A /* FileManager */,
 				C9E8B69B1DB5A234003B769A /* Model */,
-				C9E8B6941DB40A60003B769A /* Quotes */,
+				C9E8B6941DB40A60003B769A /* Quotes - Unused */,
 				C9E8B6901DB2DC81003B769A /* TimeQuote */,
 				C90B18231DB2878C00080F59 /* Response */,
 				C90B181F1DB286CD00080F59 /* RestCall */,
@@ -159,13 +159,13 @@
 			name = TimeQuote;
 			sourceTree = "<group>";
 		};
-		C9E8B6941DB40A60003B769A /* Quotes */ = {
+		C9E8B6941DB40A60003B769A /* Quotes - Unused */ = {
 			isa = PBXGroup;
 			children = (
 				C9E8B6951DB40A87003B769A /* Quotes.cpp */,
 				C9E8B6961DB40A87003B769A /* Quotes.hpp */,
 			);
-			name = Quotes;
+			name = "Quotes - Unused";
 			sourceTree = "<group>";
 		};
 		C9E8B69B1DB5A234003B769A /* Model */ = {
