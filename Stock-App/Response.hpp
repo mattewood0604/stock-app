@@ -18,7 +18,11 @@ class Response {
   
     void init();
     void log() const;
+  
+    std::string parseAuthentication() const;
     void parseQuotes() const;
+    bool parseOpenDays() const;
+    float parseBuyingPower() const;
 };
 
 #endif /* Response_hpp */

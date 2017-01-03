@@ -10,6 +10,7 @@
 #include <math.h>
 #include <unistd.h>
 
+#include "BuySell.hpp"
 #include "FileManager.hpp"
 #include "Model.hpp"
 #include "RestCall.hpp"
@@ -19,18 +20,25 @@
 void StockRunner::runStocks() {
   bool marketBecameOpen = false;
   
-  FileManager::readStockSymbolsForQuotes();
-  
   RestCall::init();
   
+  std::cout << "Begin Querying For Data..." << std::endl;
   while(1) {
   	if (Model::isMarketOpen()) {
+      if (!marketBecameOpen) {
+        std::cout << "Market Opened" << std::endl;
+      }
+
     	RestCall::quotes();
-      // buyOrSell
+      
+      BuySell::buyOrSell(Model::getStockForSymbol("JNUG"));
+      BuySell::buyOrSell(Model::getStockForSymbol("DUST"));
+      
     	sleep(2);
       marketBecameOpen = true;
   	}
     else if (marketBecameOpen) {
+      std::cout << "Market Closed" << std::endl;
       break;
     }
   }
@@ -72,7 +80,7 @@ float StockRunner::runDailyStocksForSetDate() {
     
     for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
       Stock& stock = TestModel::getTestStock(stockIndex);
-      stock.buyOrSell();
+      BuySell::buyOrSell(stock);
     }
   }
   

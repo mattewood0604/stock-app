@@ -121,7 +121,7 @@ void IndicatorAlgorithms::supertrendAlgorithm(Stock& _stock) {
       trend = -1;
     }
     else {
-      if (isnan(previousTrend)) {
+      if (std::isnan(previousTrend)) {
         trend = 1;
       }
       else {

@@ -13,9 +13,11 @@
 
 bool Model::stopBuying = false;
 
+float Model::buyingPower = 0;
+
 std::map<std::string, Stock> Model::stocks = std::map<std::string, Stock>();
 
-const bool Model::loggingEnabled = false;
+bool Model::loggingEnabled = false;
 
 std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
 
@@ -74,4 +76,16 @@ void Model::setStopBuying(bool _stopBuying) {
 
 bool Model::isStopBuying() {
   return stopBuying;
+}
+
+Stock& Model::getStockForSymbol(const std::string& _symbol) {
+  return stocks[_symbol];
+}
+
+float Model::getBuyingPower() {
+  return buyingPower;
+}
+
+void Model::setBuyingPower(const float& _buyingPower) {
+  buyingPower = _buyingPower;
 }

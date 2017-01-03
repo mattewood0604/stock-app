@@ -10,6 +10,7 @@
 #include <iostream>
 #include <time.h>
 #include <math.h>
+#include <cstdlib>
 
 #include "FileManager.hpp"
 #include "Model.hpp"
@@ -195,10 +196,107 @@ void runProfitMaximizationForIndividualStocks() {
 
 int main(void)
 {
+  RestCall::init();
+  RestCall::getAvailableBalance();
+  return 0;
+  
+  /*
+  std::string quotesDirectory;
+  time_t currentTime = time(0);
+  struct tm* now = localtime(&currentTime);
+  
+  quotesDirectory.append(std::to_string(now->tm_mon + 1));
+  quotesDirectory.append("_");
+  quotesDirectory.append(std::to_string(now->tm_mday));
+  quotesDirectory.append("_");
+  quotesDirectory.append(std::to_string(now->tm_year + 1900));
+  
+  std::string makeDirectory = "mkdir ";
+  makeDirectory.append("/Users/Matt/Desktop/");
+  makeDirectory.append(quotesDirectory);
+  
+  system(makeDirectory.c_str());
+   */
+  
   Model::init();
   StockRunner::runStocks();
   //StockRunner::runDailyProfits();
-  //runProfitMaximizationForIndividualStocks(); // THIS IS NOT GOING TO WORK IN ITS CURRENT STATE
+  //runProfitMaximizationForIndividualStocks();
+  
+  //time_t currentTime = time(0);
+  //struct tm* now = localtime(&currentTime);
+  
+  //std::cout << now->tm_wday << std::endl;
+  /*
+   while(1) {
+     time_t currentTime = time(0);
+     struct tm* now = localtime(&currentTime);
+     if (Model::isMarketOpen()) { // Fix this for day of the week
+       if (now->tm_hour >= 0 && RestCall::isMarketOpen()) {
+         sleep(now until tomorrow and 9:30)
+       }
+     
+     }
+   
+   }
+   
+   
+   */
+  
+  
+  // Below can be used so that this application can continuosly run. No other script needed.
+  /*
+   
+   while(1) {
+    // If the time >9:30 and <4 and it is a M-F
+    //   If its 10 and the market isnt open
+    //     Sleep until the next day
+    //   Else
+    //     If the new folder hasnt been created
+    //       Create the new daily data folder
+    //     Query for the market data
+    // Else
+    //   If its Friday
+    //     Sleep until Moday
+    //   Else
+    //     Sleep until tomorrow
+   
+  	if (Model::isMarketOpen()) {
+      if (!marketBecameOpen) {
+        std::cout << "Market Opened" << std::endl;
+        // Make the directory for the new day
+      }
+     
+      RestCall::quotes();
+      // buyOrSell
+      sleep(2);
+      marketBecameOpen = true;
+    }
+    else if (marketBecameOpen) {
+      // Sleep here for a few an hour
+      std::cout << "Market Closed" << std::endl;
+      break;
+    }
+   }
+   
+   */
+  
+  /*
+   std::string quotesDirectory;
+   time_t currentTime = time(0);
+   struct tm* now = localtime(&currentTime);
+   
+   quotesDirectory.append(std::to_string(now->tm_mon + 1));
+   quotesDirectory.append("_");
+   quotesDirectory.append(std::to_string(now->tm_mday));
+   quotesDirectory.append("_");
+   quotesDirectory.append(std::to_string(now->tm_year + 1900));
+   
+   std::string makeDirectory = "mkdir ";
+   makeDirectory.append(quotesDirectory);
+   
+   system(makeDirectory.c_str());
+   */
   
   return 0;
 }

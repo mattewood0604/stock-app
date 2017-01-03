@@ -12,6 +12,7 @@
 		C93EE3021E076E2200EA6570 /* IndicatorAlgorithms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C93EE3001E076E2200EA6570 /* IndicatorAlgorithms.cpp */; };
 		C954A5541DE8DC9B00401487 /* StockRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C954A5521DE8DC9B00401487 /* StockRunner.cpp */; };
 		C95B24031DB043D20004604E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C95B24021DB043D20004604E /* main.cpp */; };
+		C974DF4C1E15F323001CD591 /* BuySell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C974DF4A1E15F323001CD591 /* BuySell.cpp */; };
 		C9E8B6931DB2DCA0003B769A /* TimeQuote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6911DB2DCA0003B769A /* TimeQuote.cpp */; };
 		C9E8B6971DB40A87003B769A /* Quotes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6951DB40A87003B769A /* Quotes.cpp */; };
 		C9E8B69A1DB5A230003B769A /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B6981DB5A230003B769A /* Model.cpp */; };
@@ -46,6 +47,8 @@
 		C954A5531DE8DC9B00401487 /* StockRunner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StockRunner.hpp; sourceTree = "<group>"; };
 		C95B23FF1DB043D20004604E /* Stock-App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Stock-App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95B24021DB043D20004604E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C974DF4A1E15F323001CD591 /* BuySell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BuySell.cpp; path = "../../stock-app/Stock-App/BuySell.cpp"; sourceTree = "<group>"; };
+		C974DF4B1E15F323001CD591 /* BuySell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BuySell.hpp; path = "../../stock-app/Stock-App/BuySell.hpp"; sourceTree = "<group>"; };
 		C9E8B6911DB2DCA0003B769A /* TimeQuote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeQuote.cpp; sourceTree = "<group>"; };
 		C9E8B6921DB2DCA0003B769A /* TimeQuote.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeQuote.hpp; sourceTree = "<group>"; };
 		C9E8B6951DB40A87003B769A /* Quotes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quotes.cpp; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 		C95B24011DB043D20004604E /* Stock-App */ = {
 			isa = PBXGroup;
 			children = (
+				C974DF491E15F314001CD591 /* BuySell */,
 				C93EE2FF1E076DC300EA6570 /* IndicatorAlgorithms */,
 				C9E8B6B11DC00B2B003B769A /* MemoryManager */,
 				C9E8B6AC1DBACC9B003B769A /* Candle */,
@@ -148,6 +152,15 @@
 				C95B24021DB043D20004604E /* main.cpp */,
 			);
 			path = "Stock-App";
+			sourceTree = "<group>";
+		};
+		C974DF491E15F314001CD591 /* BuySell */ = {
+			isa = PBXGroup;
+			children = (
+				C974DF4A1E15F323001CD591 /* BuySell.cpp */,
+				C974DF4B1E15F323001CD591 /* BuySell.hpp */,
+			);
+			name = BuySell;
 			sourceTree = "<group>";
 		};
 		C9E8B6901DB2DC81003B769A /* TimeQuote */ = {
@@ -302,6 +315,7 @@
 				C954A5541DE8DC9B00401487 /* StockRunner.cpp in Sources */,
 				C9E8B6AF1DBACCA7003B769A /* Candle.cpp in Sources */,
 				C9E8B6A31DB97D3A003B769A /* TestModel.cpp in Sources */,
+				C974DF4C1E15F323001CD591 /* BuySell.cpp in Sources */,
 				C9E8B6A71DBAC477003B769A /* Stock.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,6 +28,24 @@ void Response::log() const {
   std::cout << std::endl;
 }
 
+std::string Response::parseAuthentication() const {
+  std::string jsonString = std::string(this->memory);
+  
+  std::string tokenString = "{\"token\":\"";
+  std::string curlyString = "\"}";
+  int tokenStartIndex = (int)jsonString.find(tokenString.c_str()) + tokenString.size();
+  int tokenEndIndex = (int)jsonString.size() - curlyString.size();
+  
+  if (tokenStartIndex < 0 || tokenEndIndex < 0) {
+    return "";
+  }
+  else if (tokenEndIndex < tokenStartIndex) {
+    return "";
+  }
+  
+  return jsonString.substr(tokenStartIndex, tokenEndIndex - tokenStartIndex);
+}
+
 void Response::parseQuotes() const {
   static std::string quotes = "\"results\":[";
   
@@ -59,4 +77,42 @@ void Response::parseQuotes() const {
     openCurlyIndex = (int)quotesString.find("{", closeCurlyIndex);
     closeCurlyIndex = (int)quotesString.find("}", openCurlyIndex);
   }
+}
+
+bool Response::parseOpenDays() const {
+  std::string isOpen = "\"is_open\":";
+  
+  std::string jsonString = std::string(this->memory);
+  int isOpenIndex = (int)jsonString.find(isOpen);
+  if (isOpenIndex < 0) {
+    return false;
+  }
+  
+  int commaIndex = (int)jsonString.find(",", isOpenIndex);
+  if (commaIndex < isOpenIndex) {
+    return false;
+  }
+  
+  std::string isOpenBool = jsonString.substr(isOpenIndex + isOpen.size(), commaIndex - (isOpenIndex + isOpen.size()));
+  return isOpenBool.size() == 4;
+}
+
+float Response::parseBuyingPower() const {
+  std::string buyingPower = "\"buying_power\":\"";
+  
+  std::string jsonString = std::string(this->memory);
+  int buyingPowerIndex = (int)jsonString.find(buyingPower);
+  if (buyingPowerIndex < 0) {
+    std::cout << "Unable to parse buying power from response" << std::endl;
+    return 0;
+  }
+  
+  int commaIndex = (int)jsonString.find("\",", buyingPowerIndex);
+  if (commaIndex < buyingPowerIndex) {
+    std::cout << "Unable to parse buying power from response" << std::endl;
+    return 0;
+  }
+  
+  std::string buyingPowerValue = jsonString.substr(buyingPowerIndex + buyingPower.size(), commaIndex - (buyingPowerIndex + buyingPower.size()));
+  return atof(buyingPowerValue.c_str());
 }

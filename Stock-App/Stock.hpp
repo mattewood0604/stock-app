@@ -50,15 +50,17 @@ class Stock {
   
     float averagePriceEMA;
     float apESA;
-    int apESACalculated;
+    unsigned int apESACalculated;
     float ci;
-    int ciCalculated;
+    unsigned int ciCalculated;
     std::vector<float> previousW1;
     
     float w1;
     float w2;
   
   private:
+    friend class BuySell;
+  
     void supertrendAlgorithm();
     float averageTrueRange() const;
   

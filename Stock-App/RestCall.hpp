@@ -10,16 +10,22 @@
 #define RestCall_hpp
 
 #include <curl/curl.h>
+#include <cstring>
 
 #include "Response.hpp"
 
 class RestCall {
   public:
     static Response response;
-    static CURL* curlHandle;
   
     static void init();
+  
+    static void authenticate();
     static void quotes();
+    static void getAvailableBalance();
+  
+    static void getAllOpenDays();
+  
     static void buy();
     static void sell();
   
@@ -27,8 +33,15 @@ class RestCall {
   
   private:
     static CURL* quotesHandle;
+    static CURL* authenticationHandle;
+    static CURL* availableCashHandle;
+  
+    static std::string authenticationToken;
+    static std::string accountUrl;
   
     static void initializeQuotesHandle();
+    static void initializeAuthenticationHandle();
+    static void initializeAvailableCashHandle();
   
     static size_t WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp);
 };

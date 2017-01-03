@@ -28,15 +28,75 @@ std::vector<std::string> TestModel::dates;
 void TestModel::initialize() {
   createListOfDates();
   
-  testStockSymbols.push_back("JNUG");
+  //testStockSymbols.push_back("JNUG");
+  //testStockSymbols.push_back("DUST");
+  
+  testStockSymbols.push_back("AMLP");
+  testStockSymbols.push_back("DGAZ");
   testStockSymbols.push_back("DUST");
+  testStockSymbols.push_back("DWTI");
+  testStockSymbols.push_back("DXJ");
+  testStockSymbols.push_back("EEM");
+  testStockSymbols.push_back("EFA");
+  testStockSymbols.push_back("EWJ");
+  testStockSymbols.push_back("EWW");
+  testStockSymbols.push_back("EWZ");
+  testStockSymbols.push_back("FXI");
+  testStockSymbols.push_back("GDX");
+  testStockSymbols.push_back("GDXJ");
+  testStockSymbols.push_back("GLD");
+  testStockSymbols.push_back("HYG");
+  testStockSymbols.push_back("IAU");
+  testStockSymbols.push_back("IEMG");
+  testStockSymbols.push_back("IWM");
+  testStockSymbols.push_back("IYR");
+  testStockSymbols.push_back("JDST");
+  testStockSymbols.push_back("JNK");
+  testStockSymbols.push_back("JNUG");
+  testStockSymbols.push_back("KRE");
+  testStockSymbols.push_back("LABU");
+  testStockSymbols.push_back("LQD");
+  testStockSymbols.push_back("NUGT");
+  testStockSymbols.push_back("OIH");
+  testStockSymbols.push_back("QQQ");
+  testStockSymbols.push_back("RSX");
+  testStockSymbols.push_back("SDS");
+  testStockSymbols.push_back("SLV");
+  testStockSymbols.push_back("SPXU");
+  testStockSymbols.push_back("SPY");
+  testStockSymbols.push_back("SQQQ");
+  testStockSymbols.push_back("TLT");
+  testStockSymbols.push_back("TVIX");
+  testStockSymbols.push_back("TZA");
+  testStockSymbols.push_back("UCO");
+  testStockSymbols.push_back("UNG");
+  testStockSymbols.push_back("USO");
+  testStockSymbols.push_back("UVXY");
+  testStockSymbols.push_back("UWTI");
+  testStockSymbols.push_back("VEA");
+  testStockSymbols.push_back("VNQ");
+  testStockSymbols.push_back("VWO");
+  testStockSymbols.push_back("VXX");
+  testStockSymbols.push_back("XBI");
+  testStockSymbols.push_back("XIV");
+  testStockSymbols.push_back("XLB");
+  testStockSymbols.push_back("XLE");
+  testStockSymbols.push_back("XLF");
+  testStockSymbols.push_back("XLI");
+  testStockSymbols.push_back("XLK");
+  testStockSymbols.push_back("XLP");
+  testStockSymbols.push_back("XLU");
+  testStockSymbols.push_back("XLV");
+  testStockSymbols.push_back("XLY");
+  testStockSymbols.push_back("XOP");
+  
   for (unsigned int i = 0; i < testStockSymbols.size(); i++) {
     testStocks.push_back(Stock(testStockSymbols[i]));
   }
 }
 
 void TestModel::createListOfDates() {
-  dates.push_back("10_6_2016");
+  /*dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -77,8 +137,9 @@ void TestModel::createListOfDates() {
   dates.push_back("12_20_2016");
   dates.push_back("12_21_2016");
   dates.push_back("12_22_2016");
-  dates.push_back("12_23_2016");
+  dates.push_back("12_23_2016");*/
   dates.push_back("12_27_2016");
+  dates.push_back("12_30_2016");
 }
 
 // 2391

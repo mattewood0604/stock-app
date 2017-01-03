@@ -31,14 +31,21 @@ class Model {
     static void setStopBuying(bool _stopBuying);
     static bool isStopBuying();
   
-    static const bool loggingEnabled;
+    static bool loggingEnabled;
   
     static std::string quotesDirectory;
     static const std::string stockSymbolsForQuotesDirectory;
   
+    static Stock& getStockForSymbol(const std::string& _symbol);
+  
+    static float getBuyingPower();
+    static void setBuyingPower(const float& _buyingPower);
+  
   private:
     static const std::string open;
     static const std::string closed;
+  
+    static float buyingPower;
   
     static std::string purchasedStockSymbol;
   
