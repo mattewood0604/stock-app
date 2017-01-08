@@ -140,6 +140,9 @@ void TestModel::createListOfDates() {
   dates.push_back("12_23_2016");*/
   dates.push_back("12_27_2016");
   dates.push_back("12_30_2016");
+  dates.push_back("1_3_2017");
+  dates.push_back("1_4_2017");
+  dates.push_back("1_5_2017");
 }
 
 // 2391

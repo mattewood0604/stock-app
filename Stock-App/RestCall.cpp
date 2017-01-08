@@ -132,6 +132,30 @@ size_t RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmem
   return realsize;
 }
 
+std::string RestCall::idForStockSymbol(const std::string& _symbol) {
+  CURL* stockIdHandle = curl_easy_init();
+  
+  std::string stockInfoUrl = "https://api.robinhood.com/instruments/?query=";
+  stockInfoUrl.append(_symbol);
+  
+  curl_easy_setopt(stockIdHandle, CURLOPT_URL, stockInfoUrl.c_str());
+  
+  curl_easy_setopt(stockIdHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+  curl_easy_setopt(stockIdHandle, CURLOPT_WRITEDATA, (void*)&response);
+  
+  CURLcode returnCode = curl_easy_perform(stockIdHandle);
+  if (returnCode != CURLE_OK) {
+    fprintf(stderr, "idForStockSymbol %s: curl_easy_perform() failed: %s\n", _symbol.c_str(), curl_easy_strerror(returnCode));
+  }
+  else {
+    response.log();
+  }
+  
+  std::cout << response.parseIdForStock() << std::endl;
+  response.size = 0;
+  return "";
+}
+
 void RestCall::authenticate() {
   CURLcode returnCode = curl_easy_perform(authenticationHandle);
   if (returnCode != CURLE_OK) {
@@ -164,7 +188,6 @@ void RestCall::getAvailableBalance() {
     fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(ret));
   }
   else {
-    Model::loggingEnabled = true;
     response.log();
   }
   

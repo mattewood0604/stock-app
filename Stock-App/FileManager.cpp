@@ -11,14 +11,38 @@
 #include <string>
 
 #include "FileManager.hpp"
-#include "Model.hpp"
 #include "TestModel.hpp"
+
+const std::string FileManager::mainDirectory = "/Users/Matt/Desktop/stock-app/Stock-App/";
+const std::string FileManager::stockSymbolsForQuotesDirectory = mainDirectory + "StocksForQuotes.txt";
+std::string FileManager::quotesDirectory;
 
 std::map<std::string, std::ofstream*> FileManager::symbolFiles;
 
+void FileManager::init() {
+  quotesDirectory = mainDirectory;
+  
+  time_t currentTime = time(0);
+  struct tm* now = localtime(&currentTime);
+  
+  std::string month = (now->tm_mon + 1 < 10) ? std::to_string(now->tm_mon + 1).insert(0, "0") : std::to_string(now->tm_mon + 1);
+  std::string day = (now->tm_mday < 10) ? std::to_string(now->tm_mday).insert(0, "0") : std::to_string(now->tm_mday);
+  
+  quotesDirectory.append(month);
+  quotesDirectory.append("_");
+  quotesDirectory.append(day);
+  quotesDirectory.append("_");
+  quotesDirectory.append(std::to_string(now->tm_year + 1900));
+  quotesDirectory.append("/");
+  
+  std::string makeDirectory = "mkdir ";
+  makeDirectory.append(quotesDirectory);
+  
+  system(makeDirectory.c_str());
+}
+
 std::string FileManager::readStockSymbolsForQuotes() {
-  std::cout << "DIRECTORY: " << Model::stockSymbolsForQuotesDirectory << std::endl;
-  std::ifstream symbolFile(Model::stockSymbolsForQuotesDirectory);
+  std::ifstream symbolFile(stockSymbolsForQuotesDirectory);
   
   if (!symbolFile.is_open())
   {
@@ -108,7 +132,7 @@ void FileManager::writeDataForSymbol(const std::string& _symbol, const std::stri
   }
   else {
     std::string fileName = _symbol + ".csv";
-    symbolFile = new std::ofstream(Model::quotesDirectory + fileName, std::ofstream::out | std::ofstream::app);
+    symbolFile = new std::ofstream(quotesDirectory + fileName, std::ofstream::out | std::ofstream::app);
     if (symbolFile->is_open()) {
       writeDataToFile(_data, *symbolFile);
       symbolFiles[_symbol] = symbolFile;

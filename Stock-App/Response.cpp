@@ -116,3 +116,22 @@ float Response::parseBuyingPower() const {
   std::string buyingPowerValue = jsonString.substr(buyingPowerIndex + buyingPower.size(), commaIndex - (buyingPowerIndex + buyingPower.size()));
   return atof(buyingPowerValue.c_str());
 }
+
+std::string Response::parseIdForStock() const {
+  std::string id = "\"id\":\"";
+  
+  std::string jsonString = std::string(this->memory);
+  int idIndex = (int)jsonString.find(id);
+  if (idIndex < 0) {
+    std::cout << "Unable to parse id from response for stock" << std::endl;
+    return "";
+  }
+  
+  int commaIndex = (int)jsonString.find("\",", idIndex);
+  if (commaIndex < idIndex) {
+    std::cout << "Unable to parse id power from response for stock" << std::endl;
+    return "";
+  }
+  
+  return jsonString.substr(idIndex + id.size(), commaIndex - (idIndex + id.size()));
+}

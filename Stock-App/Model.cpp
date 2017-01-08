@@ -19,28 +19,10 @@ std::map<std::string, Stock> Model::stocks = std::map<std::string, Stock>();
 
 bool Model::loggingEnabled = false;
 
-std::string Model::quotesDirectory = "/Users/mwood212/Desktop/11_28_2016/";
-
-const std::string Model::stockSymbolsForQuotesDirectory = "/Users/Matt/Desktop/stock-app/Stock-App/StocksForQuotes.txt";
-
 const std::string Model::open = "OPEN";
 const std::string Model::closed = "CLOSED";
 
 std::string Model::purchasedStockSymbol = "";
-
-void Model::init() {
-  quotesDirectory = "/Users/Matt/Desktop/";
-  
-  time_t currentTime = time(0);
-  struct tm* now = localtime(&currentTime);
-  
-  quotesDirectory.append(std::to_string(now->tm_mon + 1));
-  quotesDirectory.append("_");
-  quotesDirectory.append(std::to_string(now->tm_mday));
-  quotesDirectory.append("_");
-  quotesDirectory.append(std::to_string(now->tm_year + 1900));
-  quotesDirectory.append("/");
-}
 
 bool Model::isMarketOpen() {
   time_t currentTime = time(0);

@@ -196,32 +196,17 @@ void runProfitMaximizationForIndividualStocks() {
 
 int main(void)
 {
-  RestCall::init();
-  RestCall::getAvailableBalance();
-  return 0;
+  //FileManager::init();
+  //StockRunner::runStocks();
   
-  /*
-  std::string quotesDirectory;
-  time_t currentTime = time(0);
-  struct tm* now = localtime(&currentTime);
-  
-  quotesDirectory.append(std::to_string(now->tm_mon + 1));
-  quotesDirectory.append("_");
-  quotesDirectory.append(std::to_string(now->tm_mday));
-  quotesDirectory.append("_");
-  quotesDirectory.append(std::to_string(now->tm_year + 1900));
-  
-  std::string makeDirectory = "mkdir ";
-  makeDirectory.append("/Users/Matt/Desktop/");
-  makeDirectory.append(quotesDirectory);
-  
-  system(makeDirectory.c_str());
-   */
-  
-  Model::init();
-  StockRunner::runStocks();
   //StockRunner::runDailyProfits();
-  //runProfitMaximizationForIndividualStocks();
+  runProfitMaximizationForIndividualStocks();
+  
+  ///////////////////////////////////////////////////////////////////
+  //RestCall::init();
+  //RestCall::getAvailableBalance();
+  //RestCall::idForStockSymbol("JNUG");
+  //return 0;
   
   //time_t currentTime = time(0);
   //struct tm* now = localtime(&currentTime);
@@ -235,12 +220,8 @@ int main(void)
        if (now->tm_hour >= 0 && RestCall::isMarketOpen()) {
          sleep(now until tomorrow and 9:30)
        }
-     
      }
-   
    }
-   
-   
    */
   
   
@@ -278,25 +259,8 @@ int main(void)
       break;
     }
    }
-   
    */
-  
-  /*
-   std::string quotesDirectory;
-   time_t currentTime = time(0);
-   struct tm* now = localtime(&currentTime);
-   
-   quotesDirectory.append(std::to_string(now->tm_mon + 1));
-   quotesDirectory.append("_");
-   quotesDirectory.append(std::to_string(now->tm_mday));
-   quotesDirectory.append("_");
-   quotesDirectory.append(std::to_string(now->tm_year + 1900));
-   
-   std::string makeDirectory = "mkdir ";
-   makeDirectory.append(quotesDirectory);
-   
-   system(makeDirectory.c_str());
-   */
+  ///////////////////////////////////////////////////////////////////
   
   return 0;
 }
