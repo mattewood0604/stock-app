@@ -20,10 +20,14 @@ class RestCall {
   
     static void init();
   
-    static void authenticate();
+    // Called Once
+    static std::string idForStockSymbol(const std::string& _symbol);
+  
+    // Called Multiple Times
     static void quotes();
     static void getAvailableBalance();
   
+    // Called Never
     static void getAllOpenDays();
   
     static void buy();
@@ -38,6 +42,8 @@ class RestCall {
   
     static std::string authenticationToken;
     static std::string accountUrl;
+  
+    static void authenticate();
   
     static void initializeQuotesHandle();
     static void initializeAuthenticationHandle();

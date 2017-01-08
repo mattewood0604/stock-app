@@ -17,6 +17,10 @@
 
 class FileManager {
   public:
+    static const std::string mainDirectory;
+  
+    static void init();
+  
     static bool readQuotes();
     static bool readQuoteAtStockIndex(const unsigned int& _index);
   
@@ -27,6 +31,9 @@ class FileManager {
     static void writeProfitsForSymbol(const std::string& _symbol, const std::string& _data);
   
   private:
+    static std::string quotesDirectory;
+    static const std::string stockSymbolsForQuotesDirectory;
+  
     static std::map<std::string, std::ofstream*> symbolFiles;
   
     static bool readQuotes(const unsigned int& _index);

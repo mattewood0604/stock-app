@@ -23,6 +23,7 @@ class Response {
     void parseQuotes() const;
     bool parseOpenDays() const;
     float parseBuyingPower() const;
+    std::string parseIdForStock() const;
 };
 
 #endif /* Response_hpp */

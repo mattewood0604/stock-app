@@ -33,9 +33,6 @@ class Model {
   
     static bool loggingEnabled;
   
-    static std::string quotesDirectory;
-    static const std::string stockSymbolsForQuotesDirectory;
-  
     static Stock& getStockForSymbol(const std::string& _symbol);
   
     static float getBuyingPower();
