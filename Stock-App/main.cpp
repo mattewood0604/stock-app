@@ -91,17 +91,17 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
         totalForTheDay++;
         if (profit > TestModel::getNumberOfDates() && profit < 1000) {
           totalPositive++;
-          std::cout << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
-          //std::cout << wTime << "\t" << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
-          profitData.append(std::to_string(longTime));
-          profitData.append("\t");
-          profitData.append(std::to_string(shortTime));
-          profitData.append("\t");
-          profitData.append(std::to_string(candleTime));
-          profitData.append("\t");
-          profitData.append(std::to_string(profit));
-          profitData.append("\n");
         }
+        std::cout << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
+        //std::cout << wTime << "\t" << longTime << "\t" << shortTime << "\t" << candleTime << "\t" << profit << std::endl;
+        profitData.append(std::to_string(longTime));
+        profitData.append("\t");
+        profitData.append(std::to_string(shortTime));
+        profitData.append("\t");
+        profitData.append(std::to_string(candleTime));
+        profitData.append("\t");
+        profitData.append(std::to_string(profit));
+        profitData.append("\n");
       }
     }
   }
@@ -125,6 +125,7 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
 void runProfitMaximizationForIndividualStocks() {
   float**** newProfits = createProfitStorage();
   
+  FileManager::init();
   TestModel::initialize();
   
   for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
@@ -195,12 +196,23 @@ void runProfitMaximizationForIndividualStocks() {
 }
 
 int main(void)
-{
-  //FileManager::init();
+{  
+  /*for (unsigned int i = 0; i < 100; i++) {
+    unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
+    if (volume >= 1000000) {
+      std::cout << symbols[i] << ": " << volume << std::endl;
+    }
+  }*/
+  
+  //RestCall::init();
   //StockRunner::runStocks();
   
+  //RestCall::init();
   //StockRunner::runDailyProfits();
-  runProfitMaximizationForIndividualStocks();
+  
+  //const Stock& stock = TestModel::getTestStock(0);
+  //RestCall::buy(stock, 1, 7.63);
+  //runProfitMaximizationForIndividualStocks();
   
   ///////////////////////////////////////////////////////////////////
   //RestCall::init();

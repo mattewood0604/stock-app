@@ -85,34 +85,65 @@ void RestCall::initializeAvailableCashHandle() {
   curl_easy_setopt(availableCashHandle, CURLOPT_WRITEDATA, (void*)&response);
 }
 
-void RestCall::buy() {
-  /*
-  curlHandle = curl_easy_init();
+void RestCall::buy(const Stock& _stock, const unsigned int& _quantity, const float& _price) {
+  CURL* buyHandle = curl_easy_init();
   
-  curl_easy_setopt(curlHandle, CURLOPT_CUSTOMREQUEST, "POST");
-  curl_easy_setopt(curlHandle, CURLOPT_URL, "https://webux.ustocktrade.com/res");
+  curl_easy_setopt(buyHandle, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_easy_setopt(buyHandle, CURLOPT_URL, "https://api.robinhood.com/orders/");
   
   struct curl_slist* headers = NULL;
-  headers = curl_slist_append(headers, "x-auth-token: bLYU97hV06hJlwzERdn8E78w3Tk74eL+0biuVwSWfrQseEn4/Ms9ul/HXu4aeoD3GbeZp4RshhlGtvUckfeYDuToxQJELDuvmbSu0oWmQXoou6lTgLHkDg==");
-  curl_easy_setopt(curlHandle, CURLOPT_HTTPHEADER, headers);
+  headers = curl_slist_append(headers, "Accept: application/json");
+  std::string authorization = "Authorization: Token ";
+  if (!authenticationToken.size()) {
+    std::cout << "Error: Authentication Token NULL in initializeAvailableCashHandle" << std::endl;
+  }
+  authorization.append(authenticationToken);
+  headers = curl_slist_append(headers, authorization.c_str());
+  curl_easy_setopt(buyHandle, CURLOPT_HTTPHEADER, headers);
   
-  unsigned int orderQty = 1;
-  float price = 1.0f;
-  unsigned long long time = 1;
+  std::string postFields = "account=";
+  postFields.append(accountUrl);
+  postFields.append("&instrument=");
+  postFields.append(_stock.instrumentUrl);
+  postFields.append("&symbol=");
+  postFields.append(_stock.symbol);
+  postFields.append("&type=market&time_in_force=gtc&trigger=immediate");
+  postFields.append("&quantity=");
+  postFields.append(std::to_string(_quantity));
+  postFields.append("&side=buy&price=");
+  postFields.append(std::to_string(_price));
   
-  std::string postData = "req={'_msgType':'com.ust.sp.msg.ClientReqMessage','accountID':'M000003482','targetID':'PORT','validate':true,'requestedCount':0,'reqMsgList':[{'_msgType':'com.ust.sharedmsgs.NewOrderMsg','clOrderID':'M000003482Cl14761291601714','side':'BUY','partyID':'M000003482','instID':'203','orderQty':";
-  postData.append(std::to_string(orderQty));
-  postData.append(",'timeInForce':'DAY','validityUnit':'DAY','validity':1,'orderType':'MARKET','price':");
-  postData.append(std::to_string(price));
-  postData.append("'clientSendTime':");
-  postData.append(std::to_string(time));
-  postData.append("}]}&tg=GATE&tp='?'");
+  curl_easy_setopt(buyHandle, CURLOPT_POSTFIELDS, postFields.c_str());
+  curl_easy_setopt(buyHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+  curl_easy_setopt(buyHandle, CURLOPT_WRITEDATA, (void*)&response);
   
-  curl_easy_setopt(curlHandle, CURLOPT_POSTFIELDS, postData.c_str());
-  curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
-  curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, (void*)&response);
-  curl_easy_setopt(curlHandle, CURLOPT_ACCEPT_ENCODING, "gzip");
-  */
+  /*
+   https://api.robinhood.com/orders/ \
+   -H "Accept: application/json" \
+   -H "Authorization: Token a9a7007f890c790a30a0e0f0a7a07a0242354114" \
+   -d account=https://api.robinhood.com/accounts/8UD09348/ \
+   -d instrument=https://api.robinhood.com/instruments/50810c35-d215-4866-9758-0ada4ac79ffa/ \
+   -d symbol=MSFT \
+   -d type=market \
+   -d time_in_force=fok \
+   -d trigger=immediate \
+   -d quantity=1 \
+   -d side=sell
+   */
+  CURLcode returnCode = curl_easy_perform(buyHandle);
+  if (returnCode != CURLE_OK) {
+    fprintf(stderr, "buy %s: curl_easy_perform() failed: %s\n", _stock.symbol.c_str(), curl_easy_strerror(returnCode));
+  }
+  else {
+    Model::loggingEnabled = true;
+    response.log();
+  }
+  
+  response.size = 0;
+}
+
+void RestCall::sell(const Stock& _stock) {
+  
 }
 
 size_t RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp) {
@@ -132,10 +163,10 @@ size_t RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmem
   return realsize;
 }
 
-std::string RestCall::idForStockSymbol(const std::string& _symbol) {
+std::string RestCall::urlForStockSymbol(const std::string& _symbol) {
   CURL* stockIdHandle = curl_easy_init();
   
-  std::string stockInfoUrl = "https://api.robinhood.com/instruments/?query=";
+  std::string stockInfoUrl = "https://api.robinhood.com/instruments/?symbol=";
   stockInfoUrl.append(_symbol);
   
   curl_easy_setopt(stockIdHandle, CURLOPT_URL, stockInfoUrl.c_str());
@@ -151,9 +182,11 @@ std::string RestCall::idForStockSymbol(const std::string& _symbol) {
     response.log();
   }
   
-  std::cout << response.parseIdForStock() << std::endl;
+  std::string url = "https://api.robinhood.com/instruments/";
+  url.append(response.parseUrlForStock());
+  url.append("/");
   response.size = 0;
-  return "";
+  return url;
 }
 
 void RestCall::authenticate() {
@@ -250,7 +283,36 @@ void RestCall::getAllOpenDays() {
   }
 }
 
+unsigned int RestCall::getVolumeForStockSymbol(const std::string &_symbol) {
+  CURL* stockFundamentalsHandle = curl_easy_init();
+  
+  std::string stockFundamentalsUrl = "https://api.robinhood.com/fundamentals/";
+  stockFundamentalsUrl.append(_symbol);
+  stockFundamentalsUrl.append("/");
+  
+  curl_easy_setopt(stockFundamentalsHandle, CURLOPT_URL, stockFundamentalsUrl.c_str());
+  
+  curl_easy_setopt(stockFundamentalsHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+  curl_easy_setopt(stockFundamentalsHandle, CURLOPT_WRITEDATA, (void*)&response);
+  
+  CURLcode returnCode = curl_easy_perform(stockFundamentalsHandle);
+  if (returnCode != CURLE_OK) {
+    fprintf(stderr, "getVolumeForStockSymbol %s: curl_easy_perform() failed: %s\n", _symbol.c_str(), curl_easy_strerror(returnCode));
+  }
+  else {
+    response.log();
+  }
+  
+  unsigned int volume = response.parseAverageVolume();
+  response.size = 0;
+  return volume;
+}
+
 void RestCall::mockRestCall(Stock& _stock, const unsigned int& _marketTime) {
   const TimeQuote& quote = _stock.getTestQuote(_marketTime);
+  if (_stock.testQuotes.size() == 0) {
+    return;
+  }
+  
   _stock.addTimeToCandles(quote);
 }

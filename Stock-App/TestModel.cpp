@@ -28,9 +28,30 @@ std::vector<std::string> TestModel::dates;
 void TestModel::initialize() {
   createListOfDates();
   
-  //testStockSymbols.push_back("JNUG");
-  //testStockSymbols.push_back("DUST");
+  // Removed 13 Missing Days
+  // JNUG && DUST: 115%
+  // JNUG && JDST: 118%
   
+  // NUGT && DUST: 68%
+  // NUGT && JDST: 84%
+  
+  // All Days
+  // JNUG && DUST: 127%
+  // JNUG && JDST: 123% (With 13 missing days)
+  
+  // NUGT && DUST: 67%
+  // NUGT && JDST: 94%
+  
+  testStockSymbols.push_back("JNUG"); // 66%
+  //testStockSymbols.push_back("NUGT"); // 51%
+  
+  testStockSymbols.push_back("DUST"); // 53%
+  //testStockSymbols.push_back("JDST"); // 70%
+  
+  //testStockSymbols.push_back("LABD"); // 22	20	39
+  //testStockSymbols.push_back("LABU"); // 78	24	42
+  
+  /*
   testStockSymbols.push_back("AMLP");
   testStockSymbols.push_back("DGAZ");
   testStockSymbols.push_back("DUST");
@@ -89,6 +110,7 @@ void TestModel::initialize() {
   testStockSymbols.push_back("XLV");
   testStockSymbols.push_back("XLY");
   testStockSymbols.push_back("XOP");
+   */
   
   for (unsigned int i = 0; i < testStockSymbols.size(); i++) {
     testStocks.push_back(Stock(testStockSymbols[i]));
@@ -96,7 +118,7 @@ void TestModel::initialize() {
 }
 
 void TestModel::createListOfDates() {
-  /*dates.push_back("10_6_2016");
+  dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -137,12 +159,13 @@ void TestModel::createListOfDates() {
   dates.push_back("12_20_2016");
   dates.push_back("12_21_2016");
   dates.push_back("12_22_2016");
-  dates.push_back("12_23_2016");*/
+  dates.push_back("12_23_2016");
   dates.push_back("12_27_2016");
   dates.push_back("12_30_2016");
   dates.push_back("1_3_2017");
   dates.push_back("1_4_2017");
   dates.push_back("1_5_2017");
+  dates.push_back("01_09_2017");
 }
 
 // 2391

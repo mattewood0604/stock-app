@@ -10,6 +10,7 @@
 #include <math.h>
 
 #include "Model.hpp"
+#include "RestCall.hpp"
 #include "Stock.hpp"
 #include "StockModel.hpp"
 #include "IndicatorAlgorithms.hpp"
@@ -22,6 +23,8 @@ Stock::Stock() : stockModel("") {
 
 Stock::Stock(const std::string& _symbol) : stockModel(_symbol) {
   this->symbol = _symbol;
+  this->instrumentUrl = RestCall::urlForStockSymbol(_symbol);
+  
   this->testQuotes = std::vector<TimeQuote>();
   
   this->reset();

@@ -20,6 +20,7 @@
 void StockRunner::runStocks() {
   bool marketBecameOpen = false;
   
+  FileManager::init();
   RestCall::init();
   
   std::cout << "Begin Querying For Data..." << std::endl;
@@ -47,6 +48,7 @@ void StockRunner::runStocks() {
 void StockRunner::runDailyProfits() {
   float percentageMade = 0.0f;
   
+  FileManager::init();
   TestModel::initialize();
   
   for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
