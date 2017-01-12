@@ -196,11 +196,11 @@ void runProfitMaximizationForIndividualStocks() {
 
 int main(void)
 {
-  //FileManager::init();
-  //StockRunner::runStocks();
+  FileManager::init();
+  StockRunner::runStocks();
   
   //StockRunner::runDailyProfits();
-  runProfitMaximizationForIndividualStocks();
+  //runProfitMaximizationForIndividualStocks();
   
   ///////////////////////////////////////////////////////////////////
   //RestCall::init();
