@@ -26,8 +26,13 @@ void BuySell::buyOrSell(Stock& _stock) {
     return;
   }
   
-  if (_stock.isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && !Model::isStopBuying()) {
+  //
+  if (_stock.isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && (!Model::isStopBuying() || _stock.numberOfTrades == 0)) {
     //std::cout << "BUY \t" << _stock.symbol << ":\t" << currentCandle.getOpen() << std::endl;
+    if (_stock.numberOfTrades == 0) {
+      Model::setStopBuying(false);
+    }
+    
     _stock.isBought = true;
     _stock.isBuy = false;
     _stock.buyPrice = currentCandle.getOpen();

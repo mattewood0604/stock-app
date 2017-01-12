@@ -31,6 +31,50 @@ StockModel::StockModel(const std::string& _symbol) {
     this->factor = 3;
     this->pd = 7;
   }
+  else if (_symbol.compare("LABU") == 0) {
+    this->shortTimePeriods = 24;
+    this->longTimePeriods = 78;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 42000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
+  else if (_symbol.compare("LABD") == 0) {
+    this->shortTimePeriods = 20;
+    this->longTimePeriods = 22;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 39000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
+  else if (_symbol.compare("NUGT") == 0) {
+    this->shortTimePeriods = 44;
+    this->longTimePeriods = 45;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 52000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
+  else if (_symbol.compare("JDST") == 0) {
+    this->shortTimePeriods = 41;
+    this->longTimePeriods = 51;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 39000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
   else {
     this->shortTimePeriods = 20;
     this->longTimePeriods = 20;

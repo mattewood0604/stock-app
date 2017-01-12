@@ -117,7 +117,7 @@ float Response::parseBuyingPower() const {
   return atof(buyingPowerValue.c_str());
 }
 
-std::string Response::parseIdForStock() const {
+std::string Response::parseUrlForStock() const {
   std::string id = "\"id\":\"";
   
   std::string jsonString = std::string(this->memory);
@@ -129,9 +129,29 @@ std::string Response::parseIdForStock() const {
   
   int commaIndex = (int)jsonString.find("\",", idIndex);
   if (commaIndex < idIndex) {
-    std::cout << "Unable to parse id power from response for stock" << std::endl;
+    std::cout << "Unable to parse id from response for stock" << std::endl;
     return "";
   }
   
   return jsonString.substr(idIndex + id.size(), commaIndex - (idIndex + id.size()));
+}
+
+unsigned int Response::parseAverageVolume() const {
+  std::string averageVolume = "\"average_volume\":\"";
+  
+  std::string jsonString = std::string(this->memory);
+  int averageVolumeIndex = (int)jsonString.find(averageVolume);
+  if (averageVolumeIndex < 0) {
+    std::cout << "Unable to parse average volume from response for stock" << std::endl;
+    return 0;
+  }
+  
+  int commaIndex = (int)jsonString.find("\",", averageVolumeIndex);
+  if (commaIndex < averageVolumeIndex) {
+    std::cout << "Unable to parse average volume from response for stock" << std::endl;
+    return 0;
+  }
+  
+  std::string averageVolumeString = jsonString.substr(averageVolumeIndex + averageVolume.size(), commaIndex - (averageVolumeIndex + averageVolume.size()));
+  return atoi(averageVolumeString.c_str());
 }

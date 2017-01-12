@@ -45,6 +45,7 @@ class Stock {
     const float& getLongMultiplier() const;
   
     std::string symbol;
+    std::string instrumentUrl;
   
     std::vector<TimeQuote> testQuotes;
   

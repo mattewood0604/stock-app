@@ -21,7 +21,7 @@ class RestCall {
     static void init();
   
     // Called Once
-    static std::string idForStockSymbol(const std::string& _symbol);
+    static std::string urlForStockSymbol(const std::string& _symbol);
   
     // Called Multiple Times
     static void quotes();
@@ -29,9 +29,10 @@ class RestCall {
   
     // Called Never
     static void getAllOpenDays();
+    static unsigned int getVolumeForStockSymbol(const std::string& _symbol);
   
-    static void buy();
-    static void sell();
+    static void buy(const Stock& _stock, const unsigned int& _quantity, const float& _price);
+    static void sell(const Stock& _stock);
   
     static void mockRestCall(Stock& _stock, const unsigned int& marketTime);
   
