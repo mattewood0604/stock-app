@@ -85,7 +85,7 @@ void RestCall::initializeAvailableCashHandle() {
   curl_easy_setopt(availableCashHandle, CURLOPT_WRITEDATA, (void*)&response);
 }
 
-void RestCall::buy(const Stock& _stock, const unsigned int& _quantity, const float& _price) {
+void RestCall::order(const Stock& _stock, const std::string& _type, const unsigned int& _quantity, const float& _price) {
   CURL* buyHandle = curl_easy_init();
   
   curl_easy_setopt(buyHandle, CURLOPT_CUSTOMREQUEST, "POST");
@@ -110,26 +110,15 @@ void RestCall::buy(const Stock& _stock, const unsigned int& _quantity, const flo
   postFields.append("&type=market&time_in_force=gtc&trigger=immediate");
   postFields.append("&quantity=");
   postFields.append(std::to_string(_quantity));
-  postFields.append("&side=buy&price=");
+  postFields.append("&side=");
+  postFields.append(_type);
+  postFields.append("&price=");
   postFields.append(std::to_string(_price));
   
   curl_easy_setopt(buyHandle, CURLOPT_POSTFIELDS, postFields.c_str());
   curl_easy_setopt(buyHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
   curl_easy_setopt(buyHandle, CURLOPT_WRITEDATA, (void*)&response);
   
-  /*
-   https://api.robinhood.com/orders/ \
-   -H "Accept: application/json" \
-   -H "Authorization: Token a9a7007f890c790a30a0e0f0a7a07a0242354114" \
-   -d account=https://api.robinhood.com/accounts/8UD09348/ \
-   -d instrument=https://api.robinhood.com/instruments/50810c35-d215-4866-9758-0ada4ac79ffa/ \
-   -d symbol=MSFT \
-   -d type=market \
-   -d time_in_force=fok \
-   -d trigger=immediate \
-   -d quantity=1 \
-   -d side=sell
-   */
   CURLcode returnCode = curl_easy_perform(buyHandle);
   if (returnCode != CURLE_OK) {
     fprintf(stderr, "buy %s: curl_easy_perform() failed: %s\n", _stock.symbol.c_str(), curl_easy_strerror(returnCode));
@@ -140,10 +129,6 @@ void RestCall::buy(const Stock& _stock, const unsigned int& _quantity, const flo
   }
   
   response.size = 0;
-}
-
-void RestCall::sell(const Stock& _stock) {
-  
 }
 
 size_t RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp) {
@@ -208,6 +193,7 @@ void RestCall::quotes() {
     fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(ret));
   }
   else {
+    Model::loggingEnabled = true;
     response.log();
   }
   
@@ -297,7 +283,7 @@ unsigned int RestCall::getVolumeForStockSymbol(const std::string &_symbol) {
   
   CURLcode returnCode = curl_easy_perform(stockFundamentalsHandle);
   if (returnCode != CURLE_OK) {
-    fprintf(stderr, "getVolumeForStockSymbol %s: curl_easy_perform() failed: %s\n", _symbol.c_str(), curl_easy_strerror(returnCode));
+    fprintf(stderr, "getVolumeForStockSymbol %s: %s\n curl_easy_perform() failed: %s\n", _symbol.c_str(), stockFundamentalsUrl.c_str(), curl_easy_strerror(returnCode));
   }
   else {
     response.log();
@@ -308,8 +294,65 @@ unsigned int RestCall::getVolumeForStockSymbol(const std::string &_symbol) {
   return volume;
 }
 
+void RestCall::instruments() {
+  CURL* instrumentsHande = curl_easy_init();
+  
+  std::string instrumentsURL = "https://api.robinhood.com/instruments/";
+  
+  curl_easy_setopt(instrumentsHande, CURLOPT_URL, instrumentsURL.c_str());
+  
+  curl_easy_setopt(instrumentsHande, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+  curl_easy_setopt(instrumentsHande, CURLOPT_WRITEDATA, (void*)&response);
+  
+  CURLcode returnCode = curl_easy_perform(instrumentsHande);
+  if (returnCode != CURLE_OK) {
+    fprintf(stderr, "instruments: curl_easy_perform() failed: %s\n", curl_easy_strerror(returnCode));
+  }
+  else {
+    response.log();
+  }
+  
+  unsigned int total = 0;
+  unsigned int i = 1;
+  std::string nextUrl = response.nextUrlForInstruments();
+  while(nextUrl.size() > 0) {
+    nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
+    std::cout << "\n" << nextUrl << "\n" << std::endl;
+    
+    std::vector<std::string> allSymbols = response.getAllSymbolsFromInstruments();
+    for (unsigned int i = 0; i < allSymbols.size(); i++) {
+      unsigned int volume = RestCall::getVolumeForStockSymbol(allSymbols[i]);
+      if (volume >= 5000000) {
+        std::cout << allSymbols[i] << ": " << volume << std::endl;
+      }
+    }
+    total += allSymbols.size();
+    response.size = 0;
+    
+    instrumentsHande = curl_easy_init();
+    
+    curl_easy_setopt(instrumentsHande, CURLOPT_URL, nextUrl.c_str());
+    
+    curl_easy_setopt(instrumentsHande, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
+    curl_easy_setopt(instrumentsHande, CURLOPT_WRITEDATA, (void*)&response);
+    
+    returnCode = curl_easy_perform(instrumentsHande);
+    if (returnCode != CURLE_OK) {
+      fprintf(stderr, "instruments: curl_easy_perform() failed: %s\n", curl_easy_strerror(returnCode));
+    }
+    else {
+      response.log();
+    }
+    
+    nextUrl = response.nextUrlForInstruments();
+    i++;
+  }
+  
+  std::cout << i << "  " << total << std::endl;
+}
+
 void RestCall::mockRestCall(Stock& _stock, const unsigned int& _marketTime) {
-  const TimeQuote& quote = _stock.getTestQuote(_marketTime);
+  TimeQuote& quote = _stock.getTestQuote(_marketTime);
   if (_stock.testQuotes.size() == 0) {
     return;
   }

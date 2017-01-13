@@ -59,7 +59,9 @@ void Stock::reset() {
   this->numberOfTrades = 0;
 }
 
-void Stock::addTimeToCandles(const TimeQuote& _timeQuote) {
+void Stock::addTimeToCandles(TimeQuote& _timeQuote) {
+  this->currentQuote = &_timeQuote;
+  
   const unsigned int& maxCandleTime = this->stockModel.getMaxCandleTime();
   
   Candle& candle = this->getLastCandle();
@@ -87,7 +89,7 @@ const Candle& Stock::getCandleAtIndex(const unsigned int& _index) const {
   return this->candles[_index];
 }
 
-void Stock::addQuoteToTestData(const TimeQuote& _timeQuote) {
+void Stock::addQuoteToTestData(TimeQuote& _timeQuote) {
   this->testQuotes.push_back(_timeQuote);
 }
 
@@ -163,11 +165,13 @@ void Stock::buyOrSell() {
 
 void Stock::logMoneyMade() const {
   std::string holding = this->isBought ? "holding" : "not holding";
+  float percentage = (this->buyPrice == 0) ? 0 : (this->moneyMade / this->buyPrice);
   std::cout << this->symbol << "\t"
             << this->moneyMade << "\t"
-            << this->moneyMade / this->buyPrice << "\t"
+            << percentage << "\t"
             << holding << "\t"
-            << this->numberOfTrades << std::endl << std::endl;
+            << this->numberOfTrades
+            << std::endl << std::endl;
 }
 
 StockModel& Stock::getStockModel() {
@@ -175,6 +179,10 @@ StockModel& Stock::getStockModel() {
 }
 
 float Stock::getPercentageMade() const {
+  if (this->buyPrice == 0) {
+    return 0.0;
+  }
+  
   return (this->moneyMade) / this->buyPrice;
 }
 
@@ -186,6 +194,6 @@ const float& Stock::getLongMultiplier() const {
   return this->longMultiplier;
 }
 
-const TimeQuote& Stock::getTestQuote(const unsigned int& _marketTime) const {
+TimeQuote& Stock::getTestQuote(const unsigned int& _marketTime) {
   return this->testQuotes[_marketTime];
 }

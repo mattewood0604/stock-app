@@ -36,7 +36,7 @@ bool Model::isMarketOpen() {
   return false;
 }
 
-void Model::addTimeQuote(const TimeQuote _timeQuote) {
+void Model::addTimeQuote(TimeQuote _timeQuote) {
   Stock& stock = stocks[_timeQuote.getSymbol()];
   if (stock.symbol.empty()) {
     stocks[_timeQuote.getSymbol()] = Stock(_timeQuote.getSymbol());

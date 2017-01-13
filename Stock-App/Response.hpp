@@ -27,6 +27,9 @@ class Response {
     std::string parseUrlForStock() const;
   
     unsigned int parseAverageVolume() const;
+  
+    std::string nextUrlForInstruments() const;
+    std::vector<std::string> getAllSymbolsFromInstruments() const;
 };
 
 #endif /* Response_hpp */

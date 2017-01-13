@@ -196,7 +196,7 @@ void runProfitMaximizationForIndividualStocks() {
 }
 
 int main(void)
-{  
+{
   /*for (unsigned int i = 0; i < 100; i++) {
     unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
     if (volume >= 1000000) {
@@ -207,8 +207,8 @@ int main(void)
   //RestCall::init();
   //StockRunner::runStocks();
   
-  //RestCall::init();
-  //StockRunner::runDailyProfits();
+  RestCall::init();
+  StockRunner::runDailyProfits();
   
   //const Stock& stock = TestModel::getTestStock(0);
   //RestCall::buy(stock, 1, 7.63);
@@ -261,7 +261,7 @@ int main(void)
       }
      
       RestCall::quotes();
-      // buyOrSell
+      // buyOrSell\
       sleep(2);
       marketBecameOpen = true;
     }

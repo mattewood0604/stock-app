@@ -142,16 +142,54 @@ unsigned int Response::parseAverageVolume() const {
   std::string jsonString = std::string(this->memory);
   int averageVolumeIndex = (int)jsonString.find(averageVolume);
   if (averageVolumeIndex < 0) {
-    std::cout << "Unable to parse average volume from response for stock" << std::endl;
     return 0;
   }
   
   int commaIndex = (int)jsonString.find("\",", averageVolumeIndex);
   if (commaIndex < averageVolumeIndex) {
-    std::cout << "Unable to parse average volume from response for stock" << std::endl;
     return 0;
   }
   
   std::string averageVolumeString = jsonString.substr(averageVolumeIndex + averageVolume.size(), commaIndex - (averageVolumeIndex + averageVolume.size()));
   return atoi(averageVolumeString.c_str());
+}
+
+std::string Response::nextUrlForInstruments() const {
+  std::string next = "\"next\":\"";
+  
+  std::string jsonString = std::string(this->memory);
+  int nextIndex = (int)jsonString.find(next);
+  if (nextIndex < 0) {
+    std::cout << "Unable to parse next url from response for instruments" << std::endl;
+    return "";
+  }
+  
+  int quoteIndex = (int)jsonString.find("\"}", nextIndex);
+  if (quoteIndex < nextIndex) {
+    std::cout << "Unable to parse next url from response for instruments" << std::endl;
+    return "";
+  }
+  
+  return jsonString.substr(nextIndex + next.size(), quoteIndex - (nextIndex + next.size()));
+}
+
+std::vector<std::string> Response::getAllSymbolsFromInstruments() const {
+  std::string symbol = "\"symbol\":\"";
+  
+  std::vector<std::string> symbols = std::vector<std::string>();
+  
+  std::string jsonString = std::string(this->memory);
+  int symbolIndex = (int)jsonString.find(symbol);
+  while (symbolIndex > 0) {
+    int commaIndex = (int)jsonString.find("\",", symbolIndex);
+    if (commaIndex < symbolIndex) {
+      break;
+    }
+    
+    std::string stockSymbol = jsonString.substr(symbolIndex + symbol.size(), commaIndex - (symbolIndex + symbol.size()));
+    symbols.push_back(stockSymbol);
+    symbolIndex = (int)jsonString.find(symbol, commaIndex);
+  }
+  
+  return symbols;
 }

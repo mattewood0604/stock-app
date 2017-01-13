@@ -30,9 +30,9 @@ class RestCall {
     // Called Never
     static void getAllOpenDays();
     static unsigned int getVolumeForStockSymbol(const std::string& _symbol);
+    static void instruments();
   
-    static void buy(const Stock& _stock, const unsigned int& _quantity, const float& _price);
-    static void sell(const Stock& _stock);
+    static void order(const Stock& _stock, const std::string& _type, const unsigned int& _quantity, const float& _price);
   
     static void mockRestCall(Stock& _stock, const unsigned int& marketTime);
   

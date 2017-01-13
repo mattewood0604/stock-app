@@ -45,7 +45,7 @@ void TestModel::initialize() {
   testStockSymbols.push_back("JNUG"); // 66%
   //testStockSymbols.push_back("NUGT"); // 51%
   
-  testStockSymbols.push_back("DUST"); // 53%
+  //testStockSymbols.push_back("DUST"); // 53%
   //testStockSymbols.push_back("JDST"); // 70%
   
   //testStockSymbols.push_back("LABD"); // 22	20	39

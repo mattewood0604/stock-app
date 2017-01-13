@@ -22,9 +22,9 @@ class Stock {
   
     void reset();
   
-    void addTimeToCandles(const TimeQuote& _timeQuote);
-    void addQuoteToTestData(const TimeQuote& _timeQuote);
-    const TimeQuote& getTestQuote(const unsigned int& _marketTime) const;
+    void addTimeToCandles(TimeQuote& _timeQuote);
+    void addQuoteToTestData(TimeQuote& _timeQuote);
+    TimeQuote& getTestQuote(const unsigned int& _marketTime);
   
     Candle& getLastCandle();
     unsigned int getNumberOfCandles() const;
@@ -48,6 +48,8 @@ class Stock {
     std::string instrumentUrl;
   
     std::vector<TimeQuote> testQuotes;
+  
+    TimeQuote* currentQuote;
   
     float averagePriceEMA;
     float apESA;
