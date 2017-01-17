@@ -42,7 +42,8 @@ void TestModel::initialize() {
   // NUGT && DUST: 67%
   // NUGT && JDST: 94%
   
-  testStockSymbols.push_back("JNUG"); // 66%
+  testStockSymbols.push_back("THLD");
+  //testStockSymbols.push_back("JNUG"); // 66%
   //testStockSymbols.push_back("NUGT"); // 51%
   
   //testStockSymbols.push_back("DUST"); // 53%

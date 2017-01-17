@@ -32,7 +32,7 @@ class TimeQuote {
     float bid;
     uint16_t offerQty;
     float offer;
-    //float price;
+    float price;
     float percent;
     float change;
   
