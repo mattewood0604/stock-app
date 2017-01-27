@@ -35,7 +35,7 @@ void BuySell::buyOrSell(Stock& _stock) {
     
     _stock.isBought = true;
     _stock.isBuy = false;
-    _stock.buyPrice = currentCandle.getOpen();
+    _stock.buyPrice = _stock.currentQuote->offer; //currentCandle.getOpen();
     _stock.numberOfTrades++;
     Model::setPurchasedStockSymbol(_stock.symbol);
     return;
@@ -43,7 +43,7 @@ void BuySell::buyOrSell(Stock& _stock) {
   else if (_stock.isSell) {
     //std::cout << "SELL\t" << _stock.symbol << ":\t" << currentCandle.getOpen() << std::endl;
     //std::cout << "------------------------" << std::endl;
-    _stock.moneyMade += currentCandle.getOpen() - _stock.buyPrice;
+    _stock.moneyMade += _stock.currentQuote->bid - _stock.buyPrice; //currentCandle.getOpen() - _stock.buyPrice;
     _stock.percentageMade = _stock.moneyMade / _stock.buyPrice;
     
     if (_stock.percentageMade > _stock.maxMade) {

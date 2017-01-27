@@ -22,7 +22,7 @@ class Model {
   
     static bool isMarketOpen(void);
   
-    static void addTimeQuote(const TimeQuote _timeQuote);
+    static void addTimeQuote(TimeQuote _timeQuote);
     static void addTestQuote();
   
     static void setPurchasedStockSymbol(const std::string& _symbol);
