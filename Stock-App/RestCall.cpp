@@ -44,6 +44,7 @@ void RestCall::initializeQuotesHandle() {
   
   std::string quotesURL = "https://api.robinhood.com/quotes/?symbols=";
   std::string quotesSymbols = FileManager::readStockSymbolsForQuotes();
+  std::cout << quotesSymbols << std::endl;
   quotesURL.append(quotesSymbols);
   
   curl_easy_setopt(quotesHandle, CURLOPT_URL, quotesURL.c_str());

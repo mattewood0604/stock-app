@@ -197,7 +197,6 @@ void runProfitMaximizationForIndividualStocks() {
 
 int main(void)
 {
-  FileManager::init();
   StockRunner::runStocks();
   /*for (unsigned int i = 0; i < 100; i++) {
     unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
