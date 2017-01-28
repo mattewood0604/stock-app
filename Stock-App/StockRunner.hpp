@@ -18,6 +18,8 @@ class StockRunner {
   private:
     static void logDateForIndex(const unsigned int& _index);
     static float runDailyStocksForSetDate();
+  
+    static int totalNumberOfTrades;
 };
 
 #endif /* StockRunner_hpp */

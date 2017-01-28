@@ -25,18 +25,19 @@ class TimeQuote {
     const std::string& getSymbol() const;
     
     std::string json;
-    
-    std::string symbol;
+  
     uint64_t dayTime;
+    float price;
+  
+  private:
+    std::string symbol;
     uint16_t bidQty;
     float bid;
     uint16_t offerQty;
     float offer;
-    float price;
     float percent;
     float change;
   
-  private:
     static std::string bidKey;
     static std::string bidQtyKey;
     static std::string offerKey;

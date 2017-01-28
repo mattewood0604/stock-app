@@ -32,7 +32,7 @@ class Stock {
   
     StockModel& getStockModel();
 
-    void buyOrSell();
+    //void buyOrSell();
   
     float ema(const float& _price, const float& _previousEMA, const float& _multiplier) const;
   
@@ -61,6 +61,8 @@ class Stock {
     float w1;
     float w2;
   
+    unsigned int numberOfTrades;
+  
   private:
     friend class BuySell;
   
@@ -80,8 +82,6 @@ class Stock {
     float maxMade;
     float percentageMade;
     bool maxLossTaken;
-  
-    unsigned int numberOfTrades;
   
     StockModel stockModel;
   

@@ -30,6 +30,10 @@ class Response {
   
     std::string nextUrlForInstruments() const;
     std::vector<std::string> getAllSymbolsFromInstruments() const;
+    void tradingInformationFromInstruments() const;
+  
+  private:
+    bool stockIsValid(const std::string&) const;
 };
 
 #endif /* Response_hpp */

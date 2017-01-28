@@ -10,10 +10,11 @@
 
 StockModel::StockModel(const std::string& _symbol) {
   if (_symbol.compare("JNUG") == 0) {
-    this->shortTimePeriods = 42;
-    this->longTimePeriods = 68;
+    // 68 40 48000
+    this->shortTimePeriods = 20;
+    this->longTimePeriods = 21;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 50000;
+    this->maxCandleTime = 151000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -21,10 +22,10 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("DUST") == 0) {
-    this->shortTimePeriods = 23;
-    this->longTimePeriods = 42;
+    this->shortTimePeriods = 26;
+    this->longTimePeriods = 58;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 53000;
+    this->maxCandleTime = 45000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -54,10 +55,10 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("NUGT") == 0) {
-    this->shortTimePeriods = 44;
-    this->longTimePeriods = 45;
+    this->shortTimePeriods = 35;
+    this->longTimePeriods = 42;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 52000;
+    this->maxCandleTime = 18000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -65,10 +66,10 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("JDST") == 0) {
-    this->shortTimePeriods = 41;
-    this->longTimePeriods = 51;
+    this->shortTimePeriods = 24;
+    this->longTimePeriods = 75;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 39000;
+    this->maxCandleTime = 34000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     

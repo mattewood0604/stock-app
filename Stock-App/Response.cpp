@@ -10,6 +10,7 @@
 
 #include "Model.hpp"
 #include "Response.hpp"
+#include "TestModel.hpp"
 
 void Response::init() {
   this->memory = NULL;
@@ -192,4 +193,64 @@ std::vector<std::string> Response::getAllSymbolsFromInstruments() const {
   }
   
   return symbols;
+}
+
+void Response::tradingInformationFromInstruments() const {
+  std::string symbol = "\"symbol\":\"";
+  std::string dayTradeRatio = "\"day_trade_ratio\":\"";
+  std::string maintenanceRatio = "\"maintenance_ratio\":\"";
+  std::string marginInitialRatio = "\"margin_initial_ratio\":\"";
+  std::string tradeable = "\"tradeable\":";
+  
+  std::string jsonString = std::string(this->memory);
+  int symbolIndex = (int)jsonString.find(symbol);
+  int dayTradeRatioIndex = (int)jsonString.find(dayTradeRatio);
+  int maintenanceRatioIndex = (int)jsonString.find(maintenanceRatio);
+  int marginInitialRatioIndex = (int)jsonString.find(marginInitialRatio);
+  int tradeableIndex = (int)jsonString.find(tradeable);
+  
+  while (symbolIndex > 0) {
+    int commaIndex = (int)jsonString.find("\",", symbolIndex);
+    std::string stockSymbol = jsonString.substr(symbolIndex + symbol.size(), commaIndex - (symbolIndex + symbol.size()));
+    
+    commaIndex = (int)jsonString.find("\",", dayTradeRatioIndex);
+    std::string dayTradeRatioString = jsonString.substr(dayTradeRatioIndex + dayTradeRatio.size(), commaIndex - (dayTradeRatioIndex + dayTradeRatio.size()));
+    
+    commaIndex = (int)jsonString.find("\",", maintenanceRatioIndex);
+    std::string maintenanceRatioString = jsonString.substr(maintenanceRatioIndex + maintenanceRatio.size(), commaIndex - (maintenanceRatioIndex + maintenanceRatio.size()));
+    
+    commaIndex = (int)jsonString.find("\",", marginInitialRatioIndex);
+    std::string marginInitialRatioString = jsonString.substr(marginInitialRatioIndex + marginInitialRatio.size(), commaIndex - (marginInitialRatioIndex + marginInitialRatio.size()));
+    
+    commaIndex = (int)jsonString.find(",\"", tradeableIndex);
+    std::string tradeableString = jsonString.substr(tradeableIndex + tradeable.size(), commaIndex - (tradeableIndex + tradeable.size()));
+    
+    if (tradeableString.size() < 5 && stockIsValid(stockSymbol)) {
+      std::cout << stockSymbol << std::endl;
+      /*std::cout << "STOCK: " << stockSymbol << std::endl;
+      std::cout << "--------------" << std::endl;
+      std::cout << "DTR: " << dayTradeRatioString << std::endl;
+      std::cout << "MR : " << maintenanceRatioString << std::endl;
+      std::cout << "MIR: " << marginInitialRatioString << std::endl;
+      std::cout << "TRADEABLE: " << tradeableString << std::endl;
+      std::cout << std::endl;*/
+    }
+    
+    
+    symbolIndex = (int)jsonString.find(symbol, commaIndex);
+    dayTradeRatioIndex = (int)jsonString.find(dayTradeRatio, commaIndex);
+    maintenanceRatioIndex = (int)jsonString.find(maintenanceRatio, commaIndex);
+    marginInitialRatioIndex = (int)jsonString.find(marginInitialRatio, commaIndex);
+    tradeableIndex = (int)jsonString.find(tradeable, commaIndex);
+  }
+}
+
+bool Response::stockIsValid(const std::string& _stockSymbol) const {
+  for (unsigned int i = 0; i < TestModel::getTestStockSymbolCount(); i++) {
+    if (TestModel::getTestStockSymbol(i).compare(_stockSymbol) == 0) {
+      return true;
+    }
+  }
+  
+  return false;
 }

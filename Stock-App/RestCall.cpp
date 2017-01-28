@@ -168,7 +168,12 @@ std::string RestCall::urlForStockSymbol(const std::string& _symbol) {
   }
   
   std::string url = "https://api.robinhood.com/instruments/";
-  url.append(response.parseUrlForStock());
+  std::string returnValue = response.parseUrlForStock();
+  if (returnValue == "") {
+    return "";
+  }
+  
+  url.append(returnValue);
   url.append("/");
   response.size = 0;
   return url;
@@ -317,8 +322,11 @@ void RestCall::instruments() {
   std::string nextUrl = response.nextUrlForInstruments();
   while(nextUrl.size() > 0) {
     nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
-    std::cout << "\n" << nextUrl << "\n" << std::endl;
+    //std::cout << "\n" << nextUrl << "\n" << std::endl;
     
+    response.tradingInformationFromInstruments();
+    
+    /*
     std::vector<std::string> allSymbols = response.getAllSymbolsFromInstruments();
     for (unsigned int i = 0; i < allSymbols.size(); i++) {
       unsigned int volume = RestCall::getVolumeForStockSymbol(allSymbols[i]);
@@ -327,6 +335,7 @@ void RestCall::instruments() {
       }
     }
     total += allSymbols.size();
+     */
     response.size = 0;
     
     instrumentsHande = curl_easy_init();
@@ -352,10 +361,10 @@ void RestCall::instruments() {
 }
 
 void RestCall::mockRestCall(Stock& _stock, const unsigned int& _marketTime) {
-  TimeQuote& quote = _stock.getTestQuote(_marketTime);
   if (_stock.testQuotes.size() == 0) {
     return;
   }
   
+  TimeQuote& quote = _stock.getTestQuote(_marketTime);
   _stock.addTimeToCandles(quote);
 }

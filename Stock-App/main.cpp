@@ -12,6 +12,7 @@
 #include <math.h>
 #include <cstdlib>
 
+#include "BuySell.hpp"
 #include "FileManager.hpp"
 #include "Model.hpp"
 #include "RestCall.hpp"
@@ -57,7 +58,7 @@ void calculateProfits(Stock& _stock, const StockModel& _stockModel, float**** _p
   //if (_stockModel.getShortTimePeriods() <= _stockModel.getLongTimePeriods()) {
     for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(_index); marketTime++) {
       RestCall::mockRestCall(_stock, marketTime);
-      _stock.buyOrSell();
+      BuySell::buyOrSell(_stock);
     }
   //}
   
@@ -125,7 +126,7 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
 void runProfitMaximizationForIndividualStocks() {
   float**** newProfits = createProfitStorage();
   
-  FileManager::init();
+  //FileManager::init();
   TestModel::initialize();
   
   for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
@@ -207,12 +208,14 @@ int main(void)
   //RestCall::init();
   //StockRunner::runStocks();
   
-  RestCall::init();
-  StockRunner::runDailyProfits();
+  //TestModel::initialize();
+  //RestCall::instruments();
+  
+  //StockRunner::runDailyProfits();
+  runProfitMaximizationForIndividualStocks();
   
   //const Stock& stock = TestModel::getTestStock(0);
   //RestCall::buy(stock, 1, 7.63);
-  //runProfitMaximizationForIndividualStocks();
   
   ///////////////////////////////////////////////////////////////////
   //RestCall::init();

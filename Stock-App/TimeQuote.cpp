@@ -64,7 +64,7 @@ void TimeQuote::fromCSV(const std::string& _symbol, const std::string& _quote) {
   
   commaIndex = (int)_quote.find(',', lastCommaIndex + 1);
   value = _quote.substr(lastCommaIndex + 1, commaIndex - lastCommaIndex);
-  //this->price = stof(value);
+  this->price = stof(value);
   lastCommaIndex = commaIndex;
   
   commaIndex = (int)_quote.find(',', lastCommaIndex + 1);

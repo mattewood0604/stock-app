@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Response.cpp"
-            timestampString = "505101189.879791"
+            timestampString = "506995452.557333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30">
+            startingLineNumber = "31"
+            endingLineNumber = "31">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "Stock::addQuoteToTestData(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,28 +216,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "Stock::addQuoteToTestData(TimeQuote&amp; _timeQuote)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "Stock::buyOrSell()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -262,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506992842.980957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371">
+            startingLineNumber = "380"
+            endingLineNumber = "380">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -276,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockModel.cpp"
-            timestampString = "505709333.412819"
+            timestampString = "506920639.423113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "StockModel::getMaxCandleTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -292,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,28 +292,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "Stock::buyOrSell()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -356,27 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506991860.525322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506041447.849849"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "Stock::getPercentageMade()"
             landmarkType = "7">
          </BreakpointContent>
@@ -403,28 +355,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Stock-App/Response.cpp"
-            timestampString = "504059091.468889"
+            timestampString = "506995452.557333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "Response::log()"
             landmarkType = "7">
          </BreakpointContent>
@@ -468,11 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Response.cpp"
-            timestampString = "505101189.879791"
+            timestampString = "506995452.557333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "Response::parseQuotes()"
             landmarkType = "7">
          </BreakpointContent>
@@ -500,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "504751900.908861"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
          </BreakpointContent>
@@ -516,7 +452,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "504751900.908861"
+            timestampString = "506570141.918176"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/main.cpp"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -532,125 +484,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "504751900.908861"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/main.cpp"
-            timestampString = "504751900.908861"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "Stock::buyOrSell()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -676,7 +516,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/FileManager.cpp"
-            timestampString = "505276680.786041"
+            timestampString = "506562452.655241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -692,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "505613981.068321"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -724,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506039579.562854"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -770,11 +610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "505613981.068321"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -786,11 +626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "505613981.068321"
+            timestampString = "506570141.918176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -802,11 +642,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506992842.980957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362">
+            startingLineNumber = "371"
+            endingLineNumber = "371">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -816,11 +656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506995532.795435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "main(void)"
             landmarkType = "9">
          </BreakpointContent>
@@ -832,11 +672,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506995532.795435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "main(void)"
             landmarkType = "9">
          </BreakpointContent>
@@ -880,11 +720,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Stock-App/Stock-App/RestCall.cpp"
-            timestampString = "505696513.184388"
+            timestampString = "506955125.122227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "RestCall::quotes()"
             landmarkType = "7">
          </BreakpointContent>
@@ -896,11 +736,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Stock-App/Stock-App/RestCall.cpp"
-            timestampString = "505696513.184388"
+            timestampString = "506955125.122227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "RestCall::quotes()"
             landmarkType = "7">
          </BreakpointContent>
@@ -912,11 +752,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Response.cpp"
-            timestampString = "505101189.879791"
+            timestampString = "506995452.557333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "Response::parseAuthentication()"
             landmarkType = "7">
          </BreakpointContent>
@@ -928,11 +768,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506031132.840947"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "RestCall::authenticate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -991,28 +831,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Stock-App/main.cpp"
-            timestampString = "506032009.004671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "main(void)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506992842.980957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1024,11 +848,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506992842.980957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1040,11 +864,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506992842.980957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1056,11 +880,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "RestCall::getVolumeForStockSymbol(const std::string &amp;_symbol)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1072,11 +896,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1088,11 +912,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1104,11 +928,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/RestCall.cpp"
-            timestampString = "506032009.004671"
+            timestampString = "506920858.847657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "RestCall::getVolumeForStockSymbol(const std::string &amp;_symbol)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1120,11 +944,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockRunner.cpp"
-            timestampString = "506040116.695456"
+            timestampString = "506820431.70734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "StockRunner::runDailyProfits()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1136,11 +960,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockRunner.cpp"
-            timestampString = "506040331.29309"
+            timestampString = "506820431.70734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "StockRunner::runDailyProfits()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1152,11 +976,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockRunner.cpp"
-            timestampString = "506040385.954987"
+            timestampString = "506820431.70734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "StockRunner::runDailyProfits()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1200,11 +1024,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "506041447.849849"
+            timestampString = "506991860.525322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "Stock::getPercentageMade()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1216,11 +1040,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockRunner.cpp"
-            timestampString = "506041334.965519"
+            timestampString = "506820431.70734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "StockRunner::runDailyStocksForSetDate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1238,6 +1062,102 @@
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "TimeQuote::fromCSV(const std::string&amp; _symbol, const std::string&amp; _quote)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/RestCall.cpp"
+            timestampString = "506359754.627267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "RestCall::order(const Stock&amp; _stock, const std::string&amp; _type, const unsigned int&amp; _quantity, const float&amp; _price)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/RestCall.cpp"
+            timestampString = "506359779.808805"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "RestCall::order(const Stock&amp; _stock, const std::string&amp; _type, const unsigned int&amp; _quantity, const float&amp; _price)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/TestModel.cpp"
+            timestampString = "506920639.423113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "TestModel::createListOfDates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/StockRunner.cpp"
+            timestampString = "506820431.70734"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "StockRunner::runDailyProfits()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/StockRunner.cpp"
+            timestampString = "506820431.70734"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "StockRunner::runDailyStocksForSetDate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/RestCall.cpp"
+            timestampString = "506992842.980957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "RestCall::mockRestCall(Stock&amp; _stock, const unsigned int&amp; _marketTime)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
