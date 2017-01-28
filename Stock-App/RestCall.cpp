@@ -317,7 +317,7 @@ void RestCall::instruments() {
   unsigned int i = 1;
   std::string nextUrl = response.nextUrlForInstruments();
   while(nextUrl.size() > 0) {
-    nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
+    //nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
     std::cout << "\n" << nextUrl << "\n" << std::endl;
     
     std::vector<std::string> allSymbols = response.getAllSymbolsFromInstruments();
@@ -354,6 +354,7 @@ void RestCall::instruments() {
 
 void RestCall::mockRestCall(Stock& _stock, const unsigned int& _marketTime) {
   TimeQuote& quote = _stock.getTestQuote(_marketTime);
+  Model::loggingEnabled = true;
   if (_stock.testQuotes.size() == 0) {
     return;
   }

@@ -23,7 +23,7 @@ Stock::Stock() : stockModel("") {
 
 Stock::Stock(const std::string& _symbol) : stockModel(_symbol) {
   this->symbol = _symbol;
-  this->instrumentUrl = RestCall::urlForStockSymbol(_symbol);
+  //this->instrumentUrl = RestCall::urlForStockSymbol(_symbol);
   
   this->testQuotes = std::vector<TimeQuote>();
   
@@ -99,68 +99,6 @@ void Stock::setWaveTrendComplete(const bool& _complete) {
 
 float Stock::ema(const float& _price, const float& _previousEMA, const float& _multiplier) const {
   return (_price - _previousEMA) * _multiplier + _previousEMA;
-}
-
-void Stock::buyOrSell() {
-  if (!this->waveTrendComplete) {
-    return;
-  }
-  
-  const Candle& currentCandle = this->candles[this->candles.size() - 1];
-  if (currentCandle.getClose() == 0) {
-    return;
-  }
-  
-  if (this->maxLossTaken) {
-    return;
-  }
-  
-  if (this->isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && !Model::isStopBuying()) {
-    //std::cout << "BUY \t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
-    this->isBought = true;
-    this->isBuy = false;
-    this->buyPrice = currentCandle.getOpen();
-    this->numberOfTrades++;
-    Model::setPurchasedStockSymbol(this->symbol);
-    return;
-  }
-  else if (this->isSell) {
-    //std::cout << "SELL\t" << this->symbol << ":\t" << currentCandle.getOpen() << std::endl;
-    //std::cout << "------------------------" << std::endl;
-    this->moneyMade += currentCandle.getOpen() - this->buyPrice;
-    this->percentageMade = this->moneyMade / this->buyPrice;
-    
-    if (this->percentageMade > this->maxMade) {
-      this->maxMade = this->percentageMade;
-    }
-    
-    this->isSell = false;
-    this->isBought = false;
-    
-    if (this->moneyMade / this->buyPrice < -0.02) {
-      Model::setStopBuying(true);
-      this->maxLossTaken = true;
-    }
-    
-    Model::setPurchasedStockSymbol("");
-
-    this->numberOfTrades++;
-    return;
-  }
-  
-  float averagePrice = currentCandle.getAveragePrice();
-  if ((averagePrice >= this->buyPrice + stockModel.getMaxGain() || averagePrice <= this->buyPrice - stockModel.getMaxLoss()) && this->isBought) {
-    this->isBuy = false;
-    this->isSell = true;
-    return;
-  }
-  
-  if (this->w1 >= this->w2 && !this->isBought) {
-    this->isBuy = true;
-  }
-  else if (this->w1 <= this->w2 && this->isBought) {
-    this->isSell = true;
-  }
 }
 
 void Stock::logMoneyMade() const {

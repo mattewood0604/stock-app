@@ -144,7 +144,7 @@ void FileManager::writeDataForSymbol(const std::string& _symbol, const std::stri
 }
 
 void FileManager::writeProfitsForSymbol(const std::string& _symbol, const std::string& _data) {
-  std::string fileName = "/Users/Matt/Desktop/symbol_profits/" + _symbol + "-profits.txt";
+  std::string fileName = FileManager::mainDirectory + "/symbol_profits/" + _symbol + "-profits.txt";
   std::ofstream symbolFile(fileName);
   writeDataToFile(_data, symbolFile);
 }

@@ -31,8 +31,6 @@ class Stock {
     const Candle& getCandleAtIndex(const unsigned int& _index) const;
   
     StockModel& getStockModel();
-
-    void buyOrSell();
   
     float ema(const float& _price, const float& _previousEMA, const float& _multiplier) const;
   

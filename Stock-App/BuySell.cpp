@@ -25,7 +25,7 @@ void BuySell::buyOrSell(Stock& _stock) {
   if (_stock.maxLossTaken) {
     return;
   }
-  
+
   //
   if (_stock.isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && (!Model::isStopBuying() || _stock.numberOfTrades == 0)) {
     //std::cout << "BUY \t" << _stock.symbol << ":\t" << currentCandle.getOpen() << std::endl;
