@@ -13,7 +13,7 @@
 #include "FileManager.hpp"
 #include "TestModel.hpp"
 
-const std::string FileManager::mainDirectory = "/Users/Matt/Desktop/stock-app/Stock-App/";
+const std::string FileManager::mainDirectory = "/home/matt/Desktop/stock-app/Stock-App/";
 const std::string FileManager::stockSymbolsForQuotesDirectory = mainDirectory + "StocksForQuotes.txt";
 std::string FileManager::quotesDirectory;
 
@@ -144,7 +144,7 @@ void FileManager::writeDataForSymbol(const std::string& _symbol, const std::stri
 }
 
 void FileManager::writeProfitsForSymbol(const std::string& _symbol, const std::string& _data) {
-  std::string fileName = "/Users/Matt/Desktop/symbol_profits/" + _symbol + "-profits.txt";
+  std::string fileName = FileManager::mainDirectory + "/symbol_profits/" + _symbol + "-profits.txt";
   std::ofstream symbolFile(fileName);
   writeDataToFile(_data, symbolFile);
 }

@@ -24,6 +24,7 @@ void StockRunner::runStocks() {
   
   FileManager::init();
   RestCall::init();
+
   
   std::cout << "Begin Querying For Data..." << std::endl;
   while(1) {
@@ -33,9 +34,6 @@ void StockRunner::runStocks() {
       }
 
     	RestCall::quotes();
-      
-      BuySell::buyOrSell(Model::getStockForSymbol("JNUG"));
-      BuySell::buyOrSell(Model::getStockForSymbol("DUST"));
       
     	sleep(2);
       marketBecameOpen = true;

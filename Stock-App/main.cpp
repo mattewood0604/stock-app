@@ -204,78 +204,14 @@ int main(void)
       std::cout << symbols[i] << ": " << volume << std::endl;
     }
   }*/
-  
-  //RestCall::init();
-  //StockRunner::runStocks();
-  
-  //TestModel::initialize();
-  //RestCall::instruments();
+
+  StockRunner::runStocks();
   
   //StockRunner::runDailyProfits();
-  runProfitMaximizationForIndividualStocks();
+  //runProfitMaximizationForIndividualStocks();
   
   //const Stock& stock = TestModel::getTestStock(0);
   //RestCall::buy(stock, 1, 7.63);
-  
-  ///////////////////////////////////////////////////////////////////
-  //RestCall::init();
-  //RestCall::getAvailableBalance();
-  //RestCall::idForStockSymbol("JNUG");
-  //return 0;
-  
-  //time_t currentTime = time(0);
-  //struct tm* now = localtime(&currentTime);
-  
-  //std::cout << now->tm_wday << std::endl;
-  /*
-   while(1) {
-     time_t currentTime = time(0);
-     struct tm* now = localtime(&currentTime);
-     if (Model::isMarketOpen()) { // Fix this for day of the week
-       if (now->tm_hour >= 0 && RestCall::isMarketOpen()) {
-         sleep(now until tomorrow and 9:30)
-       }
-     }
-   }
-   */
-  
-  
-  // Below can be used so that this application can continuosly run. No other script needed.
-  /*
-   
-   while(1) {
-    // If the time >9:30 and <4 and it is a M-F
-    //   If its 10 and the market isnt open
-    //     Sleep until the next day
-    //   Else
-    //     If the new folder hasnt been created
-    //       Create the new daily data folder
-    //     Query for the market data
-    // Else
-    //   If its Friday
-    //     Sleep until Moday
-    //   Else
-    //     Sleep until tomorrow
-   
-  	if (Model::isMarketOpen()) {
-      if (!marketBecameOpen) {
-        std::cout << "Market Opened" << std::endl;
-        // Make the directory for the new day
-      }
-     
-      RestCall::quotes();
-      // buyOrSell\
-      sleep(2);
-      marketBecameOpen = true;
-    }
-    else if (marketBecameOpen) {
-      // Sleep here for a few an hour
-      std::cout << "Market Closed" << std::endl;
-      break;
-    }
-   }
-   */
-  ///////////////////////////////////////////////////////////////////
   
   return 0;
 }

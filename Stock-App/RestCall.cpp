@@ -29,10 +29,10 @@ void RestCall::init() {
   response.init();
   
   initializeQuotesHandle();
-  initializeAuthenticationHandle();
+  //initializeAuthenticationHandle();
   
-  authenticate();
-  initializeAvailableCashHandle();
+  //authenticate();
+  //initializeAvailableCashHandle();
   
   // Create a handle for each type of rest call
   // Quotes
@@ -45,6 +45,8 @@ void RestCall::initializeQuotesHandle() {
   std::string quotesURL = "https://api.robinhood.com/quotes/?symbols=";
   std::string quotesSymbols = FileManager::readStockSymbolsForQuotes();
   quotesURL.append(quotesSymbols);
+
+  std::cout << quotesURL << std::endl;
   
   curl_easy_setopt(quotesHandle, CURLOPT_URL, quotesURL.c_str());
   
@@ -124,7 +126,6 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
     fprintf(stderr, "buy %s: curl_easy_perform() failed: %s\n", _stock.symbol.c_str(), curl_easy_strerror(returnCode));
   }
   else {
-    Model::loggingEnabled = true;
     response.log();
   }
   
@@ -198,7 +199,6 @@ void RestCall::quotes() {
     fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(ret));
   }
   else {
-    Model::loggingEnabled = true;
     response.log();
   }
   
@@ -321,7 +321,7 @@ void RestCall::instruments() {
   unsigned int i = 1;
   std::string nextUrl = response.nextUrlForInstruments();
   while(nextUrl.size() > 0) {
-    nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
+    //nextUrl.erase(std::remove(nextUrl.begin(), nextUrl.end(), '\\'), nextUrl.end());
     //std::cout << "\n" << nextUrl << "\n" << std::endl;
     
     response.tradingInformationFromInstruments();

@@ -6,6 +6,7 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
+#include "FileManager.hpp"
 #include "TestModel.hpp"
 
 const unsigned int TestModel::maximumLongTimePeriods = 80;
@@ -48,7 +49,7 @@ void TestModel::initialize() {
   
   //testStockSymbols.push_back("THLD");
   //testStockSymbols.push_back("JNUG"); // 66%
-  testStockSymbols.push_back("NUGT"); // 51%
+  //testStockSymbols.push_back("NUGT"); // 51%
   
   //testStockSymbols.push_back("DUST"); // 53%
   //testStockSymbols.push_back("JDST"); // 70%
@@ -56,286 +57,61 @@ void TestModel::initialize() {
   //testStockSymbols.push_back("LABD"); // 22	20	39
   //testStockSymbols.push_back("LABU"); // 78	24	42
   
-  //testStockSymbols.push_back("SPY");
-  
-  /*testStockSymbols.push_back("NVDA");
-  testStockSymbols.push_back("NKE");
+  /*
   testStockSymbols.push_back("AA");
-  testStockSymbols.push_back("CLF");
-  testStockSymbols.push_back("AMD");*/
-  
-  /*testStockSymbols.push_back("CNDT");
-  testStockSymbols.push_back("ARNC");
-  testStockSymbols.push_back("AA");
-  testStockSymbols.push_back("YUMC");
-  testStockSymbols.push_back("JCI");
-  testStockSymbols.push_back("TWLO");
-  testStockSymbols.push_back("HTZ");
-  testStockSymbols.push_back("UA");
-  testStockSymbols.push_back("HPE");
-  testStockSymbols.push_back("PYPL");
-  testStockSymbols.push_back("FIT");
-  testStockSymbols.push_back("LABU");
-  testStockSymbols.push_back("LABD");
-  testStockSymbols.push_back("LC");
-  testStockSymbols.push_back("FCAU");
-  testStockSymbols.push_back("VER");
-  testStockSymbols.push_back("NLY");
-  testStockSymbols.push_back("HST");
-  testStockSymbols.push_back("SRC");
-  testStockSymbols.push_back("CFG");
-  testStockSymbols.push_back("BABA");
-  testStockSymbols.push_back("SYF");
-  testStockSymbols.push_back("VALE");
-  testStockSymbols.push_back("JD");
-  testStockSymbols.push_back("PBR");
-  testStockSymbols.push_back("SAN");
-  testStockSymbols.push_back("NOK");
-  testStockSymbols.push_back("VIPS");
-  testStockSymbols.push_back("CX");
-  testStockSymbols.push_back("ITUB");
-  testStockSymbols.push_back("BP");
-  testStockSymbols.push_back("TEVA");
-  testStockSymbols.push_back("IBN");
-  testStockSymbols.push_back("TSM");
-  testStockSymbols.push_back("LYG");
-  testStockSymbols.push_back("EPD");
-  testStockSymbols.push_back("GGB");
-  testStockSymbols.push_back("ETE");
-  testStockSymbols.push_back("ERIC");
-  testStockSymbols.push_back("BBD");
-  testStockSymbols.push_back("AZN");
-  testStockSymbols.push_back("BCS");
-  testStockSymbols.push_back("GPRO");
-  testStockSymbols.push_back("VPCO");
-  testStockSymbols.push_back("T");
-  testStockSymbols.push_back("MTG");
-  testStockSymbols.push_back("CDE");
-  testStockSymbols.push_back("DVN");
-  testStockSymbols.push_back("EFA");
-  testStockSymbols.push_back("GPS");
-  testStockSymbols.push_back("VXX");
-  testStockSymbols.push_back("TECK");
-  testStockSymbols.push_back("JPM");
-  testStockSymbols.push_back("KR");
-  testStockSymbols.push_back("KO");
-  testStockSymbols.push_back("NVDA");
-  testStockSymbols.push_back("P");
-  testStockSymbols.push_back("UAL");
-  testStockSymbols.push_back("NKE");
-  testStockSymbols.push_back("WMB");
-  testStockSymbols.push_back("KRE");
-  testStockSymbols.push_back("NUGT");
-  testStockSymbols.push_back("PHM");
-  testStockSymbols.push_back("IAU");
-  testStockSymbols.push_back("IAG");
-  testStockSymbols.push_back("UCO");
-  testStockSymbols.push_back("TSLA");
-  testStockSymbols.push_back("TLT");
-  testStockSymbols.push_back("GRPN");
-  testStockSymbols.push_back("DXJ");
-  testStockSymbols.push_back("PFE");
-  testStockSymbols.push_back("CNX");
-  testStockSymbols.push_back("CNQ");
-  testStockSymbols.push_back("CNP");
-  testStockSymbols.push_back("XLV");
-  testStockSymbols.push_back("ODP");
-  testStockSymbols.push_back("C");
-  testStockSymbols.push_back("ARIA");
-  testStockSymbols.push_back("NRG");
-  testStockSymbols.push_back("CLF");
-  testStockSymbols.push_back("ESV");
-  testStockSymbols.push_back("HL");
-  testStockSymbols.push_back("SQQQ");
-  testStockSymbols.push_back("YHOO");
-  testStockSymbols.push_back("HD");
-  testStockSymbols.push_back("HPQ");
-  testStockSymbols.push_back("AMAT");
-  testStockSymbols.push_back("AAPL");
-  testStockSymbols.push_back("CHK");
-  testStockSymbols.push_back("FXI");
-  testStockSymbols.push_back("VLO");
-  testStockSymbols.push_back("GM");
-  testStockSymbols.push_back("GE");
-  testStockSymbols.push_back("GG");
-  testStockSymbols.push_back("XBI");
-  testStockSymbols.push_back("JDST");
-  testStockSymbols.push_back("VRX");
-  testStockSymbols.push_back("MDLZ");
-  testStockSymbols.push_back("EWZ");
-  testStockSymbols.push_back("EWG");
-  testStockSymbols.push_back("EWJ");
-  testStockSymbols.push_back("JCP");
-  testStockSymbols.push_back("S");
-  testStockSymbols.push_back("GLD");
-  testStockSymbols.push_back("TZA");
-  testStockSymbols.push_back("CSX");
-  testStockSymbols.push_back("ABX");
-  testStockSymbols.push_back("ABT");
-  testStockSymbols.push_back("DGAZ");
-  testStockSymbols.push_back("MSFT");
-  testStockSymbols.push_back("FB");
-  testStockSymbols.push_back("FTR");
-  testStockSymbols.push_back("TXN");
-  testStockSymbols.push_back("EBAY");
-  testStockSymbols.push_back("MYL");
-  testStockSymbols.push_back("BRCD");
-  testStockSymbols.push_back("EXEL");
-  testStockSymbols.push_back("IWM");
-  testStockSymbols.push_back("WPX");
-  testStockSymbols.push_back("XLP");
-  testStockSymbols.push_back("XLU");
-  testStockSymbols.push_back("XLY");
-  testStockSymbols.push_back("XLB");
-  testStockSymbols.push_back("XLE");
-  testStockSymbols.push_back("XLF");
-  testStockSymbols.push_back("XLI");
-  testStockSymbols.push_back("XLK");
-  testStockSymbols.push_back("FOXA");
-  testStockSymbols.push_back("USO");
-  testStockSymbols.push_back("USB");
-  testStockSymbols.push_back("FEYE");
-  testStockSymbols.push_back("HAL");
-  testStockSymbols.push_back("RIG");
-  testStockSymbols.push_back("INTC");
-  testStockSymbols.push_back("ATVI");
-  testStockSymbols.push_back("DB");
-  testStockSymbols.push_back("UVXY");
-  testStockSymbols.push_back("AMD");
-  testStockSymbols.push_back("DNR");
-  testStockSymbols.push_back("NBR");
-  testStockSymbols.push_back("JBLU");
-  testStockSymbols.push_back("NVAX");
-  testStockSymbols.push_back("TGT");
-  testStockSymbols.push_back("WMT");
-  testStockSymbols.push_back("VZ");
-  testStockSymbols.push_back("TWTR");
-  testStockSymbols.push_back("ZNGA");
-  testStockSymbols.push_back("CY");
-  testStockSymbols.push_back("CF");
-  testStockSymbols.push_back("SWN");
-  testStockSymbols.push_back("OAS");
-  testStockSymbols.push_back("POT");
-  testStockSymbols.push_back("BBY");
-  testStockSymbols.push_back("ECA");
-  testStockSymbols.push_back("ASTI");
-  testStockSymbols.push_back("V");
-  testStockSymbols.push_back("MNKD");
-  testStockSymbols.push_back("ENDP");
-  testStockSymbols.push_back("ABBV");
-  testStockSymbols.push_back("ORCL");
-  testStockSymbols.push_back("UAA");
-  testStockSymbols.push_back("EEM");
-  testStockSymbols.push_back("BK");
-  testStockSymbols.push_back("IYR");
-  testStockSymbols.push_back("CMCSA");
-  testStockSymbols.push_back("QCOM");
-  testStockSymbols.push_back("SIRI");
-  testStockSymbols.push_back("SPLS");
-  testStockSymbols.push_back("IEMG");
-  testStockSymbols.push_back("SYMC");
-  testStockSymbols.push_back("RAI");
-  testStockSymbols.push_back("RAD");
-  testStockSymbols.push_back("EGO");
-  testStockSymbols.push_back("DUST");
-  testStockSymbols.push_back("WLL");
-  testStockSymbols.push_back("AUY");
   testStockSymbols.push_back("AG");
-  testStockSymbols.push_back("GDXJ");
-  testStockSymbols.push_back("MS");
-  testStockSymbols.push_back("FITB");
-  testStockSymbols.push_back("NFLX");
-  testStockSymbols.push_back("CSCO");
-  testStockSymbols.push_back("CAT");
-  testStockSymbols.push_back("SE");
-  testStockSymbols.push_back("SO");
-  testStockSymbols.push_back("FCX");
-  testStockSymbols.push_back("VWO");
-  testStockSymbols.push_back("MSTX");
-  testStockSymbols.push_back("SDS");
-  testStockSymbols.push_back("AIG");
-  testStockSymbols.push_back("WDC");
-  testStockSymbols.push_back("GNW");
-  testStockSymbols.push_back("COG");
-  testStockSymbols.push_back("COP");
-  testStockSymbols.push_back("CTSH");
-  testStockSymbols.push_back("TVIX");
-  testStockSymbols.push_back("WFT");
-  testStockSymbols.push_back("WFC");
-  testStockSymbols.push_back("WFM");
-  testStockSymbols.push_back("SVXY");
-  testStockSymbols.push_back("RF");
-  testStockSymbols.push_back("SUNEQ");
-  testStockSymbols.push_back("F");
-  testStockSymbols.push_back("BSX");
-  testStockSymbols.push_back("SCHW");
-  testStockSymbols.push_back("GLW");
   testStockSymbols.push_back("AKS");
-  testStockSymbols.push_back("QQQ");
-  testStockSymbols.push_back("TWX");
-  testStockSymbols.push_back("SLB");
-  testStockSymbols.push_back("SLV");
-  testStockSymbols.push_back("CVS");
-  testStockSymbols.push_back("CVX");
-  testStockSymbols.push_back("KMI");
-  testStockSymbols.push_back("MOS");
-  testStockSymbols.push_back("GSAT");
-  testStockSymbols.push_back("AEO");
-  testStockSymbols.push_back("AES");
-  testStockSymbols.push_back("OIH");
-  testStockSymbols.push_back("JNUG");
-  testStockSymbols.push_back("CTL");
-  testStockSymbols.push_back("DAL");
+  testStockSymbols.push_back("ASTI");
+  testStockSymbols.push_back("AUY");
+  testStockSymbols.push_back("CDE");
   testStockSymbols.push_back("CIE");
-  testStockSymbols.push_back("SBUX");
-  testStockSymbols.push_back("ON");
-  testStockSymbols.push_back("PG");
-  testStockSymbols.push_back("CRM");
-  testStockSymbols.push_back("EXC");
-  testStockSymbols.push_back("MCD");
-  testStockSymbols.push_back("SLW");
-  testStockSymbols.push_back("AAL");
-  testStockSymbols.push_back("UNG");
-  testStockSymbols.push_back("XOM");
-  testStockSymbols.push_back("XOP");
-  testStockSymbols.push_back("AMLP");
-  testStockSymbols.push_back("KGC");
-  testStockSymbols.push_back("EZU");
-  testStockSymbols.push_back("MET");
+  testStockSymbols.push_back("CLF");
+  testStockSymbols.push_back("CNDT");
+  testStockSymbols.push_back("CSX");
+  testStockSymbols.push_back("CX");
+  testStockSymbols.push_back("DGAZ");
+  testStockSymbols.push_back("DUST");
+  testStockSymbols.push_back("EGO");
+  testStockSymbols.push_back("ENDP");
+  testStockSymbols.push_back("ETE");
+  testStockSymbols.push_back("EWZ");
+  testStockSymbols.push_back("FCAU");
+  testStockSymbols.push_back("FTR");
   testStockSymbols.push_back("GDX");
-  testStockSymbols.push_back("GILD");
-  testStockSymbols.push_back("HYG");
-  testStockSymbols.push_back("XME");
-  testStockSymbols.push_back("AXP");
-  testStockSymbols.push_back("M");
-  testStockSymbols.push_back("KEY");
-  testStockSymbols.push_back("LUV");
-  testStockSymbols.push_back("MGM");
-  testStockSymbols.push_back("BMY");
+  testStockSymbols.push_back("GDXJ");
+  testStockSymbols.push_back("GG");
+  testStockSymbols.push_back("GGB");
+  testStockSymbols.push_back("GRPN");
+  testStockSymbols.push_back("GSAT");
+  testStockSymbols.push_back("HL");
+  testStockSymbols.push_back("IAG");
+  testStockSymbols.push_back("JCP");
+  testStockSymbols.push_back("JDST");
+  testStockSymbols.push_back("JNUG");
+  testStockSymbols.push_back("KGC");
+  testStockSymbols.push_back("LABD");
+  testStockSymbols.push_back("LABU");
+  testStockSymbols.push_back("LC");
+  testStockSymbols.push_back("MNKD");
+  testStockSymbols.push_back("MSTX");
   testStockSymbols.push_back("NGD");
-  testStockSymbols.push_back("RSX");
-  testStockSymbols.push_back("VEA");
-  testStockSymbols.push_back("SPXS");
-  testStockSymbols.push_back("SPXU");
-  testStockSymbols.push_back("NE");
-  testStockSymbols.push_back("DIS");
-  testStockSymbols.push_back("SDRL");
-  testStockSymbols.push_back("XIV");
-  testStockSymbols.push_back("HBAN");
-  testStockSymbols.push_back("NEM");
-  testStockSymbols.push_back("STX");
-  testStockSymbols.push_back("BAC");
-  testStockSymbols.push_back("BAX");
-  testStockSymbols.push_back("DOW");
-  testStockSymbols.push_back("MU");
-  testStockSymbols.push_back("MO");
-  testStockSymbols.push_back("AVP");
-  testStockSymbols.push_back("MPC");
-  testStockSymbols.push_back("LOW");
-  testStockSymbols.push_back("XRX");
-  testStockSymbols.push_back("X");
-  testStockSymbols.push_back("MDT");*/
-  
+  testStockSymbols.push_back("NUGT");
+  testStockSymbols.push_back("NVAX");
+  testStockSymbols.push_back("P");
+  testStockSymbols.push_back("RAD");
+  testStockSymbols.push_back("SUNEQ");
+  testStockSymbols.push_back("SVXY");
+  testStockSymbols.push_back("TVIX");
+  testStockSymbols.push_back("TWLO");
+  testStockSymbols.push_back("TZA");
+  testStockSymbols.push_back("UNG");
+  testStockSymbols.push_back("UVXY");
+  testStockSymbols.push_back("VALE");
+  testStockSymbols.push_back("WFT");
+  testStockSymbols.push_back("WPX");
+  testStockSymbols.push_back("ZNGA");
+  */
+
   for (unsigned int i = 0; i < testStockSymbols.size(); i++) {
     testStocks.push_back(Stock(testStockSymbols[i]));
   }
@@ -398,6 +174,17 @@ void TestModel::createListOfDates() {
   dates.push_back("01_19_2017");
   dates.push_back("01_20_2017");
   dates.push_back("01_23_2017");
+  dates.push_back("01_24_2017");
+  dates.push_back("01_25_2017");
+  dates.push_back("01_26_2017");
+  dates.push_back("01_27_2017");
+  dates.push_back("01_28_2017");
+  dates.push_back("01_29_2017");
+  dates.push_back("01_30_2017");
+  dates.push_back("01_31_2017");
+  dates.push_back("02_01_2017");
+  dates.push_back("02_02_2017");
+  dates.push_back("02_03_2017");
   
   /*
    01_09_2017
@@ -431,7 +218,7 @@ Stock& TestModel::getTestStock(const unsigned int& _index) {
 }
 
 std::string TestModel::createQuotesDirectory(const std::string& _symbol) {
-  return "/Users/Matt/Desktop/symbol_data/" + runDate + "/" + _symbol + ".csv";
+  return FileManager::mainDirectory + "/" + runDate + "/" + _symbol + ".csv";
 }
 
 unsigned int TestModel::totalTimeQuotes(const unsigned int& _index) {

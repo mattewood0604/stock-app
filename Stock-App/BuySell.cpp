@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include "RestCall.hpp"
 #include "BuySell.hpp"
 #include "Model.hpp"
 #include "StockModel.hpp"
@@ -28,6 +29,7 @@ void BuySell::buyOrSell(Stock& _stock) {
   
   //
   if (_stock.isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && (!Model::isStopBuying() || _stock.numberOfTrades == 0)) {
+    //RestCall::order(_stock, "buy", 1, _stock.currentQuote->price + 1);
     //std::cout << "BUY \t" << _stock.symbol << ":\t" << _stock.currentQuote->price << std::endl;
     if (_stock.numberOfTrades == 0) {
       Model::setStopBuying(false);
@@ -41,6 +43,7 @@ void BuySell::buyOrSell(Stock& _stock) {
     return;
   }
   else if (_stock.isSell) {
+    //RestCall::order(_stock, "sell", 1, _stock.currentQuote->price - 1);
     //std::cout << "SELL\t" << _stock.symbol << ":\t" << _stock.currentQuote->price << std::endl;
     //std::cout << "------------------------" << std::endl;
     _stock.moneyMade += _stock.currentQuote->price - _stock.buyPrice; //currentCandle.getOpen() - _stock.buyPrice;

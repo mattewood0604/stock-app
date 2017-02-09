@@ -76,6 +76,17 @@ StockModel::StockModel(const std::string& _symbol) {
     this->factor = 3;
     this->pd = 7;
   }
+  else if (_symbol.compare("GDXJ") == 0) {
+    this->shortTimePeriods = 37;
+    this->longTimePeriods = 24;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 26000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+  }
   else {
     this->shortTimePeriods = 20;
     this->longTimePeriods = 20;

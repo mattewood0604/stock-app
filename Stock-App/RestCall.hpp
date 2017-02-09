@@ -13,6 +13,7 @@
 #include <cstring>
 
 #include "Response.hpp"
+#include "Stock.hpp"
 
 class RestCall {
   public:

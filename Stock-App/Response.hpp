@@ -10,6 +10,7 @@
 #define Response_hpp
 
 #include <string>
+#include <vector>
 
 class Response {
   public:
