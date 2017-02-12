@@ -28,6 +28,7 @@ class FileManager {
   
     static std::string readStockSymbolsForQuotes();
   
+    static void writeTimeSpanProfitsForSymbol(const std::string& _symbol, const std::string& _data);
     static void writeProfitsForSymbol(const std::string& _symbol, const std::string& _data);
   
   private:
