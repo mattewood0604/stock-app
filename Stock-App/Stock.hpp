@@ -63,6 +63,8 @@ class Stock {
   
     unsigned int numberOfTrades;
   
+    unsigned int numberOfQuotes;
+  
   private:
     friend class BuySell;
   

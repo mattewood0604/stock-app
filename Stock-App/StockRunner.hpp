@@ -13,11 +13,14 @@ class StockRunner {
   public:
     static void runStocks();
     static void runDailyProfits();
+    static void dailyProfitsTimeSpan();
     static void runProfitMaximizer();
   
   private:
     static void logDateForIndex(const unsigned int& _index);
+  
     static float runDailyStocksForSetDate();
+    static float runDailyTimeSpanForSetDate();
   
     static int totalNumberOfTrades;
 };

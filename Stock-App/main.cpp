@@ -234,6 +234,8 @@ unsigned int getLowestNumberOfQuotes() {
   return lowestNumberOfQuotes;
 }
 
+float testProfits = 0;
+
 void calculateTimeSpanProfitsForDate(float* _profits, const unsigned int& _dateIndex) {
   Stock& stock = TestModel::getTestStock(g_stockIndex);
   stock.testQuotes.clear();
@@ -254,7 +256,14 @@ void calculateTimeSpanProfitsForDate(float* _profits, const unsigned int& _dateI
     
     float buyPrice = stock.testQuotes[i].price;
     float sellPrice = stock.testQuotes[i + timeSpan].price;
-    float profit = buyPrice - sellPrice;
+    float profit = sellPrice - buyPrice;
+    
+    //if (i == 602) {
+    //  std::cout << "Buy Time:  " << i << std::endl;
+    //  std::cout << "Sell Time: " << i + timeSpan << std::endl;
+    //  testProfits += profit;
+    //  std::cout << "Profit = " << profit << std::endl;
+    //}
     
     if (_profits[i] == g_defaultProfit) {
       _profits[i] = 0;
@@ -265,8 +274,15 @@ void calculateTimeSpanProfitsForDate(float* _profits, const unsigned int& _dateI
 }
 
 void logTimeSpanProfits(const float* _profits) {
+  float maxProfit = -100000;
   for (unsigned int i = 0; i < g_lowestNumberOfQuotes; i++) {
     if (_profits[i] != g_defaultProfit) {
+      if (_profits[i] > maxProfit) {
+        maxProfit = _profits[i];
+        std::cout << "MAX PROFIT: " << maxProfit << std::endl;
+        std::cout << "QUOTE NUMBER: " << i << std::endl;
+      }
+      
       std::cout << _profits[i] << std::endl;
       g_profitData.append(std::to_string(_profits[i]));
       g_profitData.append("\n");
@@ -281,6 +297,7 @@ void logTimeSpanProfits(const float* _profits) {
 
 int main(void)
 {
+  /*
   TestModel::initialize();
   
   while (g_stockIndex < TestModel::getTestStockCount()) {
@@ -319,17 +336,18 @@ int main(void)
     g_stockIndex++;
   }
   
-  
   /*for (unsigned int i = 0; i < 100; i++) {
     unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
     if (volume >= 1000000) {
       std::cout << symbols[i] << ": " << volume << std::endl;
     }
-  }*/
+  }
+   */
 
   //StockRunner::runStocks();
   
   //StockRunner::runDailyProfits();
+  StockRunner::dailyProfitsTimeSpan();
   //runProfitMaximizationForIndividualStocks();
   
   //const Stock& stock = TestModel::getTestStock(0);

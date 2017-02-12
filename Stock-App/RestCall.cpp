@@ -367,4 +367,5 @@ void RestCall::mockRestCall(Stock& _stock, const unsigned int& _marketTime) {
   
   TimeQuote& quote = _stock.getTestQuote(_marketTime);
   _stock.addTimeToCandles(quote);
+  _stock.numberOfQuotes++;
 }

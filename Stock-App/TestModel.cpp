@@ -57,6 +57,20 @@ void TestModel::initialize() {
   //testStockSymbols.push_back("LABD"); // 22	20	39
   //testStockSymbols.push_back("LABU"); // 78	24	42
   
+  //.testStockSymbols.push_back("CLF");
+  //testStockSymbols.push_back("SPY");
+  //testStockSymbols.push_back("NVDA");
+  //testStockSymbols.push_back("GRPN");
+  //testStockSymbols.push_back("JCP");
+  //testStockSymbols.push_back("JNUG");
+  //testStockSymbols.push_back("JDST");
+  //testStockSymbols.push_back("LABU");
+  //testStockSymbols.push_back("NUGT");
+  testStockSymbols.push_back("TWLO");
+  //testStockSymbols.push_back("DUST");
+  //testStockSymbols.push_back("VALE");
+  
+  
   /*
   testStockSymbols.push_back("AA");
   testStockSymbols.push_back("AG");
@@ -97,6 +111,7 @@ void TestModel::initialize() {
   testStockSymbols.push_back("NGD");
   testStockSymbols.push_back("NUGT");
   testStockSymbols.push_back("NVAX");
+  testStockSymbols.push_back("NVDA");
   testStockSymbols.push_back("P");
   testStockSymbols.push_back("RAD");
   testStockSymbols.push_back("SUNEQ");
@@ -110,7 +125,7 @@ void TestModel::initialize() {
   testStockSymbols.push_back("WFT");
   testStockSymbols.push_back("WPX");
   testStockSymbols.push_back("ZNGA");
-  */
+   */
 
   for (unsigned int i = 0; i < testStockSymbols.size(); i++) {
     testStocks.push_back(Stock(testStockSymbols[i]));
@@ -118,7 +133,7 @@ void TestModel::initialize() {
 }
 
 void TestModel::createListOfDates() {
-  /*dates.push_back("10_6_2016");
+  dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -164,7 +179,7 @@ void TestModel::createListOfDates() {
   dates.push_back("12_30_2016");
   dates.push_back("1_3_2017");
   dates.push_back("1_4_2017");
-  dates.push_back("1_5_2017");*/
+  dates.push_back("1_5_2017");
   dates.push_back("01_09_2017");
   dates.push_back("01_10_2017");
   dates.push_back("01_11_2017");

@@ -99,3 +99,52 @@ float StockRunner::runDailyStocksForSetDate() {
   
   return percentageMade;
 }
+
+void StockRunner::dailyProfitsTimeSpan() {
+  float percentageMade = 0.0f;
+  totalNumberOfTrades = 0;
+  
+  TestModel::initialize();
+  
+  for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
+    TestModel::setDate(TestModel::getDateAtIndex(i));
+    logDateForIndex(i);
+    
+    percentageMade += runDailyTimeSpanForSetDate();
+    
+    Model::setPurchasedStockSymbol("");
+    TestModel::hardResetStock();
+  }
+  
+  std::cout << "TOTAL DAYS:\t\t\t" << TestModel::getNumberOfDates() << std::endl;
+  std::cout << "TOTAL PERCENTAGE:\t" << percentageMade * 100 << std::endl;
+  std::cout << "TOTAL TRADES:\t\t" << totalNumberOfTrades << std::endl;
+  std::cout << "TRADES / DAY:\t\t" << totalNumberOfTrades / TestModel::getNumberOfDates() << std::endl;
+  std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / TestModel::getNumberOfDates() << std::endl;
+}
+
+float StockRunner::runDailyTimeSpanForSetDate() {
+  FileManager::readQuotes();
+  
+  for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
+    for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
+      RestCall::mockRestCall(TestModel::getTestStock(stockIndex), marketTime);
+    }
+    
+    for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
+      Stock& stock = TestModel::getTestStock(stockIndex);
+      BuySell::buyOrSellTimeSpan(stock);
+    }
+  }
+  
+  TestModel::logMoneyMade();
+  
+  float percentageMade = 0;
+  for (unsigned int i = 0; i < TestModel::getTestStockCount(); i++) {
+    const Stock& stock = TestModel::getTestStock(i);
+    percentageMade += !isnan(stock.getPercentageMade()) ? stock.getPercentageMade() : 0.0f;
+    totalNumberOfTrades += stock.numberOfTrades;
+  }
+  
+  return percentageMade;
+}

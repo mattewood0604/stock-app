@@ -75,6 +75,12 @@ StockModel::StockModel(const std::string& _symbol) {
     
     this->factor = 3;
     this->pd = 7;
+    
+    this->minutesSpan = 20;
+    this->buyQuoteNumber = 14;
+    
+    unsigned int timeSpan = this->minutesSpan * 60 / 2;
+    this->sellQuoteNumber = this->buyQuoteNumber + timeSpan;
   }
   else if (_symbol.compare("GDXJ") == 0) {
     this->shortTimePeriods = 37;
@@ -86,6 +92,23 @@ StockModel::StockModel(const std::string& _symbol) {
     
     this->factor = 3;
     this->pd = 7;
+  }
+  else if (_symbol.compare("TWLO") == 0) {
+    this->shortTimePeriods = 20;
+    this->longTimePeriods = 20;
+    this->wTimePeriods = 4;
+    this->maxCandleTime = 15000;
+    this->maxGain = 0.10f;
+    this->maxLoss = 0.10f;
+    
+    this->factor = 3;
+    this->pd = 7;
+    
+    this->minutesSpan = 60;
+    this->buyQuoteNumber = 2;
+    
+    unsigned int timeSpan = this->minutesSpan * 60 / 2;
+    this->sellQuoteNumber = this->buyQuoteNumber + timeSpan;
   }
   else {
     this->shortTimePeriods = 20;
@@ -183,4 +206,12 @@ void StockModel::resetLongTimePeriods() {
 
 void StockModel::resetWTimePeriods() {
   this->wTimePeriods = 4;
+}
+
+const unsigned int& StockModel::getBuyQuoteNumber() const {
+  return this->buyQuoteNumber;
+}
+
+const unsigned int& StockModel::getSellQuoteNumber() const {
+  return this->sellQuoteNumber;
 }

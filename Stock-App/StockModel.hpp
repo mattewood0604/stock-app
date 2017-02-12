@@ -28,6 +28,9 @@ class StockModel {
     const unsigned int& getFactor() const;
     const unsigned int& getPd() const;
   
+    const unsigned int& getBuyQuoteNumber() const;
+    const unsigned int& getSellQuoteNumber() const;
+  
     void incrementShortTimePeriods();
     void incrementLongTimePeriods();
     void incrementMaxCandleTime();
@@ -51,6 +54,10 @@ class StockModel {
   
     unsigned int factor;
     unsigned int pd;
+  
+    unsigned int minutesSpan;
+    unsigned int buyQuoteNumber;
+    unsigned int sellQuoteNumber;
 };
 
 #endif /* StockModel_hpp */

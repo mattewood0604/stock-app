@@ -42,6 +42,7 @@ void Model::addTimeQuote(TimeQuote _timeQuote) {
     stocks[_timeQuote.getSymbol()] = Stock(_timeQuote.getSymbol());
   }
   stock.addTimeToCandles(_timeQuote);
+  stock.numberOfQuotes++;
 }
 
 void Model::setPurchasedStockSymbol(const std::string& _symbol) {

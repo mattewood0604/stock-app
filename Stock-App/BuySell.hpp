@@ -14,6 +14,7 @@
 class BuySell {
   public:
     static void buyOrSell(Stock& _stock);
+    static void buyOrSellTimeSpan(Stock& _stock);
   
 };
 

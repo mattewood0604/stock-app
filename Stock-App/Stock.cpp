@@ -61,6 +61,8 @@ void Stock::reset() {
   this->maxMade = 0;
   
   this->numberOfTrades = 0;
+  
+  this->numberOfQuotes = 0;
 }
 
 void Stock::addTimeToCandles(TimeQuote& _timeQuote) {
