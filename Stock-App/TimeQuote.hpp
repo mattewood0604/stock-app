@@ -14,7 +14,8 @@
 class TimeQuote {
   public:
     enum FROM { JSON, CSV };
-  
+    
+    TimeQuote();
     TimeQuote(const std::string& _json, FROM _from = JSON, const std::string& _symbol = "");
   
     void writeToFile() const;

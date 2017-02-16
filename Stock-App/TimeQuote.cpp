@@ -25,6 +25,19 @@ std::string TimeQuote::changeKey = "\"change\":";
 std::string TimeQuote::priceKey = "\"last_trade_price\":";
 std::string TimeQuote::symbolKey = "\"symbol\":";
 
+TimeQuote::TimeQuote() {
+  this->json = "";
+  this->dayTime = (uint64_t)time(0) * 1000;
+  this->symbol = "";
+  this->price = 0;
+  this->percent = 0;//parseFloat(percentKey);
+  this->change = 0;//parseFloat(changeKey);
+  this->bid = 0;
+  this->bidQty = 0;
+  this->offer = 0;
+  this->offerQty = 0;
+}
+
 TimeQuote::TimeQuote(const std::string& _json, FROM _from, const std::string& _symbol) {
   if (_from == CSV) {
     this->fromCSV(_symbol, _json);

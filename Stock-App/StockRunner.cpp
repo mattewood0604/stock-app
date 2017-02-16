@@ -22,10 +22,9 @@ int StockRunner::totalNumberOfTrades = 0;
 void StockRunner::runStocks() {
   bool marketBecameOpen = false;
   
-  FileManager::init();
+  //FileManager::init();
   RestCall::init();
 
-  
   std::cout << "Begin Querying For Data..." << std::endl;
   while(1) {
   	if (Model::isMarketOpen()) {
@@ -34,6 +33,8 @@ void StockRunner::runStocks() {
       }
 
     	RestCall::quotes();
+
+      BuySell::buyOrSellTimeSpan(Model::getStockForSymbol("JDST"));
       
     	sleep(2);
       marketBecameOpen = true;
@@ -102,6 +103,7 @@ float StockRunner::runDailyStocksForSetDate() {
 
 void StockRunner::dailyProfitsTimeSpan() {
   float percentageMade = 0.0f;
+  unsigned int totalDays = 0;
   totalNumberOfTrades = 0;
   
   TestModel::initialize();
@@ -110,21 +112,27 @@ void StockRunner::dailyProfitsTimeSpan() {
     TestModel::setDate(TestModel::getDateAtIndex(i));
     logDateForIndex(i);
     
-    percentageMade += runDailyTimeSpanForSetDate();
+    float percent = runDailyTimeSpanForSetDate();
+    if (percent != 0) {
+      totalDays++;
+    }
+    percentageMade += percent;
     
     Model::setPurchasedStockSymbol("");
     TestModel::hardResetStock();
   }
   
-  std::cout << "TOTAL DAYS:\t\t\t" << TestModel::getNumberOfDates() << std::endl;
+  std::cout << "TOTAL DAYS:\t\t\t" << totalDays << std::endl;
   std::cout << "TOTAL PERCENTAGE:\t" << percentageMade * 100 << std::endl;
   std::cout << "TOTAL TRADES:\t\t" << totalNumberOfTrades << std::endl;
-  std::cout << "TRADES / DAY:\t\t" << totalNumberOfTrades / TestModel::getNumberOfDates() << std::endl;
-  std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / TestModel::getNumberOfDates() << std::endl;
+  std::cout << "TRADES / DAY:\t\t" << totalNumberOfTrades / totalDays << std::endl;
+  std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / totalDays << std::endl;
 }
 
 float StockRunner::runDailyTimeSpanForSetDate() {
-  FileManager::readQuotes();
+  if(!FileManager::readQuotes()) {
+    return 0;
+  }
   
   for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(); marketTime++) {
     for (unsigned int stockIndex = 0; stockIndex < TestModel::getTestStockCount(); stockIndex++) {
