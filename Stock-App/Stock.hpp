@@ -49,7 +49,7 @@ class Stock {
   
     std::vector<TimeQuote> testQuotes;
   
-    TimeQuote* currentQuote;
+    TimeQuote currentQuote;
   
     float averagePriceEMA;
     float apESA;

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
+#include <math.h>
 
 #include "FileManager.hpp"
 #include "Model.hpp"
@@ -29,10 +30,10 @@ void RestCall::init() {
   response.init();
   
   initializeQuotesHandle();
-  //initializeAuthenticationHandle();
+  initializeAuthenticationHandle();
   
-  //authenticate();
-  //initializeAvailableCashHandle();
+  authenticate();
+  initializeAvailableCashHandle();
   
   // Create a handle for each type of rest call
   // Quotes
@@ -89,6 +90,8 @@ void RestCall::initializeAvailableCashHandle() {
 
 void RestCall::order(const Stock& _stock, const std::string& _type, const unsigned int& _quantity, const float& _price) {
   CURL* buyHandle = curl_easy_init();
+
+  float price = floor(_price * 100 + 0.5) / 100;
   
   curl_easy_setopt(buyHandle, CURLOPT_CUSTOMREQUEST, "POST");
   curl_easy_setopt(buyHandle, CURLOPT_URL, "https://api.robinhood.com/orders/");
@@ -115,7 +118,10 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
   postFields.append("&side=");
   postFields.append(_type);
   postFields.append("&price=");
-  postFields.append(std::to_string(_price));
+  postFields.append(std::to_string(price));
+
+  std::cout << "Post Fields: " << std::endl;
+  std::cout << postFields << std::endl;
   
   curl_easy_setopt(buyHandle, CURLOPT_POSTFIELDS, postFields.c_str());
   curl_easy_setopt(buyHandle, CURLOPT_WRITEFUNCTION, RestCall::WriteMemoryCallback);
@@ -126,7 +132,9 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
     fprintf(stderr, "buy %s: curl_easy_perform() failed: %s\n", _stock.symbol.c_str(), curl_easy_strerror(returnCode));
   }
   else {
+    Model::loggingEnabled = true;
     response.log();
+    Model::loggingEnabled = false;
   }
   
   response.size = 0;

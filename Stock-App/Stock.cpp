@@ -15,19 +15,21 @@
 #include "StockModel.hpp"
 #include "IndicatorAlgorithms.hpp"
 
-Stock::Stock() : stockModel("") {
+Stock::Stock() : currentQuote(), stockModel("") {
   this->testQuotes = std::vector<TimeQuote>();
   
   this->reset();
 }
 
-Stock::Stock(const std::string& _symbol) : stockModel(_symbol) {
+Stock::Stock(const std::string& _symbol) : currentQuote(), stockModel(_symbol) {
   this->symbol = _symbol;
-  //std::string url = RestCall::urlForStockSymbol(_symbol);
-  //if (url.length() == 0) {
-  //  std::cout << _symbol << std::endl;
-  //}
-  //this->instrumentUrl = url.length() ? url : "";
+  std::string url = RestCall::urlForStockSymbol(_symbol);
+  if (url.length() == 0) {
+    std::cout << _symbol << std::endl;
+  }
+  this->instrumentUrl = url.length() ? url : "";
+
+  std::cout << this->instrumentUrl << std::endl;
   
   this->testQuotes = std::vector<TimeQuote>();
   
@@ -66,7 +68,7 @@ void Stock::reset() {
 }
 
 void Stock::addTimeToCandles(TimeQuote& _timeQuote) {
-  this->currentQuote = &_timeQuote;
+  this->currentQuote = _timeQuote;
   
   const unsigned int& maxCandleTime = this->stockModel.getMaxCandleTime();
   
