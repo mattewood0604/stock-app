@@ -28,8 +28,8 @@ class StockModel {
     const unsigned int& getFactor() const;
     const unsigned int& getPd() const;
   
-    const unsigned int& getBuyQuoteNumber() const;
-    const unsigned int& getSellQuoteNumber() const;
+    const unsigned int& getBuyQuoteNumber(const unsigned int& _index) const;
+    const unsigned int& getSellQuoteNumber(const unsigned int& _index) const;
   
     void incrementShortTimePeriods();
     void incrementLongTimePeriods();
@@ -56,8 +56,8 @@ class StockModel {
     unsigned int pd;
   
     unsigned int minutesSpan;
-    unsigned int buyQuoteNumber;
-    unsigned int sellQuoteNumber;
+    unsigned int buyQuoteNumber[10];
+    unsigned int sellQuoteNumber[10];
 };
 
 #endif /* StockModel_hpp */

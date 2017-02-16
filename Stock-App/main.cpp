@@ -295,9 +295,7 @@ void logTimeSpanProfits(const float* _profits) {
   g_profitData.append("\n");
 }
 
-int main(void)
-{
-  /*
+void maximizeTimeSpan() {
   TestModel::initialize();
   
   while (g_stockIndex < TestModel::getTestStockCount()) {
@@ -335,7 +333,10 @@ int main(void)
     
     g_stockIndex++;
   }
-  
+}
+
+int main(void)
+{
   /*for (unsigned int i = 0; i < 100; i++) {
     unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
     if (volume >= 1000000) {
@@ -347,8 +348,10 @@ int main(void)
   //StockRunner::runStocks();
   
   //StockRunner::runDailyProfits();
-  StockRunner::dailyProfitsTimeSpan();
   //runProfitMaximizationForIndividualStocks();
+  
+  StockRunner::dailyProfitsTimeSpan();
+  //maximizeTimeSpan();
   
   //const Stock& stock = TestModel::getTestStock(0);
   //RestCall::buy(stock, 1, 7.63);

@@ -70,6 +70,7 @@ void TestModel::initialize() {
   //testStockSymbols.push_back("DUST");
   //testStockSymbols.push_back("VALE");
   
+  //testStockSymbols.push_back("SVXY");
   
   /*
   testStockSymbols.push_back("AA");
@@ -133,7 +134,7 @@ void TestModel::initialize() {
 }
 
 void TestModel::createListOfDates() {
-  dates.push_back("10_6_2016");
+  /*dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -183,7 +184,7 @@ void TestModel::createListOfDates() {
   dates.push_back("01_09_2017");
   dates.push_back("01_10_2017");
   dates.push_back("01_11_2017");
-  dates.push_back("01_13_2017");
+  dates.push_back("01_13_2017");*/
   dates.push_back("01_17_2017");
   dates.push_back("01_18_2017");
   dates.push_back("01_19_2017");
@@ -200,6 +201,14 @@ void TestModel::createListOfDates() {
   dates.push_back("02_01_2017");
   dates.push_back("02_02_2017");
   dates.push_back("02_03_2017");
+  dates.push_back("02_07_2017");
+  dates.push_back("02_08_2017");
+  dates.push_back("02_09_2017");
+  dates.push_back("02_10_2017");
+  dates.push_back("02_13_2017");
+  dates.push_back("02_14_2017");
+  dates.push_back("02_15_2017");
+  dates.push_back("02_16_2017");
   
   /*
    01_09_2017

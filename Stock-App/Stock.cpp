@@ -114,7 +114,7 @@ void Stock::logMoneyMade() const {
   float percentage = (this->buyPrice == 0) ? 0 : (this->moneyMade / this->buyPrice);
   std::cout << this->symbol << "\t"
             << this->moneyMade << "\t"
-            << percentage << "\t"
+            << percentage * 100 << "\t"
             << holding << "\t"
             << this->numberOfTrades
             << std::endl << std::endl;

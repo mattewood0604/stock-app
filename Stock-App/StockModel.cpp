@@ -76,11 +76,25 @@ StockModel::StockModel(const std::string& _symbol) {
     this->factor = 3;
     this->pd = 7;
     
-    this->minutesSpan = 20;
-    this->buyQuoteNumber = 14;
+    this->minutesSpan = 55;
+    this->buyQuoteNumber[0] = 2550;
+    this->buyQuoteNumber[1] = 0;
+    
+    //this->minutesSpan = 45;
+    //this->buyQuoteNumber[0] = 3450;
+    //this->buyQuoteNumber[1] = 0;
+    
+    //this->minutesSpan = 20;
+    //this->buyQuoteNumber[0] = 14;
+    //this->buyQuoteNumber[1] = 0;
+    //this->buyQuoteNumber[1] = 2705;
+    //this->buyQuoteNumber[2] = 0;
     
     unsigned int timeSpan = this->minutesSpan * 60 / 2;
-    this->sellQuoteNumber = this->buyQuoteNumber + timeSpan;
+    this->sellQuoteNumber[0] = this->buyQuoteNumber[0] + timeSpan;
+    this->sellQuoteNumber[1] = 0;
+    //this->sellQuoteNumber[1] = this->buyQuoteNumber[1] + timeSpan;
+    //this->sellQuoteNumber[2] = 0;
   }
   else if (_symbol.compare("GDXJ") == 0) {
     this->shortTimePeriods = 37;
@@ -104,11 +118,25 @@ StockModel::StockModel(const std::string& _symbol) {
     this->factor = 3;
     this->pd = 7;
     
-    this->minutesSpan = 60;
-    this->buyQuoteNumber = 2;
+    this->minutesSpan = 33;
+    this->buyQuoteNumber[0] = 627;
+    this->buyQuoteNumber[1] = 2388;
+    this->buyQuoteNumber[2] = 3598;
+    this->buyQuoteNumber[3] = 5374;
+    this->buyQuoteNumber[4] = 6426;
+    this->buyQuoteNumber[5] = 0;
     
-    unsigned int timeSpan = this->minutesSpan * 60 / 2;
-    this->sellQuoteNumber = this->buyQuoteNumber + timeSpan;
+    //this->minutesSpan = 60;
+    //this->buyQuoteNumber[0] = 2;
+    //this->buyQuoteNumber[1] = 0;
+    
+    unsigned int timeSpan = this->minutesSpan * 30;
+    this->sellQuoteNumber[0] = this->buyQuoteNumber[0] + timeSpan;
+    this->sellQuoteNumber[1] = this->buyQuoteNumber[1] + timeSpan;
+    this->sellQuoteNumber[2] = this->buyQuoteNumber[2] + timeSpan;
+    this->sellQuoteNumber[3] = this->buyQuoteNumber[3] + timeSpan;
+    this->sellQuoteNumber[4] = this->buyQuoteNumber[4] + timeSpan;
+    this->sellQuoteNumber[5] = 0;
   }
   else {
     this->shortTimePeriods = 20;
@@ -208,10 +236,10 @@ void StockModel::resetWTimePeriods() {
   this->wTimePeriods = 4;
 }
 
-const unsigned int& StockModel::getBuyQuoteNumber() const {
-  return this->buyQuoteNumber;
+const unsigned int& StockModel::getBuyQuoteNumber(const unsigned int& _index) const {
+  return this->buyQuoteNumber[_index];
 }
 
-const unsigned int& StockModel::getSellQuoteNumber() const {
-  return this->sellQuoteNumber;
+const unsigned int& StockModel::getSellQuoteNumber(const unsigned int& _index) const {
+  return this->sellQuoteNumber[_index];
 }

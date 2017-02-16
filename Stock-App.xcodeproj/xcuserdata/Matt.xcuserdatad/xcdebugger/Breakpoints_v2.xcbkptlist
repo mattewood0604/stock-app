@@ -205,7 +205,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "Stock::addQuoteToTestData(TimeQuote&amp; _timeQuote)"
+            landmarkName = "Stock::getCandleAtIndex(const unsigned int&amp; _index)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -220,9 +220,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "Stock::addQuoteToTestData(TimeQuote&amp; _timeQuote)"
-            landmarkType = "7">
+            endingLineNumber = "99">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -260,11 +258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockModel.cpp"
-            timestampString = "508628435.31029"
+            timestampString = "508981046.09499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "StockModel::reset()"
             landmarkType = "7">
          </BreakpointContent>
@@ -377,7 +375,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
             endingLineNumber = "138"
-            landmarkName = "RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp)"
+            landmarkName = "RestCall::order(const Stock&amp; _stock, const std::string&amp; _type, const unsigned int&amp; _quantity, const float&amp; _price)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -393,7 +391,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
             endingLineNumber = "135"
-            landmarkName = "RestCall::WriteMemoryCallback(void* _contents, size_t _size, size_t _nmemb, void* _userp)"
+            landmarkName = "RestCall::order(const Stock&amp; _stock, const std::string&amp; _type, const unsigned int&amp; _quantity, const float&amp; _price)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -646,7 +644,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "372"
-            endingLineNumber = "372">
+            endingLineNumber = "372"
+            landmarkName = "RestCall::mockRestCall(Stock&amp; _stock, const unsigned int&amp; _marketTime)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -656,11 +656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "508628435.31029"
+            timestampString = "508904901.946141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374">
+            startingLineNumber = "377"
+            endingLineNumber = "377">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -670,11 +670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "508628435.31029"
+            timestampString = "508904901.946141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373">
+            startingLineNumber = "376"
+            endingLineNumber = "376">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -769,7 +769,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "RestCall::authenticate()"
+            landmarkName = "RestCall::urlForStockSymbol(const std::string&amp; _symbol)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1024,9 +1024,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "Stock::getPercentageMade()"
-            landmarkType = "7">
+            endingLineNumber = "126">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1100,11 +1098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/TestModel.cpp"
-            timestampString = "508615079.470117"
+            timestampString = "508977062.716097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363">
+            startingLineNumber = "379"
+            endingLineNumber = "379">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1151,7 +1149,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
             endingLineNumber = "369"
-            landmarkName = "RestCall::mockRestCall(Stock&amp; _stock, const unsigned int&amp; _marketTime)"
+            landmarkName = "RestCall::instruments()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1194,11 +1192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508622685.396458"
+            timestampString = "508904070.293536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1210,12 +1208,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockModel.cpp"
-            timestampString = "508623987.904337"
+            timestampString = "508979151.973354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "StockModel::StockModel(const std::string&amp; _symbol)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/BuySell.cpp"
+            timestampString = "508904065.81048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/BuySell.cpp"
+            timestampString = "508904066.834519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
