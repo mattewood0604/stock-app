@@ -66,10 +66,10 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("JDST") == 0) {
-    this->shortTimePeriods = 24;
-    this->longTimePeriods = 75;
+    this->shortTimePeriods = 20;
+    this->longTimePeriods = 40;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 34000;
+    this->maxCandleTime = 64000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
