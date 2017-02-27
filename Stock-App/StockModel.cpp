@@ -11,10 +11,10 @@
 StockModel::StockModel(const std::string& _symbol) {
   if (_symbol.compare("JNUG") == 0) {
     // 68 40 48000
-    this->shortTimePeriods = 20;
-    this->longTimePeriods = 21;
+    this->shortTimePeriods = 37;
+    this->longTimePeriods = 40;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 151000;
+    this->maxCandleTime = 106000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -118,12 +118,12 @@ StockModel::StockModel(const std::string& _symbol) {
     this->factor = 3;
     this->pd = 7;
     
-    this->minutesSpan = 33;
-    this->buyQuoteNumber[0] = 627;
-    this->buyQuoteNumber[1] = 2388;
-    this->buyQuoteNumber[2] = 3598;
-    this->buyQuoteNumber[3] = 5374;
-    this->buyQuoteNumber[4] = 6426;
+    this->minutesSpan = 23;
+    this->buyQuoteNumber[0] = 836;
+    this->buyQuoteNumber[1] = 3706;
+    this->buyQuoteNumber[2] = 5637;
+    this->buyQuoteNumber[3] = 6643;
+    this->buyQuoteNumber[4] = 7449;
     this->buyQuoteNumber[5] = 0;
     
     //this->minutesSpan = 60;
@@ -166,7 +166,7 @@ StockModel::StockModel(const std::string& _symbol) {
 // Long: 53	Short: 28	Time: 22000 16% (Found: 12_02_2016)
 
 void StockModel::reset() {
-  this->maxCandleTime = 15000;
+  this->maxCandleTime = 60000;
   this->shortTimePeriods = 20;
   this->longTimePeriods = 20;
   this->wTimePeriods = 4;
@@ -213,7 +213,7 @@ void StockModel::incrementLongTimePeriods() {
 }
 
 void StockModel::incrementMaxCandleTime() {
-  this->maxCandleTime += 1000;
+  this->maxCandleTime += 2000;
 }
 
 void StockModel::incrementWTimePeriods() {
@@ -221,7 +221,7 @@ void StockModel::incrementWTimePeriods() {
 }
 
 void StockModel::resetMaxCandleTime() {
-  this->maxCandleTime = 15000;
+  this->maxCandleTime = 60000;
 }
 
 void StockModel::resetShortTimePeriods() {
