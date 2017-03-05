@@ -20,6 +20,8 @@
 #include "StockRunner.hpp"
 #include "TestModel.hpp"
 
+unsigned int* gNumberOfTrades;
+
 float**** createProfitStorage() {
   const unsigned int wTimePeriods = TestModel::maximumWTimePeriods + 1;
   const unsigned int longTimePeriods = TestModel::maximumLongTimePeriods + 1;
@@ -39,6 +41,12 @@ float**** createProfitStorage() {
       }
     }
   }
+  
+  gNumberOfTrades = new unsigned int[longTimePeriods * shortTimePeriods * candleTimes];
+  for (unsigned int i = 0; i < longTimePeriods * shortTimePeriods * candleTimes; i++) {
+    gNumberOfTrades[longTimePeriods * shortTimePeriods * candleTimes] = 0;
+  }
+  
   return profitStorage;
 }
 
@@ -52,6 +60,8 @@ void resetProfitStorage(float**** _profitStorage, unsigned int _w, unsigned int 
       }
     }
   //}
+  
+  delete [] gNumberOfTrades;
 }
 
 void calculateProfits(Stock& _stock, const StockModel& _stockModel, float**** _profits, unsigned int _index) {
@@ -63,6 +73,7 @@ void calculateProfits(Stock& _stock, const StockModel& _stockModel, float**** _p
   //}
   
   if (!isnan(_stock.getPercentageMade())) {
+    gNumberOfTrades[_stockModel.getLongTimePeriods() * _stockModel.getShortTimePeriods() * (_stockModel.getMaxCandleTime() / 1000)] += _stock.numberOfTrades;
     _profits[_stockModel.getWTimePeriods()][_stockModel.getLongTimePeriods()][_stockModel.getShortTimePeriods()][_stockModel.getMaxCandleTime() / 1000] += (_stock.getPercentageMade() * 10000);
   }
 }
@@ -89,6 +100,7 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
     for (unsigned int shortTime = 20; shortTime < TestModel::maximumShortTimePeriods; shortTime++) {
       for (unsigned int candleTime = 15; candleTime < TestModel::maximumCandleTime / 1000; candleTime++) {
         float profit = _profits[stockModel.getWTimePeriods()][longTime][shortTime][candleTime] / 100;
+        unsigned int numberOfTrades = gNumberOfTrades[longTime * shortTime * candleTime];
         totalForTheDay++;
         if (profit > TestModel::getNumberOfDates() && profit < 1000) {
           totalPositive++;
@@ -337,24 +349,11 @@ void maximizeTimeSpan() {
 
 int main(void)
 {
-  /*for (unsigned int i = 0; i < 100; i++) {
-    unsigned int volume = RestCall::getVolumeForStockSymbol(symbols[i]);
-    if (volume >= 1000000) {
-      std::cout << symbols[i] << ": " << volume << std::endl;
-    }
-  }
-   */
-
-  //StockRunner::runStocks();
-  
-  //StockRunner::runDailyProfits();
+  StockRunner::runDailyProfits();
   //runProfitMaximizationForIndividualStocks();
   
-  StockRunner::dailyProfitsTimeSpan();
+  //StockRunner::dailyProfitsTimeSpan();
   //maximizeTimeSpan();
-  
-  //const Stock& stock = TestModel::getTestStock(0);
-  //RestCall::buy(stock, 1, 7.63);
   
   return 0;
 }

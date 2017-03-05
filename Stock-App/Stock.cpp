@@ -23,13 +23,13 @@ Stock::Stock() : currentQuote(), stockModel("") {
 
 Stock::Stock(const std::string& _symbol) : currentQuote(), stockModel(_symbol) {
   this->symbol = _symbol;
-  std::string url = RestCall::urlForStockSymbol(_symbol);
-  if (url.length() == 0) {
-    std::cout << _symbol << std::endl;
-  }
-  this->instrumentUrl = url.length() ? url : "";
+  //std::string url = RestCall::urlForStockSymbol(_symbol);
+  //if (url.length() == 0) {
+  //  std::cout << _symbol << std::endl;
+  //}
+  //this->instrumentUrl = url.length() ? url : "";
 
-  std::cout << this->instrumentUrl << std::endl;
+  //std::cout << this->instrumentUrl << std::endl;
   
   this->testQuotes = std::vector<TimeQuote>();
   

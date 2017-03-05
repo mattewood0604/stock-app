@@ -434,11 +434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510442606.552577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
          </BreakpointContent>
@@ -450,11 +450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510441954.22264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
          </BreakpointContent>
@@ -466,11 +466,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510441954.22264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
          </BreakpointContent>
@@ -482,11 +482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510442606.552577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "calculateProfits(Stock&amp; _stock, const StockModel&amp; _stockModel, float**** _profits, unsigned int _index)"
             landmarkType = "9">
          </BreakpointContent>
@@ -530,11 +530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510442606.552577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -608,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510442606.552577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -624,11 +624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "506570141.918176"
+            timestampString = "510442606.552577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "runProfitMaximizationForIndividualStocks()"
             landmarkType = "9">
          </BreakpointContent>
@@ -656,11 +656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "508904901.946141"
+            timestampString = "510446577.985619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377">
+            startingLineNumber = "376"
+            endingLineNumber = "376">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -670,11 +670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/main.cpp"
-            timestampString = "508904901.946141"
+            timestampString = "510446577.985619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376">
+            startingLineNumber = "375"
+            endingLineNumber = "375">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -988,7 +988,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "506040670.30707"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -1004,7 +1004,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "506040671.791137"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -1098,11 +1098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/TestModel.cpp"
-            timestampString = "509848962.997196"
+            timestampString = "510444511.525646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383">
+            startingLineNumber = "373"
+            endingLineNumber = "373">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1160,7 +1160,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508622685.396458"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -1176,7 +1176,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508622685.396458"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -1192,7 +1192,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508904070.293536"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -1224,7 +1224,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508904065.81048"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -1240,7 +1240,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "508904066.834519"
+            timestampString = "510447294.429828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"

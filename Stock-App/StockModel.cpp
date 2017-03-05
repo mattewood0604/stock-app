@@ -66,10 +66,10 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("JDST") == 0) {
-    this->shortTimePeriods = 20;
-    this->longTimePeriods = 40;
+    this->shortTimePeriods = 21;
+    this->longTimePeriods = 20;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 64000;
+    this->maxCandleTime = 104000;//64000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -166,7 +166,7 @@ StockModel::StockModel(const std::string& _symbol) {
 // Long: 53	Short: 28	Time: 22000 16% (Found: 12_02_2016)
 
 void StockModel::reset() {
-  this->maxCandleTime = 60000;
+  this->maxCandleTime = 100000;
   this->shortTimePeriods = 20;
   this->longTimePeriods = 20;
   this->wTimePeriods = 4;
@@ -221,7 +221,7 @@ void StockModel::incrementWTimePeriods() {
 }
 
 void StockModel::resetMaxCandleTime() {
-  this->maxCandleTime = 60000;
+  this->maxCandleTime = 100000;
 }
 
 void StockModel::resetShortTimePeriods() {

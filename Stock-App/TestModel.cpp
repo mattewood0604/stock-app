@@ -11,7 +11,7 @@
 
 const unsigned int TestModel::maximumLongTimePeriods = 80;
 const unsigned int TestModel::maximumShortTimePeriods = 50;
-const unsigned int TestModel::maximumCandleTime = 60000;
+const unsigned int TestModel::maximumCandleTime = 120000; //120000;
 const unsigned int TestModel::maximumWTimePeriods = 7;
 
 const bool TestModel::loggingEnabled = true;
@@ -63,12 +63,13 @@ void TestModel::initialize() {
   //testStockSymbols.push_back("GRPN");
   //testStockSymbols.push_back("JCP");
   //testStockSymbols.push_back("JNUG");
-  //testStockSymbols.push_back("JDST");
+  testStockSymbols.push_back("JDST");
   //testStockSymbols.push_back("LABU");
   //testStockSymbols.push_back("NUGT");
-  testStockSymbols.push_back("TWLO");
+  //testStockSymbols.push_back("TWLO");
   //testStockSymbols.push_back("DUST");
   //testStockSymbols.push_back("VALE");
+  //testStockSymbols.push_back("P");
   
   //testStockSymbols.push_back("SVXY");
   
@@ -134,7 +135,7 @@ void TestModel::initialize() {
 }
 
 void TestModel::createListOfDates() {
-  /*dates.push_back("10_6_2016");
+  dates.push_back("10_6_2016");
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -184,7 +185,7 @@ void TestModel::createListOfDates() {
   dates.push_back("01_09_2017");
   dates.push_back("01_10_2017");
   dates.push_back("01_11_2017");
-  dates.push_back("01_13_2017");*/
+  dates.push_back("01_13_2017");
   dates.push_back("01_17_2017");
   dates.push_back("01_18_2017");
   dates.push_back("01_19_2017");
@@ -194,8 +195,6 @@ void TestModel::createListOfDates() {
   dates.push_back("01_25_2017");
   dates.push_back("01_26_2017");
   dates.push_back("01_27_2017");
-  dates.push_back("01_28_2017");
-  dates.push_back("01_29_2017");
   dates.push_back("01_30_2017");
   dates.push_back("01_31_2017");
   dates.push_back("02_01_2017");
@@ -209,21 +208,16 @@ void TestModel::createListOfDates() {
   dates.push_back("02_14_2017");
   dates.push_back("02_15_2017");
   dates.push_back("02_16_2017");
-  
-  /*
-   01_09_2017
-   01_10_2017
-   01_11_2017
-   01_13_2017
-   01_17_2017
-   01_18_2017
-   01_19_2017
-   01_20_2017
-   
-   */
+  dates.push_back("02_17_2017");
+  dates.push_back("02_21_2017");
+  dates.push_back("02_22_2017");
+  dates.push_back("02_23_2017");
+  dates.push_back("02_24_2017");
+  dates.push_back("02_27_2017");
+  dates.push_back("02_28_2017");
+  dates.push_back("03_01_2017");
+  dates.push_back("03_02_2017");
 }
-
-// 2391
 
 unsigned int TestModel::getTestStockSymbolCount() {
   return (unsigned int)testStockSymbols.size();

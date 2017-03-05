@@ -30,7 +30,7 @@ void BuySell::buyOrSell(Stock& _stock) {
   //
   if (_stock.isBuy && Model::getPurchasedStockSymbol().compare("") == 0 && (!Model::isStopBuying() || _stock.numberOfTrades == 0)) {
     //RestCall::order(_stock, "buy", 1, _stock.currentQuote.price + 1);
-    //std::cout << "BUY \t" << _stock.symbol << ":\t" << _stock.currentQuote.price << std::endl;
+    //std::cout << "BUY \t(" << _stock.numberOfQuotes << ")\t" << _stock.symbol << ":\t" << _stock.currentQuote.price << std::endl;
     if (_stock.numberOfTrades == 0) {
       Model::setStopBuying(false);
     }
@@ -38,13 +38,13 @@ void BuySell::buyOrSell(Stock& _stock) {
     _stock.isBought = true;
     _stock.isBuy = false;
     _stock.buyPrice = _stock.currentQuote.price; //currentCandle.getOpen();
-    _stock.numberOfTrades++;
+    //_stock.numberOfTrades++;
     Model::setPurchasedStockSymbol(_stock.symbol);
     return;
   }
   else if (_stock.isSell) {
     //RestCall::order(_stock, "sell", 1, _stock.currentQuote.price - 1);
-    //std::cout << "SELL\t" << _stock.symbol << ":\t" << _stock.currentQuote.price << std::endl;
+    //std::cout << "SELL\t(" << _stock.numberOfQuotes << ")\t" << _stock.symbol << ":\t" << _stock.currentQuote.price << std::endl;
     //std::cout << "------------------------" << std::endl;
     _stock.moneyMade += _stock.currentQuote.price - _stock.buyPrice; //currentCandle.getOpen() - _stock.buyPrice;
     _stock.percentageMade = _stock.moneyMade / _stock.buyPrice;
