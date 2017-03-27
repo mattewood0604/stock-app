@@ -28,6 +28,12 @@ class StockModel {
     const unsigned int& getFactor() const;
     const unsigned int& getPd() const;
   
+    const unsigned int& getStandardDevHigh() const;
+    const unsigned int& getBollingerBandLength() const;
+    const unsigned int& getLookBackPeriod() const;
+    const float& getHighestPercentile() const;
+    const float& getLowestPercentile() const;
+  
     const unsigned int& getBuyQuoteNumber(const unsigned int& _index) const;
     const unsigned int& getSellQuoteNumber(const unsigned int& _index) const;
   
@@ -40,13 +46,22 @@ class StockModel {
     void resetShortTimePeriods();
     void resetLongTimePeriods();
     void resetWTimePeriods();
+
+    unsigned int standardDevHigh;
+    unsigned int bollingerBandLength;
+    unsigned int lookBackPeriod;
+    float highestPercentile;
+    float lowestPercentile;
+    unsigned int multiplier;
+  
+    unsigned int shiftedMovingAverageLength;
+    unsigned int movingAverageLength;
+    unsigned int shiftLength;
   
   private:
     unsigned int shortTimePeriods;
     unsigned int longTimePeriods;
-  
     unsigned int wTimePeriods;
-  
     unsigned int maxCandleTime;
   
     float maxGain;

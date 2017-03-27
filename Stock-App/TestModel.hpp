@@ -49,6 +49,9 @@ class TestModel {
     static const unsigned int maximumCandleTime;
     static const unsigned int maximumWTimePeriods;
   
+    static float sumOfWilliamsVix;
+    static unsigned int williamsVixBottoms;
+  
   private:
     //static Stock testingStock;
     //static std::map<std::string, Stock> stocks;

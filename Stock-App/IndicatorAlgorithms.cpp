@@ -6,23 +6,85 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
+#include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <deque>
 
+#include "TestModel.hpp"
 #include "IndicatorAlgorithms.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////////
 // WAVE TREND ALGORITHM
 ////////////////////////////////////////////////////////////////////////////////////
 void IndicatorAlgorithms::calculateWaveTrend(Stock& _stock) {
+  unsigned int max = (_stock.getStockModel().getShortTimePeriods() < _stock.getStockModel().getLongTimePeriods()) ? _stock.getStockModel().getLongTimePeriods() : _stock.getStockModel().getShortTimePeriods();
+  if (_stock.getNumberOfCandles() < max * 2) { // stock.enoughCandlesToStart
+    return;
+  }
+  
+  calculateAveragePriceEMA(_stock);
+  
+  unsigned int index = _stock.getNumberOfCandles() - _stock.getStockModel().getShortTimePeriods();
+  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
+    const Candle& candle = _stock.getCandleAtIndex(i);
+    float averagePrice = candle.getAveragePrice();
+    _stock.averagePriceEMA = _stock.ema(averagePrice, _stock.averagePriceEMA, _stock.getShortMultiplier());
+  }
+  
+  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
+    const Candle& candle = _stock.getCandleAtIndex(i);
+    float averagePrice = candle.getAveragePrice();
+    _stock.apESA += fabs(averagePrice - _stock.averagePriceEMA);
+  }
+  _stock.apESA /= _stock.getStockModel().getShortTimePeriods();
+  
+  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
+    const Candle& candle = _stock.getCandleAtIndex(i);
+    float averagePrice = candle.getAveragePrice();
+    float apMinusESA = fabs(averagePrice - _stock.averagePriceEMA);
+    _stock.apESA = _stock.ema(apMinusESA, _stock.apESA, _stock.getShortMultiplier());
+  }
+  
+  const Candle& candle = _stock.getLastCandle();
+  float averagePrice = candle.getAveragePrice();
+  float c = (averagePrice - _stock.averagePriceEMA) / (0.015 * _stock.apESA);
+  
+  if (_stock.ciCalculated < _stock.getStockModel().getLongTimePeriods()) {
+    _stock.ci += c;
+    _stock.ciCalculated++;
+    return;
+  }
+  else if (_stock.ciCalculated == _stock.getStockModel().getLongTimePeriods()) {
+    _stock.ci /= _stock.getStockModel().getLongTimePeriods();
+    _stock.ciCalculated++;
+  }
+  
+  float tci = _stock.ema(c, _stock.ci, _stock.getLongMultiplier());
+  _stock.ci = tci;
+  _stock.w1 = tci;
+  
+  if (_stock.previousW1.size() < _stock.getStockModel().getWTimePeriods()) {
+    _stock.previousW1.push_back(_stock.w1);
+    return;
+  }
+  
+  calculateWs(_stock);
+  
+  _stock.setWaveTrendComplete(true);
+  
+  /*
   const Candle& currentCandle = _stock.getLastCandle(); // stock.getLastCandle()
   if (_stock.getNumberOfCandles() < _stock.getStockModel().getShortTimePeriods()) { // stock.enoughCandlesToStart
     return;
   }
   
-  if (_stock.averagePriceEMA == -1) {
+  // Try and recalculated this every candle
+  if (_stock.averagePriceEMA == -100000) {
     calculateAveragePriceEMA(_stock);
   }
   
+  // Recalculated this every candle
   float averagePrice = currentCandle.getAveragePrice();
   float esa = _stock.ema(averagePrice, _stock.averagePriceEMA, _stock.getShortMultiplier());
   _stock.averagePriceEMA = esa;
@@ -63,11 +125,16 @@ void IndicatorAlgorithms::calculateWaveTrend(Stock& _stock) {
   calculateWs(_stock);
   
   _stock.setWaveTrendComplete(true);
+   */
 }
 
+
+// This should be calculated every time to account for the addition of the new candle
 void IndicatorAlgorithms::calculateAveragePriceEMA(Stock& _stock) {
   _stock.averagePriceEMA = 0;
-  for (unsigned int i = 0; i < _stock.getNumberOfCandles() - 1; i++) {
+  unsigned int index = _stock.getNumberOfCandles() - _stock.getStockModel().getShortTimePeriods();
+  
+  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
     const Candle& candle = _stock.getCandleAtIndex(i);
     float averagePrice = candle.getAveragePrice();
     _stock.averagePriceEMA += averagePrice;
@@ -177,4 +244,155 @@ float IndicatorAlgorithms::averageTrueRange(Stock& _stock) {
   
   averageTrueRange /= _stock.getStockModel().getPd();
   return averageTrueRange;
+}
+
+/*
+ wvf = ((highest(close, pd)-low)/(highest(close, pd)))*100
+ 
+ sDev = mult * stdev(wvf, bbl)
+ midLine = sma(wvf, bbl)
+ lowerBand = midLine - sDev
+ upperBand = midLine + sDev
+ 
+ rangeHigh = (highest(wvf, lb)) * ph
+ rangeLow = (lowest(wvf, lb)) * pl
+ 
+ 
+ col = wvf >= upperBand or wvf >= rangeHigh ? lime : gray
+ */
+
+////////////////////////////////////////////////////////////////////////////////////
+// Williams Vix ALGORITHM
+////////////////////////////////////////////////////////////////////////////////////
+void IndicatorAlgorithms::williamsVix(Stock& _stock) {
+  int higher = std::max((int)_stock.getStockModel().getBollingerBandLength(), (int)_stock.getStockModel().getStandardDevHigh());
+  if (_stock.getNumberOfCandles() <= higher) {
+    return;
+  }
+  
+  _stock.canStartBuying = true;
+  
+  const Candle& currentCandle = _stock.getLastCandle();
+  float highest = IndicatorAlgorithms::highest(_stock, _stock.getStockModel().getStandardDevHigh());
+  float williamsVix = ((highest - currentCandle.getLow()) / highest) * 100;
+  float standardDev = _stock.getStockModel().multiplier * standardDeviation(_stock, williamsVix);
+
+  float sum = 0;
+  for (unsigned int i = 0; i < _stock.getStockModel().getBollingerBandLength(); i++) {
+    int index = _stock.getNumberOfCandles()  - i - 1;
+    const Candle& candle = _stock.getCandleAtIndex(index);
+    float highest = IndicatorAlgorithms::highest(_stock, _stock.getStockModel().getStandardDevHigh());
+    float williamsVix = ((highest - candle.getLow()) / highest) * 100;
+    sum += williamsVix;
+  }
+  
+  float midline = sum / _stock.getStockModel().getBollingerBandLength();
+  
+  float lowerBand = midline - standardDev;
+  float upperBand = midline + standardDev;
+  float rangeHigh = std::max((float)williamsVix, (float)_stock.getStockModel().getLookBackPeriod()) * _stock.getStockModel().getHighestPercentile();
+  float rangeLow = std::max((float)williamsVix, (float)_stock.getStockModel().getLookBackPeriod()) * _stock.getStockModel().getLowestPercentile();
+
+  if (williamsVix >= upperBand || williamsVix >= rangeHigh) {
+    //std::cout << _stock.getLastCandle().getAveragePrice() << "\t\t(" << _stock.getNumberOfCandles() << ")" << std::endl;
+    _stock.williamsVixValid = true;
+    TestModel::sumOfWilliamsVix += _stock.getLastCandle().getAveragePrice();
+    TestModel::williamsVixBottoms++;
+    // Buy;
+  }
+  else {
+    _stock.williamsVixValid = false;
+  }
+}
+
+float IndicatorAlgorithms::standardDeviation(Stock& _stock, const float& _williamsVix) {
+  float sum = 0;
+  for (unsigned int i = 0; i < _stock.getStockModel().getBollingerBandLength(); i++) {
+    int index = _stock.getNumberOfCandles() - i - 1;
+    const Candle& candle = _stock.getCandleAtIndex(index);
+    float highest = IndicatorAlgorithms::highest(_stock, _stock.getStockModel().getStandardDevHigh());
+    float williamsVix = ((highest - candle.getLow()) / highest) * 100;
+    sum += williamsVix;
+  }
+  
+  float mean = sum / _stock.getStockModel().getBollingerBandLength();
+  sum = 0;
+  for (unsigned int i = 0; i < _stock.getStockModel().getBollingerBandLength(); i++) {
+    int index = _stock.getNumberOfCandles() - i - 1;
+    const Candle& candle = _stock.getCandleAtIndex(index);
+    float highest = IndicatorAlgorithms::highest(_stock, _stock.getStockModel().getStandardDevHigh());
+    float williamsVix = ((highest - candle.getLow()) / highest) * 100;
+    
+    float difference = williamsVix - mean;
+    float squaredDifference = difference * difference;
+    sum += squaredDifference;
+  }
+  
+  sum /= _stock.getStockModel().getBollingerBandLength();
+  return std::sqrt(sum);
+}
+
+float IndicatorAlgorithms::highest(Stock& _stock, const unsigned int& _barsBack) {
+  float highest = 0;
+  for (unsigned int i = 0; i < _barsBack; i++) {
+    int index = _stock.getNumberOfCandles() - i - 1;
+    const Candle& candle = _stock.getCandleAtIndex(index);
+    if (candle.getClose() > highest) {
+      highest = candle.getClose();
+    }
+  }
+
+  return highest;
+}
+
+void IndicatorAlgorithms::simpleMovingAverages(Stock& _stock) {
+  static std::deque<float> movingAverages;
+  StockModel& stockModel = _stock.getStockModel();
+  
+  if (_stock.getNumberOfCandles() <= stockModel.shiftedMovingAverageLength + stockModel.shiftLength || _stock.getNumberOfCandles() <= stockModel.movingAverageLength) {
+    return;
+  }
+  
+  float buyShiftedMovingAverage = 0;
+  float sellShiftedMovingAverage = 0;
+  float shiftedMovingAverage = 0;
+  
+  float buyMovingAverage = 0;
+  float sellMovingAverage = 0;
+  float movingAverage = 0;
+  for (unsigned int i = 0; i < stockModel.shiftedMovingAverageLength; i++) {
+    int shiftedIndex = _stock.getNumberOfCandles() - i - stockModel.shiftLength;
+    shiftedMovingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice();
+    buyShiftedMovingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice() + .01;
+    sellShiftedMovingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice() - .01;
+  }
+  shiftedMovingAverage /= stockModel.shiftedMovingAverageLength;
+  buyShiftedMovingAverage /= stockModel.shiftedMovingAverageLength;
+  sellShiftedMovingAverage /= stockModel.shiftedMovingAverageLength;
+  
+  for (unsigned int i = 0; i < stockModel.movingAverageLength; i++) {
+    int shiftedIndex = _stock.getNumberOfCandles() - i;
+    movingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice();
+    buyMovingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice() + .01;
+    sellMovingAverage += _stock.getCandleAtIndex(shiftedIndex - 1).getAveragePrice() - .01;
+  }
+  movingAverage /= stockModel.movingAverageLength;
+  buyMovingAverage /= stockModel.movingAverageLength;
+  sellMovingAverage /= stockModel.movingAverageLength;
+  
+  if (buyShiftedMovingAverage >= buyMovingAverage) {
+    _stock.isBuy = true;
+  }
+  else {
+    _stock.isSell = true;
+  }
+  
+  /*
+  if (shiftedMovingAverage >= movingAverage) {
+    _stock.isBuy = true;
+  }
+  else {
+    _stock.isSell = true;
+  }
+   */
 }

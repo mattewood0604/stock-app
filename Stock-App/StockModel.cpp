@@ -33,12 +33,12 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("LABU") == 0) {
-    this->shortTimePeriods = 24;
-    this->longTimePeriods = 78;
+    this->shortTimePeriods = 49;
+    this->longTimePeriods = 23;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 42000;
-    this->maxGain = 0.10f;
-    this->maxLoss = 0.10f;
+    this->maxCandleTime = 134000;
+    this->maxGain = 1.003f;
+    this->maxLoss = 0.992f;
     
     this->factor = 3;
     this->pd = 7;
@@ -66,10 +66,12 @@ StockModel::StockModel(const std::string& _symbol) {
     this->pd = 7;
   }
   else if (_symbol.compare("JDST") == 0) {
-    this->shortTimePeriods = 41;
-    this->longTimePeriods = 68;
+    // (this->open + this->close) / 2.0f; 30 46 127 .25%
+    
+    this->shortTimePeriods = 46;//21;
+    this->longTimePeriods = 30;//22;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 32000;//64000;
+    this->maxCandleTime = 127000;//75000;//64000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
@@ -79,6 +81,19 @@ StockModel::StockModel(const std::string& _symbol) {
     this->minutesSpan = 55;
     this->buyQuoteNumber[0] = 2550;
     this->buyQuoteNumber[1] = 0;
+
+    //         2         1      0.95        50        16        24
+    this->multiplier = 1;
+    this->bollingerBandLength = 5;
+    this->standardDevHigh = 5;
+
+    this->lowestPercentile = 1.00;
+    this->highestPercentile = 0.95;
+    this->lookBackPeriod = 50;
+    
+    this->shiftedMovingAverageLength = 7;
+    this->movingAverageLength = 15;
+    this->shiftLength = 0;
     
     //this->minutesSpan = 45;
     //this->buyQuoteNumber[0] = 3450;
@@ -166,9 +181,9 @@ StockModel::StockModel(const std::string& _symbol) {
 // Long: 53	Short: 28	Time: 22000 16% (Found: 12_02_2016)
 
 void StockModel::reset() {
-  this->maxCandleTime = 30000;
-  this->shortTimePeriods = 20;
-  this->longTimePeriods = 20;
+  this->maxCandleTime = 100000;
+  this->shortTimePeriods = 15;
+  this->longTimePeriods = 15;
   this->wTimePeriods = 4;
 }
 
@@ -204,6 +219,26 @@ const unsigned int& StockModel::getPd() const {
   return this->pd;
 }
 
+const unsigned int& StockModel::getStandardDevHigh() const {
+  return this->standardDevHigh;
+}
+
+const unsigned int& StockModel::getBollingerBandLength() const {
+  return this->bollingerBandLength;
+}
+
+const unsigned int& StockModel::getLookBackPeriod() const {
+  return this->lookBackPeriod;
+}
+
+const float& StockModel::getHighestPercentile() const {
+  return this->highestPercentile;
+}
+
+const float& StockModel::getLowestPercentile() const {
+  return this->lowestPercentile;
+}
+
 void StockModel::incrementShortTimePeriods() {
   this->shortTimePeriods++;
 }
@@ -213,7 +248,7 @@ void StockModel::incrementLongTimePeriods() {
 }
 
 void StockModel::incrementMaxCandleTime() {
-  this->maxCandleTime += 2000;
+  this->maxCandleTime += 1000;
 }
 
 void StockModel::incrementWTimePeriods() {
@@ -221,15 +256,15 @@ void StockModel::incrementWTimePeriods() {
 }
 
 void StockModel::resetMaxCandleTime() {
-  this->maxCandleTime = 30000;
+  this->maxCandleTime = 100000;
 }
 
 void StockModel::resetShortTimePeriods() {
-  this->shortTimePeriods = 20;
+  this->shortTimePeriods = 15;
 }
 
 void StockModel::resetLongTimePeriods() {
-  this->longTimePeriods = 20;
+  this->longTimePeriods = 15;
 }
 
 void StockModel::resetWTimePeriods() {

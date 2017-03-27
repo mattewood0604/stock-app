@@ -39,7 +39,7 @@ Stock::Stock(const std::string& _symbol) : currentQuote(), stockModel(_symbol) {
 void Stock::reset() {
   this->waveTrendComplete = false;
   
-  this->averagePriceEMA = -1;
+  this->averagePriceEMA = -100000;
   this->apESA = 0;
   this->apESACalculated = 0;
   this->ci = 0;
@@ -63,8 +63,11 @@ void Stock::reset() {
   this->maxMade = 0;
   
   this->numberOfTrades = 0;
+  this->negativeTrades = 0;
   
   this->numberOfQuotes = 0;
+  
+  this->canStartBuying = false;
 }
 
 void Stock::addTimeToCandles(TimeQuote& _timeQuote) {
@@ -75,6 +78,8 @@ void Stock::addTimeToCandles(TimeQuote& _timeQuote) {
   Candle& candle = this->getLastCandle();
   if (candle.getTotalTime() >= maxCandleTime) {
     IndicatorAlgorithms::calculateWaveTrend(*this);
+    //IndicatorAlgorithms::williamsVix(*this);
+    //IndicatorAlgorithms::simpleMovingAverages(*this);
     
     Candle nextCandle = Candle(maxCandleTime);
     nextCandle.addTimeQuote(_timeQuote);
@@ -115,8 +120,9 @@ void Stock::logMoneyMade() const {
   std::cout << this->symbol << "\t"
             << this->moneyMade << "\t"
             << percentage * 100 << "\t"
-            << holding << "\t"
-            << this->numberOfTrades
+            << holding << "\n"
+            << "Trades: \t" << this->numberOfTrades << "\n"
+            << "Negatives: \t" << this->negativeTrades << "\n"
             << std::endl << std::endl;
 }
 

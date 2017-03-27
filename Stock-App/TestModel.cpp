@@ -9,10 +9,13 @@
 #include "FileManager.hpp"
 #include "TestModel.hpp"
 
-const unsigned int TestModel::maximumLongTimePeriods = 80;
+const unsigned int TestModel::maximumLongTimePeriods = 50;
 const unsigned int TestModel::maximumShortTimePeriods = 50;
-const unsigned int TestModel::maximumCandleTime = 120000; //120000;
+const unsigned int TestModel::maximumCandleTime = 160000; //120000;
 const unsigned int TestModel::maximumWTimePeriods = 7;
+
+float TestModel::sumOfWilliamsVix = 0;
+unsigned int TestModel::williamsVixBottoms = 0;
 
 const bool TestModel::loggingEnabled = true;
 
@@ -55,15 +58,15 @@ void TestModel::initialize() {
   //testStockSymbols.push_back("JDST"); // 70%
   
   //testStockSymbols.push_back("LABD"); // 22	20	39
-  //testStockSymbols.push_back("LABU"); // 78	24	42
+  testStockSymbols.push_back("LABU"); // 78	24	42
   
-  //.testStockSymbols.push_back("CLF");
+  //testStockSymbols.push_back("CLF");
   //testStockSymbols.push_back("SPY");
   //testStockSymbols.push_back("NVDA");
   //testStockSymbols.push_back("GRPN");
   //testStockSymbols.push_back("JCP");
   //testStockSymbols.push_back("JNUG");
-  testStockSymbols.push_back("JDST");
+  //testStockSymbols.push_back("JDST");
   //testStockSymbols.push_back("LABU");
   //testStockSymbols.push_back("NUGT");
   //testStockSymbols.push_back("TWLO");
@@ -135,7 +138,8 @@ void TestModel::initialize() {
 }
 
 void TestModel::createListOfDates() {
-  dates.push_back("10_6_2016");
+  //dates.push_back("10_6_2016");
+
   dates.push_back("10_7_2016");
   dates.push_back("10_10_2016");
   dates.push_back("10_11_2016");
@@ -157,19 +161,6 @@ void TestModel::createListOfDates() {
   dates.push_back("11_10_2016");
   dates.push_back("11_11_2016");
   dates.push_back("11_21_2016");
-  dates.push_back("11_28_2016");
-  dates.push_back("11_29_2016");
-  dates.push_back("11_30_2016");
-  dates.push_back("12_01_2016");
-  dates.push_back("12_02_2016");
-  dates.push_back("12_05_2016");
-  dates.push_back("12_06_2016");
-  dates.push_back("12_07_2016");
-  dates.push_back("12_08_2016");
-  dates.push_back("12_09_2016");
-  dates.push_back("12_12_2016");
-  dates.push_back("12_13_2016");
-  dates.push_back("12_14_2016");
   dates.push_back("12_15_2016");
   dates.push_back("12_16_2016");
   dates.push_back("12_19_2016");
@@ -198,7 +189,6 @@ void TestModel::createListOfDates() {
   dates.push_back("01_30_2017");
   dates.push_back("01_31_2017");
   dates.push_back("02_01_2017");
-  dates.push_back("02_02_2017");
   dates.push_back("02_03_2017");
   dates.push_back("02_07_2017");
   dates.push_back("02_08_2017");
@@ -217,6 +207,18 @@ void TestModel::createListOfDates() {
   dates.push_back("02_28_2017");
   dates.push_back("03_01_2017");
   dates.push_back("03_02_2017");
+  dates.push_back("03_03_2017");
+  dates.push_back("03_06_2017");
+  dates.push_back("03_07_2017");
+  dates.push_back("03_08_2017");
+  dates.push_back("03_09_2017");
+  dates.push_back("03_10_2017");
+  dates.push_back("03_14_2017");
+  dates.push_back("03_15_2017");
+  dates.push_back("03_16_2017");
+  dates.push_back("03_17_2017");
+  dates.push_back("03_20_2017");
+  dates.push_back("03_21_2017");
 }
 
 unsigned int TestModel::getTestStockSymbolCount() {

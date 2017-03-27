@@ -23,6 +23,7 @@ class StockRunner {
     static float runDailyTimeSpanForSetDate();
   
     static int totalNumberOfTrades;
+    static int totalNumberOfNegativeTrades;
 };
 
 #endif /* StockRunner_hpp */

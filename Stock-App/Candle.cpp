@@ -6,6 +6,8 @@
 //  Copyright © 2016 MattWood. All rights reserved.
 //
 
+#include <iostream>
+
 #include "Candle.hpp"
 #include "StockModel.hpp"
 
@@ -40,7 +42,7 @@ void Candle::addTimeQuote(const TimeQuote& _timeQuote) {
     this->low = _timeQuote.price;
   }
   
-  if (this->totalTime > this->maxTime) {
+  if (this->totalTime >= this->maxTime) {
     this->close = _timeQuote.price;
   }
   
@@ -48,7 +50,9 @@ void Candle::addTimeQuote(const TimeQuote& _timeQuote) {
 }
 
 float Candle::getAveragePrice() const {
-  return (this->high + this->low + this->close) / 3.0f;
+  //return (this->open + this->close) / 2.0f;
+  return (this->high + this->low + this->close + this->open) / 4.0f;
+  //return (this->high + this->low + this->close) / 3.0f;
 }
 
 unsigned int Candle::getTotalTime() const {

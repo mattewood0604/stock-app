@@ -18,6 +18,7 @@
 #include "TestModel.hpp"
 
 int StockRunner::totalNumberOfTrades = 0;
+int StockRunner::totalNumberOfNegativeTrades = 0;
 
 void StockRunner::runStocks() {
   bool marketBecameOpen = false;
@@ -66,6 +67,7 @@ void StockRunner::runDailyProfits() {
   std::cout << "TOTAL DAYS:\t\t\t" << TestModel::getNumberOfDates() << std::endl;
   std::cout << "TOTAL PERCENTAGE:\t" << percentageMade * 100 << std::endl;
   std::cout << "TOTAL TRADES:\t\t" << totalNumberOfTrades << std::endl;
+  std::cout << "TOTAL NEGATIVES:\t" << totalNumberOfNegativeTrades << std::endl;
   std::cout << "TRADES / DAY:\t\t" << totalNumberOfTrades / TestModel::getNumberOfDates() << std::endl;
   std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / TestModel::getNumberOfDates() << std::endl;
 }
@@ -96,6 +98,7 @@ float StockRunner::runDailyStocksForSetDate() {
     const Stock& stock = TestModel::getTestStock(i);
     percentageMade += !isnan(stock.getPercentageMade()) ? stock.getPercentageMade() : 0.0f;
     totalNumberOfTrades += stock.numberOfTrades;
+    totalNumberOfNegativeTrades += stock.negativeTrades;
   }
   
   return percentageMade;

@@ -62,16 +62,21 @@ class Stock {
     float w2;
   
     unsigned int numberOfTrades;
+    unsigned int negativeTrades;
   
     unsigned int numberOfQuotes;
   
+    bool canStartBuying;
+  
   private:
     friend class BuySell;
+    friend class IndicatorAlgorithms;
   
     void supertrendAlgorithm();
     float averageTrueRange() const;
   
     bool waveTrendComplete;
+    bool williamsVixValid;
     bool isBought;
     bool isBuy;
     bool isSell;
