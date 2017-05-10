@@ -67,6 +67,8 @@ class Stock {
     unsigned int numberOfQuotes;
   
     bool canStartBuying;
+
+    unsigned int buyCandleNumber;
   
   private:
     friend class BuySell;

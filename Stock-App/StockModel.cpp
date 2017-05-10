@@ -14,7 +14,7 @@ StockModel::StockModel(const std::string& _symbol) {
     this->shortTimePeriods = 37;
     this->longTimePeriods = 40;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 106000;
+    this->maxCandleTime = 60000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     

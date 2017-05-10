@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <cmath>
 
 #include "RestCall.hpp"
 #include "BuySell.hpp"
@@ -14,11 +15,85 @@
 #include "StockModel.hpp"
 
 void BuySell::buyOrSell(Stock& _stock) {
+    if (_stock.candles.size() < 2) {
+        return;
+    }
+
+    bool previousIsRed = false;
+    bool currentIsRed = false;
+
+    const Candle& currentCandle = _stock.candles[_stock.candles.size() - 1];
+    if (currentCandle.getClose() == 0) {
+        return;
+    }
+
+    const Candle& previousCandle = _stock.candles[_stock.candles.size() - 2];
+    if (previousCandle.getOpen() >= previousCandle.getClose()) {
+        // std::cout << "RED : ";
+        previousIsRed = true;
+    }
+    else {
+        // std::cout << "GREEN : ";
+        previousIsRed = false;
+    }
+
+    if (currentCandle.getOpen() >= currentCandle.getClose()) {
+        // std::cout << "RED" << std::endl;
+        currentIsRed = true;
+    }
+    else {
+        // std::cout << "GREEN" << std::endl;
+        currentIsRed = false;
+    }
+
+    const bool didProfit = _stock.currentQuote.price >= _stock.buyPrice * 1.005;
+    const bool passedCandleCount = false;//_stock.candles.size() - _stock.buyCandleNumber >= 250;
+    const bool maxLossTaken = false;//((_stock.currentQuote.price - .01) - _stock.buyPrice) / _stock.buyPrice <= -0.02;
+    const bool sellBeforeDayEnd = _stock.candles.size() >= 179;
+
+    if (_stock.isBought && (didProfit || passedCandleCount || maxLossTaken || sellBeforeDayEnd)) {
+        _stock.moneyMade += (_stock.currentQuote.price - .01) - _stock.buyPrice;
+        _stock.percentageMade = _stock.moneyMade / _stock.buyPrice;
+        _stock.isBought = false;
+        std::cout << "Sell: " << _stock.currentQuote.price - .01 << " (" << _stock.candles.size() << ")" << std::endl;
+        _stock.numberOfTrades--;
+
+        if (_stock.moneyMade / _stock.buyPrice < -0.02) {
+            Model::setStopBuying(true);
+            _stock.maxLossTaken = true;
+        }
+    }
+
+    if (!previousIsRed || currentIsRed) {
+        return;
+    }
+
+    float previousHeight = previousCandle.getOpen() - previousCandle.getClose();
+    float currentHeight = currentCandle.getClose() - currentCandle.getOpen();
+    bool isLargeEnough = currentHeight - previousHeight >= _stock.currentQuote.price * .0125;
+    bool isBullishEngulfing = currentCandle.getOpen() <= previousCandle.getClose() && currentCandle.getClose() >= previousCandle.getOpen();
+
+    if (isBullishEngulfing &&
+        _stock.candles.size() < 180 &&
+        isLargeEnough &&
+        !_stock.isBought &&
+        !Model::isStopBuying()) {
+        std::cout << "-----BULLISH ENGULFING-----" << std::endl;
+        _stock.buyPrice = _stock.currentQuote.price + .01;
+        std::cout << "Buy: " << _stock.buyPrice << " (" << _stock.candles.size() << ")" << std::endl;
+        _stock.isBought = true;
+        _stock.numberOfTrades++;
+        _stock.buyCandleNumber = _stock.candles.size();
+        return;
+    }
+
+    return;
+
   if (!_stock.waveTrendComplete) {
     return;
   }
   
-  const Candle& currentCandle = _stock.candles[_stock.candles.size() - 1];
+  //const Candle& currentCandle = _stock.candles[_stock.candles.size() - 1];
   if (currentCandle.getClose() == 0) {
     return;
   }

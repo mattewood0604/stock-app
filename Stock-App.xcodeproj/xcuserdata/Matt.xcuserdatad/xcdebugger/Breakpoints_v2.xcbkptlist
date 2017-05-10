@@ -984,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512093185.127776"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1000,11 +1000,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512093185.127776"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1094,11 +1094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/TestModel.cpp"
-            timestampString = "512003997.970083"
+            timestampString = "516069940.932187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375">
+            startingLineNumber = "404"
+            endingLineNumber = "404">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1156,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,11 +1188,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1220,11 +1220,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1236,11 +1236,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1364,11 +1364,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512093185.127776"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1524,11 +1524,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512093185.127776"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1556,11 +1556,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "512236493.019504"
+            timestampString = "516070750.158039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
