@@ -109,7 +109,7 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
   curl_easy_setopt(buyHandle, CURLOPT_HTTPHEADER, headers);
 
     std::stringstream stream;
-    stream << std::fixed << std::setprecision(2) << std::to_string(_price);
+    stream << std::fixed << std::setprecision(2) << _price;
     std::string priceString = stream.str();
 
   std::string postFields = "account=";
