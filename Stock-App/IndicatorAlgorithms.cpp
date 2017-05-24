@@ -18,114 +18,57 @@
 // WAVE TREND ALGORITHM
 ////////////////////////////////////////////////////////////////////////////////////
 void IndicatorAlgorithms::calculateWaveTrend(Stock& _stock) {
-  unsigned int max = (_stock.getStockModel().getShortTimePeriods() < _stock.getStockModel().getLongTimePeriods()) ? _stock.getStockModel().getLongTimePeriods() : _stock.getStockModel().getShortTimePeriods();
-  if (_stock.getNumberOfCandles() < max * 2) { // stock.enoughCandlesToStart
-    return;
-  }
-  
-  calculateAveragePriceEMA(_stock);
-  
-  unsigned int index = _stock.getNumberOfCandles() - _stock.getStockModel().getShortTimePeriods();
-  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
-    const Candle& candle = _stock.getCandleAtIndex(i);
-    float averagePrice = candle.getAveragePrice();
-    _stock.averagePriceEMA = _stock.ema(averagePrice, _stock.averagePriceEMA, _stock.getShortMultiplier());
-  }
-  
-  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
-    const Candle& candle = _stock.getCandleAtIndex(i);
-    float averagePrice = candle.getAveragePrice();
-    _stock.apESA += fabs(averagePrice - _stock.averagePriceEMA);
-  }
-  _stock.apESA /= _stock.getStockModel().getShortTimePeriods();
-  
-  for (unsigned int i = index; i < index + _stock.getStockModel().getShortTimePeriods(); i++) {
-    const Candle& candle = _stock.getCandleAtIndex(i);
-    float averagePrice = candle.getAveragePrice();
-    float apMinusESA = fabs(averagePrice - _stock.averagePriceEMA);
-    _stock.apESA = _stock.ema(apMinusESA, _stock.apESA, _stock.getShortMultiplier());
-  }
-  
-  const Candle& candle = _stock.getLastCandle();
-  float averagePrice = candle.getAveragePrice();
-  float c = (averagePrice - _stock.averagePriceEMA) / (0.015 * _stock.apESA);
-  
-  if (_stock.ciCalculated < _stock.getStockModel().getLongTimePeriods()) {
-    _stock.ci += c;
-    _stock.ciCalculated++;
-    return;
-  }
-  else if (_stock.ciCalculated == _stock.getStockModel().getLongTimePeriods()) {
-    _stock.ci /= _stock.getStockModel().getLongTimePeriods();
-    _stock.ciCalculated++;
-  }
-  
-  float tci = _stock.ema(c, _stock.ci, _stock.getLongMultiplier());
-  _stock.ci = tci;
-  _stock.w1 = tci;
-  
-  if (_stock.previousW1.size() < _stock.getStockModel().getWTimePeriods()) {
-    _stock.previousW1.push_back(_stock.w1);
-    return;
-  }
-  
-  calculateWs(_stock);
-  
-  _stock.setWaveTrendComplete(true);
-  
-  /*
-  const Candle& currentCandle = _stock.getLastCandle(); // stock.getLastCandle()
-  if (_stock.getNumberOfCandles() < _stock.getStockModel().getShortTimePeriods()) { // stock.enoughCandlesToStart
-    return;
-  }
-  
-  // Try and recalculated this every candle
-  if (_stock.averagePriceEMA == -100000) {
-    calculateAveragePriceEMA(_stock);
-  }
-  
-  // Recalculated this every candle
-  float averagePrice = currentCandle.getAveragePrice();
-  float esa = _stock.ema(averagePrice, _stock.averagePriceEMA, _stock.getShortMultiplier());
-  _stock.averagePriceEMA = esa;
-  if (_stock.apESACalculated < _stock.getStockModel().getShortTimePeriods()) {
-    _stock.apESA += fabs(averagePrice - esa);
-    _stock.apESACalculated++;
-    return;
-  }
-  else if (_stock.apESACalculated == _stock.getStockModel().getShortTimePeriods()) {
-    _stock.apESA /= _stock.getStockModel().getShortTimePeriods();
-    _stock.apESACalculated++;
-  }
-  
-  float apMinusESA = fabs(averagePrice - esa);
-  float d = _stock.ema(apMinusESA, _stock.apESA, _stock.getShortMultiplier());
-  _stock.apESA = d;
-  float c = (averagePrice - esa) / (0.015 * d);
-  
-  if (_stock.ciCalculated < _stock.getStockModel().getLongTimePeriods()) {
-    _stock.ci += c;
-    _stock.ciCalculated++;
-    return;
-  }
-  else if (_stock.ciCalculated == _stock.getStockModel().getLongTimePeriods()) {
-    _stock.ci /= _stock.getStockModel().getLongTimePeriods();
-    _stock.ciCalculated++;
-  }
-  
-  float tci = _stock.ema(c, _stock.ci, _stock.getLongMultiplier());
-  _stock.ci = tci;
-  _stock.w1 = tci;
-  
-  if (_stock.previousW1.size() < _stock.getStockModel().getWTimePeriods()) {
-    _stock.previousW1.push_back(_stock.w1);
-    return;
-  }
-  
-  calculateWs(_stock);
-  
-  _stock.setWaveTrendComplete(true);
-   */
+    const Candle& currentCandle = _stock.getLastCandle(); // stock.getLastCandle()
+    if (_stock.getNumberOfCandles() < _stock.getStockModel().getShortTimePeriods()) { // stock.enoughCandlesToStart
+        return;
+    }
+
+    // Try and recalculated this every candle
+    if (_stock.averagePriceEMA == -100000) {
+        calculateAveragePriceEMA(_stock);
+    }
+
+    // Recalculated this every candle
+    float averagePrice = currentCandle.getAveragePrice();
+    float esa = _stock.ema(averagePrice, _stock.averagePriceEMA, _stock.getShortMultiplier());
+    _stock.averagePriceEMA = esa;
+    if (_stock.apESACalculated < _stock.getStockModel().getShortTimePeriods()) {
+        _stock.apESA += fabs(averagePrice - esa);
+        _stock.apESACalculated++;
+        return;
+    }
+    else if (_stock.apESACalculated == _stock.getStockModel().getShortTimePeriods()) {
+        _stock.apESA /= _stock.getStockModel().getShortTimePeriods();
+        _stock.apESACalculated++;
+    }
+
+    float apMinusESA = fabs(averagePrice - esa);
+    float d = _stock.ema(apMinusESA, _stock.apESA, _stock.getShortMultiplier());
+    _stock.apESA = d;
+    float c = (averagePrice - esa) / (0.015 * d);
+
+    if (_stock.ciCalculated < _stock.getStockModel().getLongTimePeriods()) {
+        _stock.ci += c;
+        _stock.ciCalculated++;
+        return;
+    }
+    else if (_stock.ciCalculated == _stock.getStockModel().getLongTimePeriods()) {
+        _stock.ci /= _stock.getStockModel().getLongTimePeriods();
+        _stock.ciCalculated++;
+    }
+
+    float tci = _stock.ema(c, _stock.ci, _stock.getLongMultiplier());
+    _stock.ci = tci;
+    _stock.w1 = tci;
+
+    if (_stock.previousW1.size() < _stock.getStockModel().getWTimePeriods()) {
+        _stock.previousW1.push_back(_stock.w1);
+        return;
+    }
+    
+    calculateWs(_stock);
+    
+    _stock.setWaveTrendComplete(true);
 }
 
 
@@ -154,6 +97,118 @@ void IndicatorAlgorithms::calculateWs(Stock& _stock) {
     _stock.previousW1.erase(_stock.previousW1.begin());
     _stock.previousW1.push_back(_stock.w1);
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// MACD
+////////////////////////////////////////////////////////////////////////////////////
+void IndicatorAlgorithms::macd(Stock& _stock) {
+    const Candle& currentCandle = _stock.getLastCandle(); // stock.getLastCandle()
+
+    if (_stock.getNumberOfCandles() < _stock.getStockModel().macdShort) { // stock.enoughCandlesToStart
+        return;
+    }
+    else if (_stock.getNumberOfCandles() == _stock.getStockModel().macdShort) {
+        for (unsigned int i = 0; i < _stock.getStockModel().macdShort; i++) {
+            const Candle& candle = _stock.getCandleAtIndex(i);
+            float averagePrice = candle.getAveragePrice();
+            _stock.getStockModel().macdShortEMA += averagePrice;
+        }
+    }
+
+    float averagePrice = currentCandle.getAveragePrice();
+    float shortEma = _stock.ema(averagePrice, _stock.getStockModel().macdShortEMA, _stock.getShortMultiplier());
+    _stock.getStockModel().macdShortEMA = shortEma;
+    if (_stock.getNumberOfCandles() < _stock.getStockModel().macdLong) {
+        _stock.getStockModel().macdLongEMA += averagePrice;
+        return;
+    }
+    else if (_stock.getNumberOfCandles() == _stock.getStockModel().macdLong) {
+        _stock.getStockModel().macdLongEMA /= _stock.getStockModel().macdLong;
+    }
+
+    float longEma = _stock.ema(averagePrice, _stock.getStockModel().macdLongEMA, _stock.getLongMultiplier());
+    _stock.getStockModel().macdLongEMA = longEma;
+
+    float difference = _stock.getStockModel().macdShortEMA - _stock.getStockModel().macdLongEMA;
+    if (_stock.getStockModel().macdSignalCount < _stock.getStockModel().macdSignal) {
+        _stock.getStockModel().macdSignalEMA += difference;
+        _stock.getStockModel().macdSignalCount++;
+        return;
+    }
+    else if (_stock.getStockModel().macdSignalCount == _stock.getStockModel().macdSignal) {
+        _stock.getStockModel().macdSignalEMA /= _stock.getStockModel().macdSignal;
+    }
+
+    _stock.getStockModel().macdSignalEMA = _stock.ema(difference, _stock.getStockModel().macdSignalEMA, _stock.getShortMultiplier());
+    _stock.macdComplete = true;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// KNOW SURE THING
+////////////////////////////////////////////////////////////////////////////////////
+// ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100
+/*
+ RCMA1 = 10-Period SMA of 10-Period Rate-of-Change
+ RCMA2 = 10-Period SMA of 15-Period Rate-of-Change
+ RCMA3 = 10-Period SMA of 20-Period Rate-of-Change
+ RCMA4 = 15-Period SMA of 30-Period Rate-of-Change
+
+ KST = (RCMA1 x 1) + (RCMA2 x 2) + (RCMA3 x 3) + (RCMA4 x 4)
+
+ Signal Line = 9-period SMA of KST
+ */
+void IndicatorAlgorithms::knowSureThing(Stock& _stock) {
+    if (_stock.getNumberOfCandles() <= 45) {
+        return;
+    }
+
+    float rcma1 = 0;
+    for (unsigned int i = 0; i < 10; i++) {
+        const Candle& current = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1));
+        const Candle& tenBack = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1 + 10));
+        rcma1 += ((current.getAveragePrice() - tenBack.getAveragePrice()) / tenBack.getAveragePrice()) * 100;
+    }
+    rcma1 /= 10;
+
+    float rcma2 = 0;
+    for (unsigned int i = 0; i < 10; i++) {
+        const Candle& current = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1));
+        const Candle& fifteenBack = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1 + 15));
+        rcma2 += ((current.getAveragePrice() - fifteenBack.getAveragePrice()) / fifteenBack.getAveragePrice()) * 100;
+    }
+    rcma2 /= 10;
+
+    float rcma3 = 0;
+    for (unsigned int i = 0; i < 10; i++) {
+        const Candle& current = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1));
+        const Candle& twentyBack = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1 + 20));
+        rcma3 += ((current.getAveragePrice() - twentyBack.getAveragePrice()) / twentyBack.getAveragePrice()) * 100;
+    }
+    rcma3 /= 10;
+
+    float rcma4 = 0;
+    for (unsigned int i = 0; i < 15; i++) {
+        const Candle& current = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1));
+        const Candle& thirtyBack = _stock.getCandleAtIndex(_stock.getNumberOfCandles() - (i + 1 + 30));
+        rcma3 += ((current.getAveragePrice() - thirtyBack.getAveragePrice()) / thirtyBack.getAveragePrice()) * 100;
+    }
+    rcma4 /= 15;
+
+    _stock.kst = rcma1 + (rcma2 * 2) + (rcma3 * 3) + (rcma4 * 4);
+    _stock.previousKST.push_back(_stock.kst);
+    if (_stock.previousKST.size() < 10) {
+        return;
+    }
+    _stock.previousKST.erase(_stock.previousKST.begin());
+
+    _stock.kstSignalLine = 0;
+    for (unsigned int i = 0; i < 10; i++) {
+        _stock.kstSignalLine += _stock.previousKST[i];
+    }
+    _stock.kstSignalLine /= 10;
+
+    _stock.kstComplete = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -68,7 +68,7 @@ void StockRunner::runDailyProfits() {
   std::cout << "TOTAL PERCENTAGE:\t" << percentageMade * 100 << std::endl;
   std::cout << "TOTAL TRADES:\t\t" << totalNumberOfTrades << std::endl;
   std::cout << "TOTAL NEGATIVES:\t" << totalNumberOfNegativeTrades << std::endl;
-  std::cout << "TRADES / DAY:\t\t" << totalNumberOfTrades / TestModel::getNumberOfDates() << std::endl;
+  std::cout << "TRADES / DAY:\t\t" << float(totalNumberOfTrades) / TestModel::getNumberOfDates() << std::endl;
   std::cout << "PERCENTAGE / DAY:\t" << (percentageMade * 100) / TestModel::getNumberOfDates() << std::endl;
 }
 

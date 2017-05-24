@@ -14,6 +14,10 @@
 class IndicatorAlgorithms {
   public:
     static void calculateWaveTrend(Stock& _stock);
+
+    static void macd(Stock& _stock);
+
+    static void knowSureThing(Stock& _stock);
   
     static void supertrendAlgorithm(Stock& _stock);
   

@@ -120,7 +120,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Candle.cpp"
-            timestampString = "511919561.759632"
+            timestampString = "517099629.730631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511228377.968482"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511228377.968482"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511925248.094902"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "Stock::getCandleAtIndex(const unsigned int&amp; _index)"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511925248.094902"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104">
+            startingLineNumber = "113"
+            endingLineNumber = "113">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -258,11 +258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockModel.cpp"
-            timestampString = "511919561.759632"
+            timestampString = "517183581.828063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "StockModel::reset()"
             landmarkType = "7">
          </BreakpointContent>
@@ -274,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511925248.094902"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -290,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511228377.968482"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
             landmarkType = "7">
          </BreakpointContent>
@@ -322,11 +322,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511925248.094902"
+            timestampString = "517260050.301778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "Stock::getPercentageMade()"
             landmarkType = "7">
          </BreakpointContent>
@@ -560,28 +560,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511228377.968482"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "Stock::addTimeToCandles(TimeQuote&amp; _timeQuote)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "IndicatorAlgorithms::calculateWaveTrend(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -984,11 +968,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1000,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1016,11 +1000,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/Stock.cpp"
-            timestampString = "511925248.094902"
+            timestampString = "517260050.301778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132">
+            startingLineNumber = "142"
+            endingLineNumber = "142">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1156,11 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1204,11 +1188,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/StockModel.cpp"
-            timestampString = "511919561.759632"
+            timestampString = "517183581.828063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "StockModel::StockModel(const std::string&amp; _symbol)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1220,11 +1204,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1236,11 +1220,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "BuySell::buyOrSellTimeSpan(Stock &amp;_stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1284,11 +1268,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1300,11 +1284,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "IndicatorAlgorithms::standardDeviation(Stock&amp; _stock, const float&amp; _williamsVix)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1316,11 +1300,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "IndicatorAlgorithms::standardDeviation(Stock&amp; _stock, const float&amp; _williamsVix)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1332,11 +1316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
             landmarkName = "IndicatorAlgorithms::standardDeviation(Stock&amp; _stock, const float&amp; _williamsVix)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1348,11 +1332,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1364,11 +1348,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517099071.920665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1380,11 +1364,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1396,11 +1380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1412,11 +1396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1428,11 +1412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "IndicatorAlgorithms::williamsVix(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1444,11 +1428,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511749884.34389"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "IndicatorAlgorithms::highest(Stock&amp; _stock, const unsigned int&amp; _barsBack)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1524,11 +1508,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1540,11 +1524,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "512003997.970083"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
             landmarkName = "IndicatorAlgorithms::simpleMovingAverages(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1556,11 +1540,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/BuySell.cpp"
-            timestampString = "516070750.158039"
+            timestampString = "517270897.383909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1604,11 +1588,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "512003997.970083"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "IndicatorAlgorithms::simpleMovingAverages(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1620,11 +1604,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "511919807.852225"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "IndicatorAlgorithms::simpleMovingAverages(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1636,12 +1620,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock-App/IndicatorAlgorithms.cpp"
-            timestampString = "512003997.970083"
+            timestampString = "517101600.907591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "IndicatorAlgorithms::simpleMovingAverages(Stock&amp; _stock)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/BuySell.cpp"
+            timestampString = "517099071.920665"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "BuySell::buyOrSell(Stock&amp; _stock)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/IndicatorAlgorithms.cpp"
+            timestampString = "517101600.907591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "IndicatorAlgorithms::macd(Stock&amp; _stock)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/IndicatorAlgorithms.cpp"
+            timestampString = "517089986.748764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "IndicatorAlgorithms::macd(Stock&amp; _stock)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock-App/IndicatorAlgorithms.cpp"
+            timestampString = "517089993.126101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "IndicatorAlgorithms::macd(Stock&amp; _stock)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

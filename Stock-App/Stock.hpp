@@ -60,6 +60,12 @@ class Stock {
     
     float w1;
     float w2;
+
+    std::vector<float> previousKST;
+    std::vector<float> previousMACDSignals;
+
+    float kst;
+    float kstSignalLine;
   
     unsigned int numberOfTrades;
     unsigned int negativeTrades;
@@ -69,6 +75,9 @@ class Stock {
     bool canStartBuying;
 
     unsigned int buyCandleNumber;
+
+    bool macdComplete;
+    bool kstComplete;
   
   private:
     friend class BuySell;

@@ -57,6 +57,14 @@ class StockModel {
     unsigned int shiftedMovingAverageLength;
     unsigned int movingAverageLength;
     unsigned int shiftLength;
+
+    unsigned int macdShort;
+    unsigned int macdLong;
+    unsigned int macdSignal;
+    unsigned int macdSignalCount;
+    float macdShortEMA;
+    float macdLongEMA;
+    float macdSignalEMA;
   
   private:
     unsigned int shortTimePeriods;

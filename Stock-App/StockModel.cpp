@@ -11,15 +11,20 @@
 StockModel::StockModel(const std::string& _symbol) {
   if (_symbol.compare("JNUG") == 0) {
     // 68 40 48000
-    this->shortTimePeriods = 37;
-    this->longTimePeriods = 40;
+    this->shortTimePeriods = 46;
+    this->longTimePeriods = 37;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 60000;
+    this->maxCandleTime = 112000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
     this->factor = 3;
     this->pd = 7;
+
+      this->macdShort = 10;
+      this->macdLong = 25;
+      this->macdSignal = 10;
+      this->macdSignalCount = 0;
   }
   else if (_symbol.compare("DUST") == 0) {
     this->shortTimePeriods = 26;
@@ -68,15 +73,20 @@ StockModel::StockModel(const std::string& _symbol) {
   else if (_symbol.compare("JDST") == 0) {
     // (this->open + this->close) / 2.0f; 30 46 127 .25%
     
-    this->shortTimePeriods = 46;//21;
-    this->longTimePeriods = 30;//22;
+    this->shortTimePeriods = 33;//21;
+    this->longTimePeriods = 37;//22;
     this->wTimePeriods = 4;
-    this->maxCandleTime = 127000;//75000;//64000;
+    this->maxCandleTime = 105000;//75000;//64000;
     this->maxGain = 0.10f;
     this->maxLoss = 0.10f;
     
     this->factor = 3;
     this->pd = 7;
+
+      this->macdShort = 10;
+      this->macdLong = 25;
+      this->macdSignal = 10;
+      this->macdSignalCount = 0;
     
     this->minutesSpan = 55;
     this->buyQuoteNumber[0] = 2550;
@@ -181,9 +191,9 @@ StockModel::StockModel(const std::string& _symbol) {
 // Long: 53	Short: 28	Time: 22000 16% (Found: 12_02_2016)
 
 void StockModel::reset() {
-  this->maxCandleTime = 100000;
-  this->shortTimePeriods = 15;
-  this->longTimePeriods = 15;
+  this->maxCandleTime = 80000;
+  this->shortTimePeriods = 20;
+  this->longTimePeriods = 20;
   this->wTimePeriods = 4;
 }
 
@@ -256,15 +266,15 @@ void StockModel::incrementWTimePeriods() {
 }
 
 void StockModel::resetMaxCandleTime() {
-  this->maxCandleTime = 100000;
+  this->maxCandleTime = 80000;
 }
 
 void StockModel::resetShortTimePeriods() {
-  this->shortTimePeriods = 15;
+  this->shortTimePeriods = 20;
 }
 
 void StockModel::resetLongTimePeriods() {
-  this->longTimePeriods = 15;
+  this->longTimePeriods = 20;
 }
 
 void StockModel::resetWTimePeriods() {

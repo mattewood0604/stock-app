@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <math.h>
 
 #include "FileManager.hpp"
@@ -105,7 +107,11 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
   authorization.append(authenticationToken);
   headers = curl_slist_append(headers, authorization.c_str());
   curl_easy_setopt(buyHandle, CURLOPT_HTTPHEADER, headers);
-  
+
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << std::to_string(_price);
+    std::string priceString = stream.str();
+
   std::string postFields = "account=";
   postFields.append(accountUrl);
   postFields.append("&instrument=");
@@ -118,7 +124,7 @@ void RestCall::order(const Stock& _stock, const std::string& _type, const unsign
   postFields.append("&side=");
   postFields.append(_type);
   postFields.append("&price=");
-  postFields.append(std::to_string(price));
+  postFields.append(priceString);
 
   std::cout << "Post Fields: " << std::endl;
   std::cout << postFields << std::endl;
