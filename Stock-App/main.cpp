@@ -11,6 +11,7 @@
 #include <time.h>
 #include <math.h>
 #include <cstdlib>
+#include <iomanip>
 
 #include "BuySell.hpp"
 #include "FileManager.hpp"
@@ -52,8 +53,8 @@ float**** createProfitStorage() {
 
 void resetProfitStorage(float**** _profitStorage, unsigned int _w, unsigned int _l, unsigned int _s, unsigned int _c) {
   //for (unsigned int w = 0; w < _w; w++) {
-    for (unsigned int l = 20; l < _l; l++) {
-      for (unsigned int s = 20; s < _s; s++) {
+    for (unsigned int l = 10; l < _l; l++) {
+      for (unsigned int s = 10; s < _s; s++) {
         for (unsigned int c = 15; c < _c; c++) {
           _profitStorage[_w][l][s][c] = 0.0f;
         }
@@ -96,8 +97,8 @@ void calculateAndWriteProfits(float**** _profits, const unsigned int& _index) {
   Stock& stock = TestModel::getTestStock(_index);
   StockModel& stockModel = stock.getStockModel();
   //for (unsigned int wTime = 2; wTime < wTimePeriods; wTime++) {
-  for (unsigned int longTime = 20; longTime < TestModel::maximumLongTimePeriods; longTime++) {
-    for (unsigned int shortTime = 20; shortTime < TestModel::maximumShortTimePeriods; shortTime++) {
+  for (unsigned int longTime = 10; longTime < TestModel::maximumLongTimePeriods; longTime++) {
+    for (unsigned int shortTime = 10; shortTime < TestModel::maximumShortTimePeriods; shortTime++) {
       for (unsigned int candleTime = 15; candleTime < TestModel::maximumCandleTime / 1000; candleTime++) {
         float profit = _profits[stockModel.getWTimePeriods()][longTime][shortTime][candleTime] / 100;
         unsigned int numberOfTrades = gNumberOfTrades[longTime * shortTime * candleTime];
@@ -347,6 +348,211 @@ void maximizeTimeSpan() {
   }
 }
 
+void testWilliamsVix() {
+  TestModel::initialize();
+  
+  const unsigned int totalSums = 101 * 101 * 4;
+  float* sums = new float[totalSums];
+  unsigned int* bottoms = new unsigned int[totalSums];
+  for (unsigned int i = 0;  i < totalSums; i++) {
+    sums[totalSums] = 0;
+    bottoms[totalSums] = 0;
+  }
+  
+  for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
+    Stock& stock = TestModel::getTestStock(j);
+    std::cout << "STOCK: " << stock.symbol << std::endl;
+    
+    unsigned int totalTime = 0;
+    for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
+      StockModel& stockModel = resetAllModelsForStock(j);
+      
+      std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
+      std::cout << "--------------------" << std::endl;
+      
+      TestModel::setDate(TestModel::getDateAtIndex(i));
+      if(!FileManager::readQuoteAtStockIndex(j)) {
+        continue;
+      }
+      
+      unsigned int index = 0;
+      stockModel.multiplier = 1;
+      while(stockModel.multiplier < 4) {
+        stockModel.standardDevHigh = 0;
+        while(stockModel.standardDevHigh <= 100) {
+          stockModel.bollingerBandLength = 0;
+          while(stockModel.bollingerBandLength <= 100) {
+            for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(j); marketTime++) {
+              RestCall::mockRestCall(stock, marketTime);
+              //BuySell::buyOrSell(stock);
+            }
+            
+            sums[index] += TestModel::sumOfWilliamsVix;
+            bottoms[index] += TestModel::williamsVixBottoms;
+            index++;
+            
+            TestModel::resetStockData();
+            Model::setStopBuying(false);
+            Model::setPurchasedStockSymbol("");
+            TestModel::sumOfWilliamsVix = 0;
+            TestModel::williamsVixBottoms = 0;
+            stockModel.bollingerBandLength += 5;
+          }
+          stockModel.standardDevHigh += 5;
+        }
+        stockModel.multiplier++;
+      }
+    }
+    
+    StockModel& stockModel = stock.getStockModel();
+    unsigned int index = 0;
+    stockModel.multiplier = 1;
+    while(stockModel.multiplier < 4) {
+      stockModel.standardDevHigh = 0;
+      while(stockModel.standardDevHigh <= 100) {
+        stockModel.bollingerBandLength = 0;
+        while(stockModel.bollingerBandLength <= 100) {
+          unsigned int width = 10;
+          float sum = sums[index];
+          unsigned int bottom = bottoms[index];
+          index++;
+          
+          float average = sum / bottom;
+          std::cout << std::setw(width) << stockModel.multiplier
+          << std::setw(width) << stockModel.bollingerBandLength
+          << std::setw(width) << stockModel.standardDevHigh
+          << std::setw(width) << sum
+          << std::setw(width) << bottom
+          << std::setw(width) << average
+          << std::setw(width) << average / bottom
+          << std::setw(width) << average / sum
+          << std::endl;
+          
+          stockModel.bollingerBandLength += 5;
+        }
+        stockModel.standardDevHigh += 5;
+      }
+      stockModel.multiplier++;
+    }
+  }
+}
+
+void runWilliamsVix() {
+  TestModel::initialize();
+  
+  for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
+    Stock& stock = TestModel::getTestStock(j);
+    std::cout << "STOCK: " << stock.symbol << std::endl;
+    
+    unsigned int totalTime = 0;
+    for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
+      StockModel& stockModel = resetAllModelsForStock(j);
+      
+      std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
+      std::cout << "--------------------" << std::endl;
+      
+      TestModel::setDate(TestModel::getDateAtIndex(i));
+      if(!FileManager::readQuoteAtStockIndex(j)) {
+        continue;
+      }
+
+      for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(j); marketTime++) {
+        RestCall::mockRestCall(stock, marketTime);
+        BuySell::buyOrSell(stock);
+      }
+    }
+  }
+}
+
+void testSimpleMovingAverage() {
+  const unsigned int smal = 100;
+  const unsigned int mal = 100;
+  const unsigned int sl = 10;
+  
+  TestModel::initialize();
+  
+  const unsigned int totalSums = (smal + 1) * (mal + 1) * (sl + 1);
+  float* sums = new float[totalSums];
+  for (unsigned int i = 0;  i < totalSums; i++) {
+    sums[totalSums] = 0;
+  }
+  
+  for (unsigned int j = 0; j < TestModel::getTestStockCount(); j++) {
+    Stock& stock = TestModel::getTestStock(j);
+    std::cout << "STOCK: " << stock.symbol << std::endl;
+    
+    unsigned int totalTime = 0;
+    for (unsigned int i = 0; i < TestModel::getNumberOfDates(); i++) {
+      StockModel& stockModel = resetAllModelsForStock(j);
+      
+      std::cout << "DATE: " << TestModel::getDateAtIndex(i) << std::endl;
+      std::cout << "--------------------" << std::endl;
+      
+      TestModel::setDate(TestModel::getDateAtIndex(i));
+      if(!FileManager::readQuoteAtStockIndex(j)) {
+        continue;
+      }
+
+      unsigned int index = 0;
+      stockModel.shiftedMovingAverageLength = 1;
+      while(stockModel.shiftedMovingAverageLength <= smal) {
+        stockModel.movingAverageLength = 1;
+        while(stockModel.movingAverageLength <= mal) {
+          stockModel.shiftLength = 1;
+          while(stockModel.shiftLength <= sl) {
+            //if (stockModel.movingAverageLength <= stockModel.shiftedMovingAverageLength) {
+              for (unsigned int marketTime = 0; marketTime < TestModel::totalTimeQuotes(j); marketTime++) {
+                RestCall::mockRestCall(stock, marketTime);
+                BuySell::buyOrSell(stock);
+              }
+              
+              if (!isnan(stock.getPercentageMade())) {
+                sums[index] += stock.getPercentageMade();
+              }
+            //}
+            
+            index++;
+            TestModel::resetStockData();
+            Model::setStopBuying(false);
+            Model::setPurchasedStockSymbol("");
+            stockModel.shiftLength++;
+          }
+          stockModel.movingAverageLength += 1;
+        }
+        stockModel.shiftedMovingAverageLength += 1;
+      }
+    }
+    
+    StockModel& stockModel = stock.getStockModel();
+    unsigned int index = 0;
+    stockModel.shiftedMovingAverageLength = 1;
+    while(stockModel.shiftedMovingAverageLength <= smal) {
+      stockModel.movingAverageLength = 1;
+      while(stockModel.movingAverageLength <= mal) {
+        stockModel.shiftLength = 1;
+        while(stockModel.shiftLength <= sl) {
+          if (stockModel.movingAverageLength <= stockModel.shiftedMovingAverageLength) {
+            float sum = sums[index];
+            index++;
+          
+            std::cout << "\t" << stockModel.shiftLength
+            << "\t" << stockModel.shiftedMovingAverageLength
+            << "\t" << stockModel.movingAverageLength
+            << "\t\t" << sum
+            << std::endl;
+          }
+          
+          stockModel.shiftLength++;
+        }
+        stockModel.movingAverageLength += 1;
+      }
+      stockModel.shiftedMovingAverageLength += 1;
+    }
+  }
+}
+
+#include <iomanip>
+#include <sstream>
 int main(void)
 {
   StockRunner::runDailyProfits();
@@ -354,6 +560,11 @@ int main(void)
   
   //StockRunner::dailyProfitsTimeSpan();
   //maximizeTimeSpan();
+  
+  //testWilliamsVix();
+  //runWilliamsVix();
+  
+  //testSimpleMovingAverage();
   
   return 0;
 }

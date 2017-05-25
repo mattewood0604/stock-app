@@ -219,7 +219,6 @@ void TestModel::createListOfDates() {
   dates.push_back("03_17_2017");
   dates.push_back("03_20_2017");
   dates.push_back("03_21_2017");
-
     dates.push_back("03_22_2017");
     dates.push_back("03_23_2017");
     dates.push_back("03_24_2017");
@@ -243,11 +242,27 @@ void TestModel::createListOfDates() {
     dates.push_back("04_20_2017");
     dates.push_back("04_21_2017");
     dates.push_back("04_24_2017");
+    dates.push_back("04_27_2017");
+    dates.push_back("04_28_2017");
     dates.push_back("05_01_2017");
     dates.push_back("05_02_2017");
     dates.push_back("05_03_2017");
     dates.push_back("05_04_2017");
     dates.push_back("05_05_2017");
+    dates.push_back("05_08_2017");
+    dates.push_back("05_09_2017");
+    dates.push_back("05_10_2017");
+    dates.push_back("05_11_2017");
+    dates.push_back("05_12_2017");
+    dates.push_back("05_15_2017");
+    dates.push_back("05_16_2017");
+    dates.push_back("05_17_2017");
+    dates.push_back("05_18_2017");
+    dates.push_back("05_19_2017");
+    dates.push_back("05_22_2017");
+    dates.push_back("05_23_2017");
+    dates.push_back("05_24_2017");
+    dates.push_back("05_25_2017");
 }
 
 unsigned int TestModel::getTestStockSymbolCount() {
